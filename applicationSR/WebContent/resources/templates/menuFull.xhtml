@@ -1,0 +1,83 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:vcp="http://www.exadel.com/vcp/components">
+
+
+	
+	<s:fragment rendered="#{identity.loggedIn}">
+		<s:fragment rendered="#{identity.loggedIn}">
+		<rich:separator lineType="solid" height="20px" width="950px" />
+	</s:fragment>
+	<h:form>
+			<rich:toolBar width="950px">
+
+
+				<rich:dropDownMenu>
+<f:facet name="label">
+						<h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+							style="vertical-align:middle" width="100">
+							<h:outputText value="EBook" styleClass="menuTxt" />
+						</h:panelGrid>
+					</f:facet>
+
+					<rich:menuItem submitMode="ajax" value="Neu"
+						action="#{documentManager.createDocument()}" icon="/img/message.png">
+					</rich:menuItem>
+					<rich:menuItem submitMode="ajax" value="Speichern"
+						action="#{documentManager.saveDocument()}" icon="/img/save.png">
+					</rich:menuItem>
+				</rich:dropDownMenu>
+				<rich:dropDownMenu>
+					<f:facet name="label">
+						<h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+							style="vertical-align:middle" width="100">
+							<h:outputText value="Kapitel" styleClass="menuTxt" />
+						</h:panelGrid>
+					</f:facet>
+
+					<rich:menuItem submitMode="ajax" value="Neu"
+						action="#{chapter.doNew}" icon="/img/message.png">
+					</rich:menuItem>
+					<rich:menuItem submitMode="ajax" value="Speichern"
+						action="#{chapter.doSave}" icon="/img/save.png">
+					</rich:menuItem>
+
+				</rich:dropDownMenu>
+				
+				<rich:dropDownMenu>
+					<f:facet name="label">
+						<h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+							style="vertical-align:middle" width="100">
+							<h:outputText value="Veröffentlichungen" styleClass="menuTxt" />
+						</h:panelGrid>
+					</f:facet>
+
+					<rich:menuItem submitMode="ajax" value="Statistik"
+						action="#{chapter.doNew}" icon="/img/message.png">
+					</rich:menuItem>
+				</rich:dropDownMenu>
+				<!--<s:link id="sessionviewer_link"  value="Session-Viewer" styleClass="menuTxt" view="/overview_sessionviewer.seam" action="#{overviewBean.startSession}"/>
+      		<s:link id="Inventar_link"  value="Inventar-Viewer" styleClass="menuTxt" view="/home_inventory.seam" action="#{inventar.startSession}"/>
+      		<s:link id="statistik_link"  value="Statistik-Viewer" styleClass="menuTxt" view="/statistik_sessionviewer.seam" disabled="false" propagation="none"/>-->
+
+
+
+
+			</rich:toolBar>
+
+
+
+		</h:form>
+	</s:fragment>
+	<s:fragment rendered="#{not identity.loggedIn}">
+		<rich:separator lineType="double" height="29px" width="950px" />
+	</s:fragment>
+</ui:composition>
+

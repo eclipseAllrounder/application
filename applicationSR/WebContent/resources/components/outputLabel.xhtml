@@ -1,0 +1,35 @@
+<ui:component
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:cc="http://java.sun.com/jsf/composite"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:richext="http://java.sun.com/jsf/composite/richext"
+    xmlns:my="http://java.sun.com/jsf/composite/components">
+    <cc:interface>
+        <cc:attribute name="label" required="true" />
+        <cc:attribute name="space" required="false" />
+        <cc:attribute name="value" required="true" />
+        <cc:attribute name="rendered" required="false" />
+        <cc:attribute name="disabled" required="false" />
+        <cc:attribute name="columnClasses1" required="false" />
+        <cc:attribute name="columnClasses2" required="false" />
+        <cc:attribute name="columnClasses3" required="false" />
+        <cc:editableValueHolder name="input" targets="input:text" />
+    </cc:interface>
+    <cc:implementation>
+    <h:panelGrid columns="3" border="0" columnClasses="#{cc.attrs.columnClasses1}, #{cc.attrs.columnClasses2}, #{cc.attrs.columnClasses3}">
+    
+        <h:panelGroup>     
+         <richext:spacer width="#{cc.attrs.space}" height="1"/>
+        <my:input id="input" label="#{cc.attrs.label}" space="#{cc.attrs.space}"/>
+        </h:panelGroup>
+        <h:panelGroup><richext:spacer width="100" height="1"/>
+         <h:outputLabel  id="text" value="#{cc.attrs.value}" styleClass="formtxt" disabled="#{cc.attrs.disabled}" rendered="#{cc.attrs.rendered}"  style="text-align:left;margin-right:0;margin-left:0px"/>
+         </h:panelGroup>
+   		<h:panelGroup><richext:spacer width="1" height="1"/> </h:panelGroup>
+   		
+    </h:panelGrid>
+     
+    </cc:implementation>
+</ui:component>

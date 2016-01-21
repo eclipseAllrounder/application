@@ -1,0 +1,21 @@
+<ui:component
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:cc="http://java.sun.com/jsf/composite"
+    xmlns:richext="http://java.sun.com/jsf/composite/richext">
+    <cc:interface>
+        <cc:attribute name="labelString" required="true" />
+        <cc:attribute name="labelSpaceBefore" required="false" />
+        <cc:attribute name="labelSpaceAfter" required="false" />
+         <cc:attribute name="labelStyleClass" required="false" />
+        <cc:editableValueHolder name="inputLabel" targets="inputLabel" />
+    </cc:interface>
+    <cc:implementation>
+    <h:panelGrid columns="3" border="0">
+       <richext:spacer width="#{cc.attrs.labelSpaceBefore}" height="1"/>
+       <h:outputLabel  value="#{cc.attrs.labelString}" styleClass="#{cc.attrs.labelStyleClass}"/>
+       <richext:spacer width="#{cc.attrs.labelSpaceAfter}" height="1"/>
+       <cc:insertChildren />
+    </h:panelGrid>
+    </cc:implementation>
+</ui:component>

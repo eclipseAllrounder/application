@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo">
+                
+
+   <ui:define name="content">  <!--Main -->
+   <h:panelGrid  id="contentGrid" columns="1" border="0" cellspacing="0" cellpadding="0" width="100%">
+  	<a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />
+     <rich:popupPanel id="statPane" autosized="true">
+            <h:graphicImage value="/resources/gfx/ai_32.gif" alt="ai" />
+            Please wait...
+     </rich:popupPanel>
+    <h:form id="RoleForm">
+ 	<f:event listener="#{idmUtilCreateController.initConversation()}" type="preRenderView"></f:event>
+ 
+    <fieldset> 
+  
+                            <legend>Gruppe einrichten</legend>
+  <h:panelGroup id="uavGroup" layout="block">
+ 
+	<richext:spacer width="123" height="10"/>
+	<h:panelGrid columns="1" border="0" columnClasses="topAligned">
+	  
+
+	<h:panelGroup id="uawGroup" layout="block"> 
+	
+		<my:inputText label="neuer Rollen Name: " value="#{idmUtilCreateController.newRoleName}"/>
+		<h:commandButton action="#{idmUtilCreateController.createNewRole}" value="Anlegen" style="width:120px;margin:10px;"/>
+	    
+    </h:panelGroup>
+   </h:panelGrid>
+   </h:panelGroup>
+	
+</fieldset> 
+
+
+<br style="clear:both"/>
+ </h:form>
+ </h:panelGrid>
+    </ui:define>
+     <ui:define name="rside">
+       <richext:spacer width="30" height="20"/>
+     
+      <fieldset>                         <legend>Hinweis</legend>
+     <h:form>
+		<rich:tree id="tree" nodeType="#{node.type}" var="node" value="#{idmUtilCreateController.groupTree.rootNodes}" toggleType="ajax"
+			selectionType="ajax" toggleListener="#{idmUtilCreateController.groupTree.processTreeToggle}"> 
+			
+			<rich:treeSelectionChangeListener listener="#{idmUtilCreateController.selectionChanged}"/>
+			<rich:treeNode type="group" iconLeaf="/resources/gfx/parentGroup.png" iconCollapsed="/resources/gfx/parentGroup.png" iconExpanded="/resources/gfx/parentGroup.png" > 
+			#{node.name} 
+			</rich:treeNode> 
+			<rich:treeNode type="subGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+			#{node.name} 
+			</rich:treeNode> 
+			<rich:treeNode type="subSubGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+			#{node.name}
+			</rich:treeNode> 
+			
+		</rich:tree>
+
+</h:form>
+</fieldset> 
+
+</ui:define></ui:composition>

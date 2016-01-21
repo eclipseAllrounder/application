@@ -1,0 +1,5 @@
+package net.application.util;
+
+public enum Status {
+	INPROGRESS, ACTIVE, INACTIVE, VERIFIED, UNVERIFIED, PUBLISHED, UNPUBLISHED, DELETED, DISABLED;
+}

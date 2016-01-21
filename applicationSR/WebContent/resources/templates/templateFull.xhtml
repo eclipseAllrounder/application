@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:a="http://richfaces.org/a4j"
+   xmlns:s="http://jboss.com/products/seam/taglib"
+   contentType="text/html"
+        xmlns:rich="http://richfaces.org/rich">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+               <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+      
+      <title>sessionviewer</title>
+      <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico"/>
+      
+      <a:loadStyle src="/stylesheet/theme.xcss"/>
+      <a:loadStyle src="/stylesheet/theme.css"/>
+  
+   </head>
+   <body id="pgMainMenu">
+    <div id="main"> 
+  
+      <!--  <h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+                        style="vertical-align:middle" width="100">-->
+    <h:panelGrid columns="2" border="1" cellspacing="0" cellpadding="0" background="#00ff33" width="800px">
+        	
+   	 <h:graphicImage value="/img/Logo_Sessionviewer.png" style="border : 0 none;width : 290px; height : 48px;"/>
+     <h:panelGroup style="width:320px;right:0px;border-width:0;">
+        <s:fragment rendered="#{s:hasRole('admin')}">
+          <s:link id="profile" view="/profile.xhtml" value="Mein Profil" propagation="none" styleClass="headerlink">
+            <f:param name="name" value="#{selectedUser.userName}"/>
+          </s:link>
+          <h:outputText styleClass="divider" value=" | "/>
+        </s:fragment>
+
+        <s:fragment rendered="#{s:hasRole('admin')}">
+          <s:link id="security" view="/security.xhtml" value="Security" propagation="none"/>
+          <h:outputText styleClass="divider" value="  |  "/>
+        </s:fragment>
+        <s:fragment rendered="#{not identity.loggedIn}">
+         <s:link id="register" value="Registieren" styleClass="headerlink" action="#{register.start()}"/>
+      <h:outputText styleClass="divider" value="|"/>
+         <rich:spacer width="5" height="10"/>
+        </s:fragment>
+       <s:fragment rendered="#{not identity.loggedIn and register.registerConversationStarted}">
+         <s:link id="registerCancel" value="Registieren abbrechen" styleClass="headerlink" action="#{register.cancel}"/>
+      <h:outputText styleClass="divider" value="|"/>
+         <rich:spacer width="5" height="10"/>
+        </s:fragment>
+        <s:fragment rendered="#{identity.loggedIn}">
+         <s:link id="logout" action="#{identity.logout}" value="Abmelden" styleClass="headerlink" view="/home.seam"/>
+      <h:outputText styleClass="divider" value="|"/>
+         <rich:spacer width="5" height="10"/>
+        </s:fragment>
+        <h:outputLink value="" id="loginh" rendered="#{not identity.loggedIn and !register.registerConversationStarted}" styleClass="headerLink">Login
+          <rich:componentControl for="loginPanel" attachTo="loginh" operation="show" event="onclick"/>
+   		 </h:outputLink>
+         <rich:spacer width="5" height="10"/>
+          <h:outputText styleClass="divider" value="|"/>
+         <rich:spacer width="5" height="10"/>
+        <s:fragment rendered="#{identity.loggedIn}">
+         <h:outputLabel value="Angemeldet als #{selectedUser.userName}" id="user_logedin" rendered="#{identity.loggedIn}" >
+         </h:outputLabel>
+         <rich:spacer width="5" height="10"/>
+        </s:fragment>
+   		   		 
+        
+			
+
+	</h:panelGroup>   	 
+  	 
+   </h:panelGrid> 
+     
+      
+         <ui:include src="menuFull.xhtml">
+          <ui:param name="projectName" value="sessionviewer"/>
+      </ui:include>
+      
+     <div id="container">
+ 
+        
+
+           <div class="body">
+               <h:messages id="messages" globalOnly="true" styleClass="message"
+            errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"
+            rendered="#{showGlobalMessages != 'false'}"/>
+        
+                <ui:insert name="content_full"/>
+            
+            </div>
+        </div>
+    </div>
+
+</body>
+   
+</html>
+</f:view>

@@ -1,0 +1,136 @@
+
+<ui:composition template="/resources/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo">
+                
+
+   <ui:define name="content">  <!--Main -->
+    <h:panelGrid  id="contentGrid" columns="1" border="0" cellspacing="0" cellpadding="0" width="100%">
+  	  <a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />
+     <rich:popupPanel id="statPane" autosized="true">
+            <h:graphicImage value="/resources/gfx/ai_32.gif" alt="ai" />
+            Please wait...
+     </rich:popupPanel>
+    <h:form id="GroupForm">
+ 
+ 	<f:event listener="#{idmUtilCreateController.initConversation()}" type="preRenderView"></f:event> 
+ 
+    <fieldset> 
+  
+                            <legend>Gruppe einrichten</legend>
+<h:panelGroup id="uavGroup" layout="block">
+ 
+	<richext:spacer width="123" height="10"/>
+	<h:panelGrid columns="1" border="0" columnClasses="topAligned">
+	  
+	 <h:panelGrid columns="3" border="0">
+        	<h:panelGroup>
+      		 <richext:spacer width="188" height="1"/>
+      		 <h:outputLabel for="wantRootLevelId" value="#{msg.newRootGroup}" styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:10px"/>
+      		</h:panelGroup>
+        	<h:panelGroup>
+			<h:selectOneRadio id="wantRootLevelId" value="#{idmUtilCreateController.wantRootLevel}" valueChangeListener="#{idmUtilCreateController.loadYesNo}" onchange="submit()">
+                <f:selectItem itemLabel="#{msg.yes}" itemValue="yes" />
+                <f:selectItem itemLabel="#{msg.no}" itemValue="no" />
+            	
+             <f:ajax event="click" render="uavGroup"></f:ajax>
+            </h:selectOneRadio>
+            </h:panelGroup>
+            <rich:message for="wantRootLevelId" ajaxRendered="true" />
+            </h:panelGrid>
+	<h:panelGroup id="uawGroup" layout="block"> 
+		<my:inputText label="#{msg.newRootGroupName}" value="#{idmUtilCreateController.newGroupName}"  rendered="#{idmUtilCreateController.wantRootLevel.matches('yes')}"/>
+		<a4j:commandButton action="#{idmUtilCreateController.createNewRootGroup}" value="Anlegen" style="width:120px;margin:10px;" rendered="#{idmUtilCreateController.wantRootLevel.matches('yes')}"/>
+	    
+    </h:panelGroup>
+      
+	<h:panelGroup>
+
+	<h:panelGrid id="le" columns="3" border="0" columnClasses="topAligned">
+	
+	<h:panelGrid columns="1" border="0" columnClasses="topAligned">
+	
+			
+			<rich:tree id="tree" nodeType="#{node.type}" var="node" value="#{idmUtilCreateController.groupTree.rootNodes}" toggleType="ajax"  rendered="#{idmUtilCreateController.wantRootLevel.matches('no')}"
+			selectionType="ajax"  render="groupInput" toggleListener="#{idmUtilCreateController.groupTree.processTreeToggle}"
+			selectionChangeListener="#{idmUtilCreateController.selectionChanged}"> 			
+			
+			<a4j:ajax event="click" render="groupInput,tree"></a4j:ajax>
+			<rich:treeNode type="group" iconLeaf="/resources/gfx/parentGroup.png" iconCollapsed="/resources/gfx/parentGroup.png" iconExpanded="/resources/gfx/parentGroup.png" > 
+			#{node.name} 
+			</rich:treeNode> 
+			<rich:treeNode type="subGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+			#{node.name} 
+			</rich:treeNode> 
+			<rich:treeNode type="subSubGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+			#{node.name}
+			</rich:treeNode> 
+		</rich:tree>
+			
+	</h:panelGrid>
+	<h:panelGroup> 
+			<h:graphicImage value="/resources/gfx/pfeilrechts.png" width="150px" height="30px" rendered="#{idmUtilCreateController.wantRootLevel.matches('no')}"></h:graphicImage>
+		</h:panelGroup>
+	<h:panelGrid columns="1" border="0" columnClasses="topAligned" width="500">
+	<h:panelGroup id="groupInput" styleClass="topAligned"> 
+	<my:inputText label="#{msg.selectNewRootLevelGroupName}" value="#{idmUtilCreateController.groupTreeBean.groupName}"  rendered="#{idmUtilCreateController.wantRootLevel.matches('no') and idmUtilCreateController.groupTreeBean.showGroupName}" disabled="#{idmUtilCreateController.groupTreeBean.disableGroupName}" columnClasses1="colStyleRegister3" columnClasses2="colStyleRegister1" columnClasses3="colStyleRegister1" space="200"/>
+	<my:outputLabel label="#{msg.rootLevelGroupName}" value="#{idmUtilCreateController.groupTreeBean.groupName}"  rendered="#{idmUtilCreateController.wantRootLevel.matches('no') and !idmUtilCreateController.groupTreeBean.showGroupName}" columnClasses1="colStyleRegister3" columnClasses2="colStyleRegister1" columnClasses3="colStyleRegister1" space="100"/>
+	<my:inputText label="#{msg.selectNewSecoundLevelGroupName}"  value="#{idmUtilCreateController.groupTreeBean.subGroupName}"  rendered="#{idmUtilCreateController.wantRootLevel.matches('no') and idmUtilCreateController.groupTreeBean.showSubGroupName}" columnClasses1="colStyleRegister3" columnClasses2="colStyleRegister1" columnClasses3="colStyleRegister1" disabled="#{idmUtilCreateController.groupTreeBean.disableSubGroupName}" space="200"/>
+	<my:outputLabel label="#{msg.secoundLevelGroupName}" value="#{idmUtilCreateController.groupTreeBean.subGroupName}"  rendered="#{idmUtilCreateController.wantRootLevel.matches('no') and !idmUtilCreateController.groupTreeBean.showSubGroupName}" columnClasses1="colStyleRegister3" columnClasses2="colStyleRegister1" columnClasses3="colStyleRegister1" space="100"/>
+	<my:inputText label="#{msg.selectNewThirdLevelGroupName}" value="#{idmUtilCreateController.groupTreeBean.subSubGroupName}"  rendered="#{idmUtilCreateController.wantRootLevel.matches('no') and idmUtilCreateController.groupTreeBean.showSubSubGroupName}" disabled="#{idmUtilCreateController.groupTreeBean.disableSubSubGroupName}" columnClasses1="colStyleRegister3" columnClasses2="colStyleRegister1" columnClasses3="colStyleRegister1" space="200"/>
+   	<my:outputLabel label="#{msg.thirdLevelGroupName}" value="#{idmUtilCreateController.groupTreeBean.subSubGroupName}"  rendered="#{idmUtilCreateController.wantRootLevel.matches('no') and !idmUtilCreateController.groupTreeBean.showSubSubGroupName}" columnClasses1="colStyleRegister3" columnClasses2="colStyleRegister1" columnClasses3="colStyleRegister1" space="100"/>
+   	</h:panelGroup>
+   	 		<a4j:commandButton action="#{idmUtilCreateController.createNewGroup}" value="Anlegen" rendered="#{idmUtilCreateController.wantRootLevel.matches('no')}" style="width:120px;margin:20px;"/>
+    </h:panelGrid>
+  </h:panelGrid>
+	
+		
+	</h:panelGroup>
+	
+   
+    </h:panelGrid>
+
+</h:panelGroup>
+</fieldset> 
+
+
+
+<br style="clear:both"/>
+ </h:form>
+ </h:panelGrid>
+    </ui:define>
+   
+   
+   
+   <ui:define name="rside">
+       <richext:spacer width="30" height="20"/>
+     
+      <fieldset>                         <legend>Hinweis</legend>
+     <h:form>
+		<rich:tree id="tree" nodeType="#{node.type}" var="node" value="#{idmUtilCreateController.groupTree.rootNodes}" toggleType="ajax"
+			selectionType="ajax" toggleListener="#{idmUtilCreateController.groupTree.processTreeToggle}"> 
+			
+			<rich:treeSelectionChangeListener listener="#{idmUtilCreateController.selectionChanged}"/>
+			<rich:treeNode type="group" iconLeaf="/resources/gfx/parentGroup.png" iconCollapsed="/resources/gfx/parentGroup.png" iconExpanded="/resources/gfx/parentGroup.png" > 
+			#{node.name} 
+			</rich:treeNode> 
+			<rich:treeNode type="subGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+			#{node.name} 
+			</rich:treeNode> 
+			<rich:treeNode type="subSubGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+			#{node.name}
+			</rich:treeNode> 
+			
+		</rich:tree>
+
+</h:form>
+</fieldset> 
+
+</ui:define></ui:composition>

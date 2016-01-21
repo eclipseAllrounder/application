@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/template2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo">
+    <ui:define name="content">
+   
+<rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:20px;background-color:#F2F2F2">
+<h:form id="registerform2" rendered="#{not identity.loggedIn}">
+	 	<richext:spacer width="190" height="30"/>
+	 	 <h:outputLabel value="Registierung bestätigt, Account bitte verifizieren" styleClass="DialogHeadline" style="text-align:left;margin-right:0;margin-left:60px;margin-top:0px;"/>
+	 	 <richext:spacer width="190" height="15"/>
+	  <h:graphicImage value="/resources/gfx/borderLine.png" style="border:0 none;width:85%; height:2px;margin-left:60px;"/>
+	      	<richext:spacer width="190" height="10"/>
+
+
+
+
+		   <h:panelGrid columns="2" border="0"  style="margin-left:60px;" columnClasses="topAligned, topAlignedWithLeftSpace">
+			<h:outputLabel value="Anrede:" styleClass="DialogBig"/>
+      	    <h:outputLabel value="#{msg.registerConfirmGenderMale} "  rendered="#{newCustomer.gender.startsWith('male')}" styleClass="DialogBig"/>
+			<h:outputLabel value="#{msg.registerConfirmGenderFemale} " rendered="#{newCustomer.gender.startsWith('female')}" styleClass="DialogBig"/>
+			<h:outputLabel value="Vorname:" styleClass="DialogBig"/>
+			  <h:outputLabel value="#{newCustomer.firstName}" styleClass="DialogBig"/>
+			  <h:outputLabel value="Nachname:" styleClass="DialogBig"/>
+			  <h:outputLabel value="#{newCustomer.lastName}" styleClass="DialogBig"/>
+	   		<h:outputLabel value="E-Mail:" styleClass="DialogBig"/>
+      	    <h:outputLabel value="#{newCustomer.email}" styleClass="DialogBig"/>
+			
+           </h:panelGrid>
+                     	<h:commandButton action="createRegistration" value="#{msg.flowBack}" style="border:0 none;margin-left:60px;width:15%;font-size:small;height:40px;"/>
+            		     <h:commandButton action="exitRegistration" value="#{msg.flowCancel}" style="border:0 none;margin-left:60px;width:15%;font-size:small;height:40px;"/>
+          			     <h:commandButton action="endRegistration" value="#{msg.flowConfirm}" style="border:0 none;margin-left:60px;width:15%;font-size:small;height:40px;"/>
+          
+  
+
+ 		
+</h:form>
+</rich:panel>
+	<br style="clear:both"/>
+</ui:define>
+<ui:define name="rside">
+<rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;background-color:#F2F2F2">
+
+<li>wkefjwekfjw</li>
+<li>scdwdf erfer ergf 3efg3g 3gf3g 3gv3rfe</li>
+
+</rich:panel>
+
+
+</ui:define>
+</ui:composition>

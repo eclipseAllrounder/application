@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/template2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo">
+<f:metadata>
+  <f:viewParam name="errorId" value="#{errorBean.errorId}" />
+</f:metadata>
+<ui:define name="content">
+
+
+<rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:20px;background-color:#F2F2F2">
+<h:form id="verifyform">
+<rich:panel style="background-color:#F2F2F2;margin-left:60px;top:0px;margin-top:0px;border-width:0;margin-bottom:0px;border-style:none;margin-right:60px;">
+	 	<richext:spacer width="190" height="30"/>
+	 	 <h:outputLabel value="Ein Fehler ist passiert"
+	 	  styleClass="DialogHeadline" style="text-align:left;margin-right:0;margin-left:0px;margin-top:0px;" />
+	 	  <richext:spacer width="190" height="15"/>
+	     <h:graphicImage value="/resources/gfx/borderLine.png" style="border:0 none;width:85%; height:2px;margin-left:0px;"/>
+	      	<richext:spacer width="190" height="30"/>
+      <h:outputLabel escape="false" value="#{errorBean.error}" styleClass="DialogHeadline" style="text-align:left;margin-right:0px;margin-left:0px;margin-top:0px;width:85%"/>
+	 	  	<richext:spacer width="190" height="30"/>
+		 
+   
+          <richext:spacer width="190" height="60"/>  
+</rich:panel>		
+</h:form>
+</rich:panel>
+	<br style="clear:both"/>
+</ui:define>
+<ui:define name="rside">
+<rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;background-color:#F2F2F2">
+
+<li>wkefjwekfjw</li>
+<li>scdwdf erfer ergf 3efg3g 3gf3g 3gv3rfe</li>
+
+</rich:panel>
+
+
+</ui:define>
+</ui:composition>

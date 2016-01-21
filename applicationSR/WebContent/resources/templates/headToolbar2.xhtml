@@ -1,0 +1,44 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+                xmlns:richext="http://java.sun.com/jsf/composite/richext"
+	xmlns:vcp="http://www.exadel.com/vcp/components">
+ 
+   
+    
+	<rich:toolbar  width="100%" style="padding:0px;margin:0px;border-width:0px;">
+	<h:form id="toolbarSearch">
+    <h:panelGrid columnClasses="className" columns="4" border="0" cellspacing="0" cellpadding="0" style="margin-top:5px;margin-bottom:5px;" >
+		              <richext:spacer width="500"/>
+	
+	<h:commandLink id="ProfileIn" styleClass="headToolbarButton"  rendered="true" style="margin-left:0px;">
+		    <h:panelGrid columnClasses="className" columns="2" border="0" cellspacing="0" cellpadding="0" style="background-color:FloralWhite;" >
+	
+		  <h:graphicImage value="/resources/gfx/profileIn.png" height="40px" alt="bearbeiten" style="margin-left:10px;margin-top:0px;"/>
+		  <h:outputLabel value="#{msg.toolboxHeadEnter}" style="margin-bottom:0px;margin-right:10px;"/>
+     </h:panelGrid>
+     </h:commandLink>
+      <richext:spacer width="30"/>
+	<h:commandLink id="ProfileOut" styleClass="headToolbarButton"  rendered="true" style="margin-left:0px;">
+		    <h:panelGrid columnClasses="className" columns="3" border="0" cellspacing="0" cellpadding="0" style="background-color:FloralWhite;">
+	
+		  <h:graphicImage value="/resources/gfx/fernglas.png" height="40px" alt="bearbeiten" style="margin-left:10px;margin-top:0px;margin-right:10px;"/>
+		  <h:outputLabel value="#{msg.toolboxHeadSearch}" style="margin-bottom:0px;margin-right:10px;"/>
+     </h:panelGrid>
+    </h:commandLink>
+	</h:panelGrid>
+	
+	
+	</h:form>
+    
+   
+</rich:toolbar>
+</ui:composition>   
+	   
+ 

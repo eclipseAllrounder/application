@@ -1,0 +1,36 @@
+<ui:component
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:cc="http://java.sun.com/jsf/composite"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:my="http://java.sun.com/jsf/composite/components">
+    <cc:interface>
+        <cc:attribute name="label" required="true" />
+        <cc:attribute name="value1" required="true" />
+        <cc:attribute name="value2" required="true" />
+        <cc:attribute name="size1" required="true" />
+        <cc:attribute name="size2" required="true" />
+        <cc:editableValueHolder name="inputDouble" targets="input:text1, input:text2" />
+    </cc:interface>
+    <cc:implementation>
+        <my:inputDouble id="inputDouble" label="#{cc.attrs.label}">
+        <h:panelGrid columns="4">
+        <h:panelGrid columns="2" border="0">
+            <h:inputText id="text1" value="#{cc.attrs.value1}"  size="#{cc.attrs.size1}" required="false">
+               <rich:validator event="blur" oninvalid="$(#{rich:element('text1')}).addClass('invalid')"
+            	onvalid="$(#{rich:element('text1')}).removeClass('invalid')"/>
+            </h:inputText>
+            <h:inputText id="text2" value="#{cc.attrs.value2}"  size="#{cc.attrs.size2}" required="false">
+               <rich:validator event="blur" oninvalid="$(#{rich:element('text2')}).addClass('invalid')"
+            	onvalid="$(#{rich:element('text2')}).removeClass('invalid')"/>
+            </h:inputText>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+            <rich:message for="text1"  ajaxRendered="true" /> 
+            <rich:message for="text2"  ajaxRendered="true" /> 
+          </h:panelGrid>
+          </h:panelGrid>
+        </my:inputDouble>
+    </cc:implementation>
+</ui:component>

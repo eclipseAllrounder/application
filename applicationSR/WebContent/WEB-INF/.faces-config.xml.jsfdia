@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#*" PATH="/*" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:0" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success:#{controller.login()}:loggedIn.jsf"
+    NAME="output" PATH="loggedIn.jsf" TARGET="rules:loggedIn.jsf"
+    TITLE="#{controller.login()}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="logout:#{controller.logout()}:loggedOut.jsf"
+    NAME="output1" PATH="loggedOut.jsf" TARGET="rules:loggedOut.jsf"
+    TITLE="#{controller.logout()}:logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="success::#loggedOut.jsf" NAME="output2"
+    PATH="/loggedOut.jsf" TARGET="rules:#loggedOut.jsf" TITLE="success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="toGroup:#{dropDownMenuBean.switchToGroup}:#secure#administration#utilCreateGroup.xhtml"
+    NAME="output3" PATH="/secure/administration/utilCreateGroup.xhtml"
+    TARGET="rules:#secure#administration#utilCreateGroup.xhtml"
+    TITLE="#{dropDownMenuBean.switchToGroup}:toGroup" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="sucess:#{idmUtilCreateGroupController.createNewRootGroup}:#secure#administration#userAdministration.xhtml"
+    NAME="output4"
+    PATH="/secure/administration/userAdministration.xhtml"
+    TARGET="rules:#secure#administration#userAdministration.xhtml"
+    TITLE="#{idmUtilCreateGroupController.createNewRootGroup}:sucess" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:loggedOut.jsf" PATH="loggedOut.jsf"
+  SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:loggedIn.jsf" PATH="loggedIn.jsf"
+  SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#secure#administration#utilCreateGroup.xhtml"
+  PATH="/secure/administration/utilCreateGroup.xhtml"
+  SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#secure#administration#userAdministration.xhtml"
+  PATH="/secure/administration/userAdministration.xhtml"
+  SHAPE="256,513,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#loggedOut.jsf" PATH="/loggedOut.jsf"
+  SHAPE="304,721,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

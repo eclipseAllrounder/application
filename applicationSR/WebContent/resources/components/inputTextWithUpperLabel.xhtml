@@ -1,0 +1,40 @@
+<ui:component
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:cc="http://java.sun.com/jsf/composite"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:richext="http://java.sun.com/jsf/composite/richext"
+    xmlns:my="http://java.sun.com/jsf/composite/components">
+    <cc:interface>
+        <cc:attribute name="space" required="false" />
+        <cc:attribute name="size" required="false" />
+        <cc:attribute name="labelString" required="true" />
+        <cc:attribute name="value" required="true" />
+        <cc:attribute name="rendered" required="false" />
+        <cc:attribute name="disabled" required="false" />
+        <cc:attribute name="columnClasses1" required="false" />
+        <cc:attribute name="id" required="false" />
+        <cc:attribute name="converterMessage" required="false" />
+        <cc:attribute name="labelStyleClass" required="false" />
+        <cc:attribute name="inputStyleClass" required="false" />
+        <cc:attribute name="required" required="false" />
+        <cc:editableValueHolder name="input" targets="inputText" />
+    </cc:interface>
+    <cc:implementation>
+      <h:panelGrid columns="1" border="0" columnClasses="#{cc.attrs.columnClasses1}">
+	      <h:panelGroup>
+	      <richext:spacer width="#{cc.attrs.space}" height="1"/>
+	      <my:inputLabel id="input" labelString="#{cc.attrs.labelString}" labelStyleClass="#{cc.attrs.labelStyleClass}"/>
+	      </h:panelGroup>
+	      <h:panelGroup>
+	      		<h:inputText id="inputText" styleClass="#{cc.attrs.inputStyleClass}" value="#{cc.attrs.value}" rendered="#{cc.attrs.rendered}" required="#{cc.attrs.required}" disabled="#{cc.attrs.disabled}" converterMessage="#{cc.attrs.converterMessage}"
+	      		 size="#{cc.attrs.size}">
+	               <rich:validator event="blur" oninvalid="$(#{rich:element('inputText')}).addClass('invalid')"
+	            	onvalid="$(#{rich:element('inputText')}).removeClass('invalid')"/>
+	            </h:inputText>
+	      </h:panelGroup>
+	      <h:panelGroup><rich:message for="inputText"  ajaxRendered="false" /> </h:panelGroup>
+       </h:panelGrid>
+     </cc:implementation>
+</ui:component>

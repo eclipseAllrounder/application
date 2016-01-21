@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/templateFull2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo">
+<ui:define name="content">
+<rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:80px;background-color:#F2F2F2">
+<h:form id="registerform" rendered="#{not identity.loggedIn}">
+	 	<richext:spacer width="190" height="30"/>
+	 	 <h:outputLabel for="countryId" value="Registrieren" styleClass="DialogHeadline" style="text-align:left;margin-right:0;margin-left:60px;margin-top:0px;"/>
+	 	 <richext:spacer width="190" height="15"/>
+	  <h:graphicImage value="/resources/gfx/borderLine.png" style="border:0 none;width:85%; height:2px;margin-left:60px;"/>
+	      	<richext:spacer width="190" height="10"/>
+		
+	  
+	     <h:panelGrid columns="3" border="0" style="margin-left:60px;" columnClasses="topAligned, topAligned">
+	           
+	         <h:panelGroup>
+	         <h:panelGrid columns="1" border="0" style="margin-left:0px;margin-top:0px;">
+				<richext:spacer width="127" height="1"/> 
+				<h:panelGrid columns="1" border="0" columnClasses="topAligned">
+		        	<h:panelGroup>
+		      			<richext:spacer width="193" height="7"/>
+		            	<h:outputLabel for="countryId2" value="#{msg.registerGender}: " styleClass="inputLabelRegister" />
+		            </h:panelGroup>
+		            <h:selectOneMenu id="genderId2" value="#{registrationBean.gender}" styleClass="inputRegister" >
+		            <f:selectItem itemValue="genderChoose" itemLabel="#{msg.registerGenderPlaceholder}" />
+			   			<f:selectItem itemValue="male" itemLabel="#{msg.registerGenderM}" />
+			   			<f:selectItem itemValue="female" itemLabel="#{msg.registerGenderF}" />
+			   
+			   		</h:selectOneMenu>					
+			   		<rich:message for="genderId2" ajaxRendered="true"/>  
+			   	</h:panelGrid>
+			   	</h:panelGrid>
+	        </h:panelGroup>
+	        <richext:spacer width="127" height="1"/> 
+	          <richext:spacer width="127" height="1"/> 
+	        
+	        <h:panelGroup>
+	        <h:panelGrid columns="1" border="0" style="margin-left:0px;margin-top:0px;">
+				<richext:spacer width="127" height="1"/> 
+				<my:inputTextWithUpperLabel labelString="#{msg.registerFirstName}: " value="#{newCustomer.firstName}" inputStyleClass="inputRegister" labelStyleClass="inputLabelRegister">
+		        	<f:validator validatorId="net.application.web.validator.validUsername" for="input"/>
+		        </my:inputTextWithUpperLabel>
+		        </h:panelGrid>
+	        </h:panelGroup>
+	        <h:panelGroup >	        
+		        <h:panelGrid columns="1" border="0" style="margin-left:60px;margin-top:0px;">
+					<richext:spacer width="127" height="1"/> 
+					<my:inputTextWithUpperLabel labelString="#{msg.registerLastName}: " value="#{newCustomer.lastName}" inputStyleClass="inputRegister" labelStyleClass="inputLabelRegister">
+			        	<f:validator validatorId="net.application.web.validator.validUsername" for="input"/>
+			        </my:inputTextWithUpperLabel>
+		        </h:panelGrid>
+	        </h:panelGroup>
+	          <richext:spacer width="127" height="1"/> 
+	        
+      	<h:panelGroup>
+				<richext:spacer width="127" height="1"/> 
+				<my:inputTextWithUpperLabel labelString="#{msg.registerMail}: " value="#{newCustomer.email}" inputStyleClass="inputRegister" labelStyleClass="inputLabelRegister">
+		        	<f:validator validatorId="net.application.web.validator.validUsername" for="input"/>
+		        </my:inputTextWithUpperLabel>
+	        </h:panelGroup>
+        
+	        <h:panelGroup>
+		            <h:panelGroup>
+			       			<richext:spacer width="190" height="11"/>
+			                <h:outputLabel for="countryId" value="#{msg.registerPassword}: " styleClass="inputLabelRegister" style="text-align:left;margin-right:0;margin-left:70px;margin-top:0px;"/>
+			        </h:panelGroup>
+			        	<h:panelGroup>
+			        	 <h:panelGrid columns="2" border="0" style="margin-top:0px;">
+				       <h:panelGroup>
+			            <h:inputText id="textPw1" value="#{registrationBean.password}" required="true" validator="#{registrationBean.validatePassword}" styleClass="inputRegister" style="text-align:left;margin-right:0;margin-left:60px;margin-top:0px;">
+			                <a4j:ajax event="keyup" listener="#{registrationBean.passwordStrength()}" render="pic"/>
+			                <rich:validator event="blur" oninvalid="$(#{rich:element('textPw')}).addClass('invalid')" onvalid="$(#{rich:element('textPw1')}).removeClass('invalid')"/>
+			            	<f:event listener="#{registrationBean.postValidatePassword}" type="postValidate"></f:event>	
+			        	</h:inputText>
+			        	</h:panelGroup>
+				        <h:panelGroup id="pic5">
+							<h:panelGroup onclick="t">
+								<h:graphicImage value="/resources/gfx/grey4Led.png" style="border : 0 none;width : 184px; height : 22px;" rendered="#{registrationBean.secureLvl==0}" id="pic0"/>
+								<h:graphicImage value="/resources/gfx/grey3Led.png" style="border : 0 none;width : 184px; height : 22px;" rendered="#{registrationBean.secureLvl==1}" id="pic1"/>
+								<h:graphicImage value="/resources/gfx/grey2Led.png" style="border : 0 none;width : 184px; height : 22px;" rendered="#{registrationBean.secureLvl==2}" id="pic2"/>
+								<h:graphicImage value="/resources/gfx/grey1Led.png" style="border : 0 none;width : 184px; height : 22px;" rendered="#{registrationBean.secureLvl==3}" id="pic3"/>
+								<h:graphicImage value="/resources/gfx/grey0Led.png" style="border : 0 none;width : 184px; height : 22px;" rendered="#{registrationBean.secureLvl==4}" id="pic4"/>
+							</h:panelGroup>
+						</h:panelGroup>
+			            <rich:message for="textPw1"  ajaxRendered="true" /> 
+						<h:outputText value="#{msg.registerPasswordSecurity}" />
+					</h:panelGrid>    
+		        	</h:panelGroup>
+	         	
+	        </h:panelGroup>
+	   <richext:spacer width="127" height="1"/> 
+         <h:panelGroup>
+         <h:panelGrid columns="2" border="0">
+			<h:selectBooleanCheckbox value="#{registrationBean.confirmAgb}" id="confirmAgb" required="true">
+			
+			</h:selectBooleanCheckbox>
+			 <h:outputLabel value="#{msg.registerConfirmAgbCheckbox}" style="font-weight:bold;"/>
+			 </h:panelGrid>
+         </h:panelGroup>
+         <richext:spacer width="18" height="1"/>
+          <richext:spacer width="280" height="1"/> 
+   
+           </h:panelGrid> 
+        
+                <h:commandButton action="end" value="#{msg.registerButtonLabel}" style="border:0 none;margin-left:60px;width:85%;font-size:x-large;height:40px;"/>
+       
+        
+		<h:panelGrid columns="3" border="0">
+        	<h:panelGroup>
+      		 	<richext:spacer width="188" height="1"/>
+      		 	<h:outputLabel for="genderId" value="#{msg.registerCategory} " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:10px"/>
+      		</h:panelGroup>
+        	<h:panelGroup>
+				<h:selectOneRadio id="customerCategoryId" value="#{registrationBean.customerCategory}">
+	                <f:selectItem itemLabel="#{msg.registerCategoryAuthor}" itemValue="author" />
+	                <f:selectItem itemLabel="#{msg.registerCategoryCustomer}" itemValue="customer" />
+	                <f:selectItem itemLabel="#{msg.registerCategoryBoth}" itemValue="both" />
+	            	<rich:validator event="blur" oninvalid="$(#{rich:element('customerCategoryId')}).addClass('invalid')"
+	            	onvalid="$(#{rich:element('customerCategoryId')}).removeClass('invalid')" />
+	            </h:selectOneRadio>
+            </h:panelGroup>
+            <rich:message for="customerCategoryId" ajaxRendered="true" />
+        </h:panelGrid>
+        <h:panelGrid columns="3" border="0">
+    	  	<h:panelGroup>
+      			<richext:spacer width="188" height="1"/>
+      			<h:outputLabel for="genderId" value="#{msg.registerGender}: " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:10px"/>
+      		</h:panelGroup>
+        	<h:panelGroup>
+				<h:selectOneRadio id="genderId" value="#{newCustomer.gender}">
+                	<f:selectItem itemLabel="#{msg.registerGenderM}" itemValue="male" />
+                	<f:selectItem itemLabel="#{msg.registerGenderF}" itemValue="female" />
+            		<rich:validator event="blur" oninvalid="$(#{rich:element('genderId')}).addClass('invalid')"
+            		onvalid="$(#{rich:element('genderId')}).removeClass('invalid')" />
+            	</h:selectOneRadio>
+            </h:panelGroup>
+            <rich:message for="genderId" ajaxRendered="true" />
+		</h:panelGrid>
+		<my:inputText label="#{msg.registerFirstName}:" value="#{msg.registerUserName}:"/>
+        <my:inputText label="#{msg.registerLastName}:" value="#{newCustomer.lastName}"/>
+        <h:panelGrid columns="3" border="0" columnClasses="colStyleRegister1,colStyleRegister2,colStyleRegister2">
+        	<h:panelGroup>
+      			<richext:spacer width="193" height="1"/>
+            	<h:outputLabel for="countryId" value="#{msg.registerCountry}: " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:10px"/>
+            </h:panelGroup>
+			<h:selectOneMenu id="countryId" value="#{registrationBean.country}" >
+	   			<f:selectItems value="#{registrationBean.allCountries}"/>
+	   		</h:selectOneMenu>
+	   		<rich:message for="countryId" ajaxRendered="true"/>  
+	   	</h:panelGrid>
+        <my:inputTextDouble label="#{msg.registerZipAndCity}:" value1="#{newCustomer.zip}" value2="#{newCustomer.city}" size1="5" size2="20"/>
+        <my:inputTextDouble label="#{msg.registerStreetAndNumber}:" value1="#{newCustomer.street}" value2="#{newCustomer.streetNumber}" size1="20" size2="5"/>
+		<richext:spacer width="127" height="20"/>    
+	
+	<richext:spacer width="123" height="10"/>
+	<rich:panel>
+		<f:facet name="header">
+	  		<h:outputText value="#{msg.headerRegisterMail}" style="font-size:14px;margin-left:10px;font-family: 'Times New Roman', Times, serif;"/>
+		</f:facet>
+		<richext:spacer width="127" height="20"/> 
+		<my:inputText label="#{msg.registerMail}: " value="#{newCustomer.email}"/>
+		<richext:spacer width="127" height="20"/> 	
+	</rich:panel>
+	<richext:spacer width="123" height="10"/>
+	<rich:panel>
+		<f:facet name="header">
+	  		<h:outputText value="#{msg.headerRegisterAccess}" style="font-size:14px;margin-left:10px;font-family:'Times New Roman', Times, serif;"/>
+		</f:facet>
+		<richext:spacer width="127" height="20"/> 
+		<my:inputText label="#{msg.registerUserName}:" value="#{newCustomer.userName}">
+        	<f:validator validatorId="net.application.web.validator.validUsername" for="input"/>
+        </my:inputText>
+        <richext:spacer width="127" height="20"/> 
+        <h:panelGrid columns="3" border="0">
+	        <richext:spacer width="193" height="1"/>
+	       
+			<h:outputText value="#{msg.registerPasswordSecurity}" />
+		</h:panelGrid>      
+        <richext:spacer width="188" height="1"/>  
+		<h:outputText value="#{msg.registerPasswordNotice}" style="padding-left:200px;"/>
+		<!--  <my:inputTextSecure label="#{msg.registerPassword}:" value="#{registrationBean.password}">
+        </my:inputTextSecure>-->
+        <h:panelGrid columns="3" border="0" columnClasses="colStyleRegister1,colStyleRegister1,colStyleRegister2">
+        	<h:panelGroup>
+       			<richext:spacer width="190" height="1"/>
+                <h:outputLabel for="countryId" value="#{msg.registerPassword}: " styleClass="formtxt" style="text-align:left;margin-right:0;margin-left:10px"/>
+        	</h:panelGroup>
+            <h:inputText id="textPw" value="#{registrationBean.password}" required="true" validator="#{registrationBean.validatePassword}">
+                <a4j:ajax event="keyup" listener="#{registrationBean.passwordStrength()}" render="pic"/>
+                <rich:validator event="blur" oninvalid="$(#{rich:element('textPw')}).addClass('invalid')" onvalid="$(#{rich:element('textPw')}).removeClass('invalid')"/>
+            	<f:event listener="#{registrationBean.postValidatePassword}" type="postValidate"></f:event>	
+        	</h:inputText>
+            <rich:message for="textPw"  ajaxRendered="true" /> 
+		</h:panelGrid>
+        <!--<my:inputTextSecureConfirm label="#{msg.registerPasswordRepeat}:" value="#{registrationBean.passwordConfirm}">
+        </my:inputTextSecureConfirm>-->
+		<h:panelGrid columns="3" border="0" columnClasses="colStyleRegister1,colStyleRegister1,colStyleRegister2">
+			<h:panelGroup>
+       			<richext:spacer width="190" height="1"/>
+		        <h:outputLabel for="countryId" value="#{msg.registerPasswordRepeat}: " styleClass="formtxt" style="text-align:left;margin-right:0;margin-left:10px"/>
+			</h:panelGroup>
+           	<h:inputText id="textconfirmValdidation" value="#{registrationBean.passwordConfirm}" validator="#{registrationBean.validatePasswordConfirm}" rendered="true">
+               	<rich:validator event="blur" oninvalid="$(#{rich:element('textconfirmValdidation')}).addClass('invalid')" onvalid="$(#{rich:element('textconfirmValdidation')}).removeClass('invalid')"/>
+             	<f:event listener="#{registrationBean.postValidatePasswordConfirm}" type="postValidate"></f:event>	
+            </h:inputText>
+            <rich:message for="textconfirmValdidation"  ajaxRendered="true" /> 
+		</h:panelGrid>	   	 
+   		<richext:spacer width="127" height="20"/> 
+	</rich:panel>
+	<h:commandButton value="weiter" action="registration-confirm"/>
+</h:form>
+</rich:panel>
+	<br style="clear:both"/>
+</ui:define>
+<ui:define name="rside">hhhalllo khgui guigug oiugiu gigiuguigiu giuiugoigiugoiugoigiuguigiu ggugoigiuguigg  uiiuhuiguigiuguigiusete</ui:define>
+</ui:composition>

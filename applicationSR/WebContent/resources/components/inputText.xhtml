@@ -1,0 +1,42 @@
+<ui:component
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:cc="http://java.sun.com/jsf/composite"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:richext="http://java.sun.com/jsf/composite/richext"
+    xmlns:my="http://java.sun.com/jsf/composite/components">
+    <cc:interface>
+        <cc:attribute name="space" required="false" />
+        <cc:attribute name="size" required="false" />
+        <cc:attribute name="label" required="true" />
+        <cc:attribute name="value" required="true" />
+        <cc:attribute name="rendered" required="false" />
+        <cc:attribute name="disabled" required="false" />
+        <cc:attribute name="columnClasses1" required="false" />
+        <cc:attribute name="columnClasses2" required="false" />
+        <cc:attribute name="columnClasses3" required="false" />
+        <cc:attribute name="id" required="false" />
+        <cc:attribute name="converterMessage" required="false" />
+        <cc:editableValueHolder name="input" targets="input:text" />
+    </cc:interface>
+    <cc:implementation>
+      <h:panelGrid columns="3" border="0" columnClasses="#{cc.attrs.columnClasses1}, #{cc.attrs.columnClasses2}, #{cc.attrs.columnClasses3}">
+      <h:panelGroup>
+      <richext:spacer width="#{cc.attrs.space}" height="1"/>
+      
+      <my:input id="input" label="#{cc.attrs.label}"/>
+      </h:panelGroup>
+      	<h:panelGroup>
+      		<h:inputText id="text" value="#{cc.attrs.value}" rendered="#{cc.attrs.rendered}" required="false" disabled="#{cc.attrs.disabled}" converterMessage="#{cc.attrs.converterMessage}"
+      		 size="#{cc.attrs.size}">
+               <rich:validator event="blur" oninvalid="$(#{rich:element('text')}).addClass('invalid')"
+            	onvalid="$(#{rich:element('text')}).removeClass('invalid')"/>
+            </h:inputText>
+         </h:panelGroup>
+            <h:panelGroup><rich:message for="text"  ajaxRendered="true" /> </h:panelGroup>
+            
+       </h:panelGrid>
+        
+    </cc:implementation>
+</ui:component>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/templateFull2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo">
+          
+  <ui:define name="content">
+        <h:outputStylesheet>
+
+      .rf-tab-cnt
+ 		{
+            
+            background-color: #F2F2F2;           
+        }
+        .rf-tab-hdr-spcr
+ 		{
+            
+            background-color: #ffe6d9; 
+            padding:0px;
+            margin:0px;          
+        }
+       .rf-tab-hdr-tabline-top, .rf-tbp, .rf-tab-hdr-spcr, .rf-tab-hdn, .rf-tab-hdr-tablst, .rf-tab-hdr-brd, .rf-tab-hdr-spcr, .rf-tab-cnt, .rf-tab-hdr-scrl-lft, .rf-tab-hdr-scrl-rgh, .rf-tab-hdr-act, .rf-tab-hdr-inact, .rf-tab-hdr, .rf-tab-hdr-dis, .rf-tab-hdr-tabline-vis, .rf-tab-hdr-tabs
+        {
+
+        }
+        
+        
+        .rf-tab-hdr{
+        height:20px;
+        
+        }
+        </h:outputStylesheet>
+<rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:20px;background-color:#F2F2F2" rendered="#{identity.loggedIn}">  
+  	<richext:spacer width="190" height="30"/>
+	<h:outputLabel value="Applikation Control" styleClass="DialogHeadline" style="text-align:left;margin-right:0;margin-left:60px;margin-top:0px;"/>
+	<richext:spacer width="190" height="15"/>
+	<h:graphicImage value="/resources/gfx/borderLine.png" style="border:0 none;width:85%; height:2px;margin-left:60px;"/>
+	<richext:spacer width="190" height="10"/> 
+    <h:form id="parentForm">
+
+    <rich:tabPanel  id="administrationTab" switchType="ajax" activeItem="skinTab" style="padding-left:1%;width:98%;" immediate="true">
+    <rich:tab  id="skinTab" immediate="true" action="#{webAdminController.changeSidebarString('skinControl')}" render="sidebar,sidebarSkin,sidebarContent" execute="@this" >
+    <f:facet name="headerActive"><richext:spacer width="100" height="1"/> <h:outputText value="#{msg.skinTabHeader}"/></f:facet> 
+    <f:facet name="headerInactive"><richext:spacer width="100" height="1"/> <h:outputText value="#{msg.skinTabHeader}"/></f:facet> 
+    <fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.chooseSkin}"></h:outputText></legend>
+ 
+
+	<rich:panel>
+	<f:facet name="header">
+	  <h:outputText value="#{msg.headerAdminSkin}"/>
+	</f:facet>
+		
+            
+            <h:panelGrid columns="3" border="0" columnClasses="colStyleRegister1,colStyleRegister2,colStyleRegister2">
+        	<h:panelGroup>
+      		 <richext:spacer width="127" height="1"/>
+            <h:outputLabel for="skinId" value="#{msg.registerCountry}: " style="text-align:right;margin-right:0;margin-left:10px"/>
+            </h:panelGroup>
+		
+	   		 <rich:select id="select" defaultLabel="#{msg.defaultLabelSelectSkin}">
+				    <f:selectItems value="#{webAdminController.allSkins}" var="item" itemLabel="#{item.label}" />
+				    <a4j:ajax event="selectitem" oncomplete="updateBean(#{rich:component('select')}.getValue())" />
+				</rich:select>
+				
+				<a4j:jsFunction name="updateBean"  render="administrationFormSkin">
+				    <a4j:param assignTo="#{webAdminController.selectedSkin}" name="value" />
+				</a4j:jsFunction>
+	   		<richext:spacer width="10"/>
+	   		</h:panelGrid>
+            
+	</rich:panel>
+
+    <h:commandButton actionListener="#{webAdminController.create}" value="#{msg.webAdminButtonLabel}" />
+    </fieldset>
+ 
+   </rich:tab>
+    <rich:tab  id="mailTab" immediate="true"> 
+    <f:facet name="headerActive"><richext:spacer width="100" height="1"/> <h:outputText value="#{msg.mailserverTabHeader}"/></f:facet> 
+    <f:facet name="headerInactive"><richext:spacer width="100" height="1"/> <h:outputText value="#{msg.mailserverTabHeader}"/></f:facet> 
+    
+   	<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.manageMailservers}"></h:outputText></legend>
+   	<my:inputText label="#{msg.mailUserName}:" value="#{newMailserver.userName}" space="200" size="50"/>
+   	<my:inputTextSecure label="#{msg.mailPassword}:" value="#{newMailserver.password}" space="200" size="50"/>
+   	<my:inputText label="#{msg.mailSmtpHost}:" value="#{newMailserver.mailSmtpHost}" space="200" size="50"/>
+   	<my:inputText converterMessage="#{msg.notInteger}" label="#{msg.mailSmtpPort}:" value="#{newMailserver.mailSmtpPort}" space="200" size="50"/>
+    <h:panelGrid columns="3" border="0">
+      <h:panelGroup>
+      <richext:spacer width="200" height="1"/>
+      
+       <h:panelGrid columns="2" border="0">
+        <h:panelGroup>
+       
+       <h:outputLabel for="text" value="#{msg.application}:" styleClass="formtxt" style="text-align:left;margin-right:0;margin-left:0px"/>
+      </h:panelGroup>
+      </h:panelGrid>
+      </h:panelGroup>
+      	<h:panelGroup>
+      		<h:inputText id="text" value="#{newMailserver.application}" required="false" size="50">
+               <rich:validator event="blur" oninvalid="$(#{rich:element('text')}).addClass('invalid')"
+            	onvalid="$(#{rich:element('text')}).removeClass('invalid')"/>
+            	<f:validator binding="#{validMailserverApplicationName}" />
+            </h:inputText>
+         </h:panelGroup>
+            <h:panelGroup><rich:message for="text"  ajaxRendered="true" /> </h:panelGroup>
+            
+       </h:panelGrid>
+
+
+	<h:panelGrid columns="3" border="0">
+	   	<h:panelGroup>
+	   		<richext:spacer width="188" height="1"/>
+	    	<h:outputLabel for="mailSmtpAuthId" value="#{msg.mailSmtpAuth}: " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:0px"/>
+	    </h:panelGroup>
+	    <h:panelGroup>
+			<h:selectOneRadio id="mailSmtpAuthId" value="#{newMailserver.mailSmtpAuth}">
+	        	<f:selectItem itemLabel="#{msg.yes}" itemValue="true" />
+	            <f:selectItem itemLabel="#{msg.no}" itemValue="false" />
+	            <rich:validator event="blur" oninvalid="$(#{rich:element('mailSmtpAuthId')}).addClass('invalid')"
+	            	onvalid="$(#{rich:element('mailSmtpAuthId')}).removeClass('invalid')" />
+	        </h:selectOneRadio>
+	    </h:panelGroup>
+	    <rich:message for="mailSmtpAuthId" ajaxRendered="true" />
+	</h:panelGrid>
+	
+	<h:panelGrid columns="3" border="0">
+	   	<h:panelGroup>
+	   		<richext:spacer width="188" height="1"/>
+	    	<h:outputLabel for="mailSmtpStarttlsEnableId" value="#{msg.mailSmtpStarttlsEnable}: " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:0px"/>
+	    </h:panelGroup>
+	    <h:panelGroup>
+			<h:selectOneRadio id="mailSmtpStarttlsEnableId" value="#{newMailserver.mailSmtpStarttlsEnable}">
+	        	<f:selectItem itemLabel="#{msg.yes}" itemValue="true" />
+	            <f:selectItem itemLabel="#{msg.no}" itemValue="false" />
+	            <rich:validator event="blur" oninvalid="$(#{rich:element('mailSmtpStarttlsEnableId')}).addClass('invalid')"
+	            	onvalid="$(#{rich:element('mailSmtpStarttlsEnableId')}).removeClass('invalid')" />
+	        </h:selectOneRadio>
+	    </h:panelGroup>
+	    <rich:message for="mailSmtpStarttlsEnableId" ajaxRendered="true" />
+	</h:panelGrid>
+       <h:commandButton id="createServerButton" actionListener="#{webAdminController.createMailserver}" value="#{msg.buttonEdit}" />
+ <h:messages  showDetail="true" showSummary="false" globalOnly="true"/>
+   </fieldset>
+    <richext:spacer width="200" height="20"/>
+   
+   <fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.listMailservers}"></h:outputText></legend>
+   <h:panelGroup rendered="#{empty webAdminController.allMailservers}">
+                <em>#{msg.noMailserversAvailible}</em>
+   </h:panelGroup>
+             <rich:dataTable id="mailserverTable" var="_server" value="#{webAdminController.allMailservers}" iterationStatusVar="it" rendered="#{not empty webAdminController.allMailservers}" style="width: 100%" rows="20">
+                
+                   <rich:column> 
+		             <f:facet name="header">#{msg.runningNumber}</f:facet>
+		             <div style="max-height:47px;max-width:20px;overflow:hidden">
+		              #{it.index}
+		             </div> 
+		           </rich:column> 
+                  
+                   <rich:column width="80">
+                      <f:facet name="header">#{msg.date}</f:facet>
+                      <div style="overflow:hidden;width:150px">
+                      #{_server.dob}
+             	    </div>
+                   </rich:column>
+                   <rich:column width="80">
+                      <f:facet name="header">#{msg.application}</f:facet>
+                      <div style="overflow:hidden;width:100px">
+                      #{_server.application}
+             	    </div>
+                 </rich:column>
+             	    <rich:column width="80">
+                      <f:facet name="header">#{msg.mailSmtpHost}</f:facet>
+                      <div style="overflow:hidden;width:100px">
+                      #{_server.mailSmtpHost}
+             	    </div>
+                 </rich:column>
+                 <rich:column width="80">
+                      <f:facet name="header">#{msg.mailSmtpPort}</f:facet>
+                      <div style="overflow:hidden;width:100px">
+                      #{_server.mailSmtpPort}
+             	    </div>
+                 </rich:column>
+                 <rich:column width="200">
+                      <f:facet name="header">#{msg.userName}</f:facet>
+                      <div style="overflow:hidden;width:200px">
+                      #{_server.userName}
+             	    </div>                
+                 </rich:column>
+                 <rich:column width="50">
+                      <f:facet name="header">#{msg.mailSmtpAuth}</f:facet>
+                       <h:graphicImage value="/resources/gfx/nok_red.png" width="15px" height="15px" rendered="#{!_server.mailSmtpAuth.booleanValue()}"></h:graphicImage>
+		     		   <h:graphicImage value="/resources/gfx/ok_green.png" width="15px" height="15px" rendered="#{_server.mailSmtpAuth.booleanValue()}"></h:graphicImage>
+                 </rich:column>
+                 <rich:column width="50">
+                      <f:facet name="header">#{msg.mailSmtpStarttlsEnable}</f:facet>
+                       <h:graphicImage value="/resources/gfx/nok_red.png" width="15px" height="15px" rendered="#{!_server.mailSmtpStarttlsEnable.booleanValue()}"></h:graphicImage>
+		     		   <h:graphicImage value="/resources/gfx/ok_green.png" width="15px" height="15px" rendered="#{_server.mailSmtpStarttlsEnable.booleanValue()}"></h:graphicImage>
+                 </rich:column>
+		          <rich:column> 
+						<a4j:commandLink styleClass="no-decor" execute="@this" render="mailserverTable" action="#{webAdminController.deleteMailserver()}"> 
+						<h:graphicImage value="/resources/gfx/trash.png" width="15px" height="15px"></h:graphicImage>
+						<a4j:param value="#{_server.application}" assignTo="#{webAdminController.currentMailApplication}" /> 
+						</a4j:commandLink> 
+		          </rich:column> 
+                   
+               <f:facet name="footer">                 <rich:dataScroller id="scroller" />             </f:facet> 
+                </rich:dataTable>
+                
+                 </fieldset>
+   </rich:tab>
+    <rich:tab header="#{msg.applicationControlTabHeader}" id="applContrTab" immediate="true"> 
+   	<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.manageApplicationControl}"></h:outputText></legend>
+    <my:inputText converterMessage="#{msg.notInteger}" label="#{msg.appContrDoe}:" value="#{newApplicationControl.accountExpireDays}" space="240" size="50"/>
+    
+	<h:panelGrid columns="3" border="0">
+	   	<h:panelGroup>
+	   		<richext:spacer width="240" height="1"/>
+	    	<h:outputLabel for="verificationViaMailId" value="#{msg.appContrVerificationViaMail}: " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:0px"/>
+	    </h:panelGroup>
+	    <h:panelGroup>
+			<h:selectOneRadio id="verificationViaMailId" value="#{newApplicationControl.verificationViaMail}">
+	        	<f:selectItem itemLabel="#{msg.yes}" itemValue="true" />
+	            <f:selectItem itemLabel="#{msg.no}" itemValue="false" />
+	            <rich:validator event="blur" oninvalid="$(#{rich:element('verificationViaMailId')}).addClass('invalid')"
+	            	onvalid="$(#{rich:element('verificationViaMailId')}).removeClass('invalid')" />
+	        </h:selectOneRadio>
+	    </h:panelGroup>
+	    <rich:message for="verificationViaMailId" ajaxRendered="true" />
+	</h:panelGrid>
+       <h:commandButton id="createApplContrButton" actionListener="#{webAdminController.createApplicationControl()}" value="#{msg.buttonEdit}" />
+ <h:messages  showDetail="true" showSummary="false" globalOnly="true"/>
+   </fieldset>
+   </rich:tab>
+    <rich:tab id="contentTab" header="#{msg.contentTabHeader}" action="#{webAdminController.changeSidebarString('contentControl')}" render="sidebar,sidebarSkin,sidebarContent" execute="@this" immediate="true">
+   <ui:include src="/secure/administration/content.xhtml" />
+   
+   </rich:tab>  
+   </rich:tabPanel>
+    </h:form>
+</rich:panel>
+<br style="clear:both"/>
+ </ui:define>
+    
+     <ui:define name="rside">
+     
+		<a4j:outputPanel id="sidebar" style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;padding:0px;background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{identity.loggedIn}">
+			
+			 <a4j:outputPanel id="sidebarSkin" style="background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{webAdminController.sideBar.matches('skinControl')}">
+			 	<ui:include src="/secure/administration/sidebarForSkinControl.xhtml" />
+			 </a4j:outputPanel>
+			 <a4j:outputPanel id="sidebarContent" style="background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{webAdminController.sideBar.matches('contentControl')}">
+			 	<ui:include src="/secure/administration/sidebarForContentControl.xhtml" />
+			 </a4j:outputPanel>
+	   	</a4j:outputPanel>
+
+     </ui:define>
+</ui:composition>

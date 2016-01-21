@@ -1,0 +1,217 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:richext="http://java.sun.com/jsf/composite/richext"
+    xmlns:my="http://java.sun.com/jsf/composite/components"
+    xmlns:ez="http://java.sun.com/jsf/composite/demo">
+
+    
+<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.manageMailservers}"></h:outputText></legend>
+<h:panelGrid columns="2" border="0">
+<h:panelGroup>
+   	<h:panelGrid columns="3" border="0">
+      <h:panelGroup>
+      <richext:spacer width="200" height="1"/>
+      
+       <h:panelGrid columns="2" border="0">
+        <h:panelGroup>
+       
+       <h:outputLabel for="contentName" value="#{msg.name}:" styleClass="formtxt" style="text-align:left;margin-right:0;margin-left:0px"/>
+      </h:panelGroup>
+      </h:panelGrid>
+      </h:panelGroup>
+      	<h:panelGroup>
+      		<h:inputText id="contentName" value="#{newContent.name}" required="false" size="50">
+               <rich:validator event="blur" oninvalid="$(#{rich:element('text')}).addClass('invalid')"
+            	onvalid="$(#{rich:element('text')}).removeClass('invalid')"/>
+            	<f:validator binding="#{validContentName}" />
+            </h:inputText>
+         </h:panelGroup>
+            <h:panelGroup><rich:message for="contentName"  ajaxRendered="true" /> </h:panelGroup>
+            
+       </h:panelGrid>
+     
+<my:inputText label="#{msg.website}:" value="#{newContent.website}" space="200" size="50"/>
+<my:inputText label="#{msg.websitePosition}:" value="#{newContent.position}" space="200" size="50"/>
+
+	<h:panelGrid columns="3" border="0">
+	   	<h:panelGroup>
+	   		<richext:spacer width="188" height="1"/>
+	    	<h:outputLabel for="contentActive" value="#{msg.active} " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:0px"/>
+	    </h:panelGroup>
+	    <h:panelGroup>
+			<h:selectOneRadio id="contentActive" value="#{newContent.active}">
+	        	<f:selectItem itemLabel="#{msg.yes}" itemValue="true" />
+	            <f:selectItem itemLabel="#{msg.no}" itemValue="false" />
+	            <rich:validator event="blur" oninvalid="$(#{rich:element('contentActive')}).addClass('invalid')"
+	            	onvalid="$(#{rich:element('contentActive')}).removeClass('invalid')" />
+	        </h:selectOneRadio>
+	    </h:panelGroup>
+	    <rich:message for="contentActive" ajaxRendered="true" />
+	</h:panelGrid>
+</h:panelGroup>
+<h:panelGroup>
+
+</h:panelGroup>
+
+ <h:commandButton id="createContentButton" actionListener="#{webAdminController.createContent}" value="#{msg.buttonEdit}" style="bottom:0px;width:100px;margin-left:10px;">
+   <a4j:ajax event="keyup"  render="contentTable"/>
+   </h:commandButton>
+   <h:messages  showDetail="true" showSummary="false" globalOnly="true"/>
+</h:panelGrid>
+</fieldset>
+<richext:spacer width="18" height="30"/>
+<rich:editor id="editor" toolbar="full" value="#{webAdminController.contentText}" style="margin-bottom: 1em;" skin="moonocolor">
+        <f:facet name="config">
+		contentsCss: ['#{facesContext.externalContext.requestContextPath}/resources/css/editor.css'],
+		
+		toolbar_custom:
+		[
+		{ name: 'document', items : [ 'NewPage','Preview' ] },
+		{ name: 'clipboard', items : [ 'Cut','Copy','Paste','-','Undo','Redo' ] },
+		{ name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','Scayt' ] },
+		{ name: 'insert', items : [ 'Image', 'Flash', 'Table', 'HorizontalRule','Smiley', 'SpecialChar', 'PageBreak', 'MediaEmbed' ] },'/',
+		{ name: 'styles', items : [ 'Styles','Format' ] },
+		{ name: 'basicstyles', items : [ 'Bold','Italic','Strike','-','RemoveFormat' ] },
+		{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
+		{ name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+		{ name: 'tools', items : [ 'Maximize' ] }
+		]
+		</f:facet>
+            <a4j:ajax event="change" render="panel" status="panelUpdateStatus" />
+            <a4j:ajax event="dirty" render="panel" status="panelUpdateStatus">
+                <a4j:attachQueue requestDelay="1000" />
+            </a4j:ajax>
+        </rich:editor>
+        <richext:spacer width="200" height="20"/>
+        
+        <rich:panel id="panel">
+            <f:facet name="header">
+                Vorschau
+                <a4j:status name="panelUpdateStatus">
+                    <f:facet name="start">
+                        (Updating)
+                    </f:facet>
+                </a4j:status>
+            </f:facet>
+            <h:outputText escape="false" value="#{webAdminController.contentText}" />
+        </rich:panel>
+
+  
+
+   
+    <richext:spacer width="200" height="20"/>
+   
+   <fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.listMailservers}"></h:outputText></legend>
+   <h:panelGroup rendered="#{empty webAdminController.allContents}">
+                <em>#{msg.noMailserversAvailible}</em>
+   </h:panelGroup>
+             <rich:dataTable id="contentTable" var="_content" value="#{webAdminController.allContents}" iterationStatusVar="it" rendered="#{not empty webAdminController.allContents}" style="width: 100%" rows="20">
+                
+                   <rich:column>
+		             <f:facet name="header">#{msg.runningNumber}</f:facet>
+		             <div style="max-height:47px;max-width:20px;overflow:hidden">
+		              #{it.index}
+		             </div> 
+		           </rich:column> 
+                  
+                   <rich:column>
+                      <f:facet name="header">#{msg.date}</f:facet>
+                      <div style="overflow:hidden;width:100px">
+                      <h:outputText value="#{_content.dob}">
+                      <f:convertDateTime locale="#{language.localeCode}" type="both" />
+                      </h:outputText>
+             	    </div>
+                   </rich:column>
+                   <rich:column>
+                      <f:facet name="header">#{msg.contentName}</f:facet>
+                      <div style="overflow:hidden;width:200px">
+                      #{_content.name}
+             	    </div>
+                 </rich:column>
+             	    <rich:column>
+                      <f:facet name="header">#{msg.contentWebsite}</f:facet>
+                      <div style="overflow:hidden;width:200px">
+                      #{_content.website}
+             	    </div>
+                 </rich:column>
+                 <rich:column>
+                      <f:facet name="header">#{msg.contentPosition}</f:facet>
+                      <div style="overflow:hidden;width:100px">
+                      #{_content.position}
+             	    </div>
+                 </rich:column>
+                
+                 <rich:column width="50">
+                      <f:facet name="header">#{msg.contentStatus}</f:facet>
+                       <h:graphicImage value="/resources/gfx/nok_red.png" width="15px" height="15px" rendered="#{!_content.active.booleanValue()}"></h:graphicImage>
+		     		   <h:graphicImage value="/resources/gfx/ok_green.png" width="15px" height="15px" rendered="#{_content.active.booleanValue()}"></h:graphicImage>
+                 </rich:column>
+                 
+		          <rich:column>
+		          		<a4j:commandLink styleClass="no-decor" execute="@this" render="warnDeleteContent"
+		          		immediate="true" oncomplete="#{rich:component('deleteContentPanel')}.show()">
+		          		
+						<h:graphicImage value="/resources/gfx/trash.png" width="15px" height="15px"></h:graphicImage>
+						<a4j:param value="#{_content.name}" assignTo="#{webAdminController.currentContent}" /> 
+						</a4j:commandLink> 
+						
+		          </rich:column> 
+		          <rich:column>
+		                <div style="max-height:47px;width:17px;">
+						<a4j:commandLink styleClass="no-decor" render="contentName,contentTab,editor,panel" execute="@this" action="#{webAdminController.loadNewContent()}" immediate="true">
+						
+							<h:graphicImage value="/resources/gfx/work.png" width="15px" height="15px" alt="bearbeiten" />
+							<!--<rich:componentControl target="editUserPanel" operation="show"/>-->
+							<a4j:param value="#{_content.name}" assignTo="#{webAdminController.currentContent}" />
+							<!--<rich:componentControl target="editUserPanel" operation="show"/>-->							
+						</a4j:commandLink>
+						</div>
+                   </rich:column>
+               <f:facet name="footer">                 <rich:dataScroller id="scroller" />             </f:facet> 
+                </rich:dataTable>
+                
+       </fieldset>         
+ <rich:popupPanel id="deleteContentPanel"  resizeable="false" onmaskclick="#{rich:component('deleteContentPanel')}.hide()"
+           			 autosized="true" domElementAttachment="parent">
+	   	<f:facet name="header">
+	    	<h:panelGroup>
+	        	<h:outputText value="#{msg.deleteContent}"></h:outputText>
+	         </h:panelGroup>
+	    </f:facet>
+	    <f:facet name="controls">
+	    	<h:graphicImage  styleClass="hidelink" id="hidelinkDeleteContent" onclick="#{rich:component('deleteContentPanel')}.hide(); return false;"
+		    				 value="/resources/gfx/false.png"/>
+	    </f:facet>
+	
+		
+	    <h:panelGrid columnClasses="colStylePopupPanel" columns="1" border="0">
+			<h:panelGroup>
+				<fieldset>
+		 			<legend style="font-size:1.3em;font-family:Times New Roman;">
+					<h:panelGrid  columns="2" border="0">
+					<h:graphicImage value="/resources/gfx/msgwarn.png" alt="warning" />
+					<h:outputText  value=" #{msg.warn}"></h:outputText>
+					</h:panelGrid>
+					</legend>
+		 			<richext:spacer width="100" height="7"/> 
+		 			<h:outputFormat id="warnDeleteContent"  value="#{msg['warnDeleteContent.n']}"  styleClass="headertxt" >
+   					<f:param value="#{webAdminController.currentContent}" />	    
+		    		</h:outputFormat >
+					<richext:spacer width="100" height="5"/> 
+				</fieldset>
+		 	</h:panelGroup> 
+		 	<richext:spacer width="100" height="10"/> 
+	    	<h:panelGroup>
+            	<a4j:commandButton value="#{msg.buttonCancel}" onclick="#{rich:component('deleteContentPanel')}.hide(); return false;" />
+            	<a4j:commandButton value="#{msg.buttonDelete}" onclick="removeContent(); return false;" />
+            </h:panelGroup>
+        </h:panelGrid>
+           <a4j:jsFunction name="removeContent" actionListener="#{webAdminController.deleteContent()}" render="contentTable" execute="@this"
+				    oncomplete="#{rich:component('deleteContentPanel')}.hide();" />
+	</rich:popupPanel>
+</ui:composition>

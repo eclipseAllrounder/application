@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo">
+<ui:define name="content">
+<f:event listener="#{user.isAdmin}" type="preRenderView" />
+<f:metadata>
+    <f:viewParam name="id" value="#{verifyBean.id}" />
+</f:metadata>
+<h:form id="verifyform" rendered="#{not identity.loggedIn}">
+	
+	<richext:spacer width="123" height="10"/>
+	<rich:panel>
+		<f:facet name="header">
+	  		<h:outputText value="#{msg.headerRegisterVerfiy}" style="font-size:14px;margin-left:10px;font-family: 'Times New Roman', Times, serif;"/>
+		</f:facet>
+		<richext:spacer width="127" height="20"/> 
+		<h:outputText value="#{msg.registerVerifyId}:" />
+		<h:outputLabel value="#{verifyBean.id}"/>
+		<richext:spacer width="127" height="20"/> 	
+	</rich:panel>
+	
+	<h:commandButton value="weiter" action="verification-confirm"/>
+</h:form>
+	<br style="clear:both"/>
+</ui:define>
+<ui:define name="rside">hhhalllo khgui guigug oiugiu gigiuguigiu giuiugoigiugoiugoigiuguigiu ggugoigiuguigg  uiiuhuiguigiuguigiusete</ui:define>
+</ui:composition>

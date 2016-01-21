@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/template2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components">
+                
+       
+    <ui:define name="content">
+       <h:outputStylesheet>
+   .costumToolboxHead {
+         border-color: #e0e0e0;
+         background-image: url(); 
+         background-color: #ffb18c;
+         color: green;
+         margin-right:0;
+         
+        }
+    .rf-p-hdr {
+	   	color: #ffffff;	
+	    background-image: url(); 	   
+		padding-top:5px;		
+		font-family: 'Droid Sans', arial, serif;;
+    } 
+    div.rf-p-b {
+	   	color: #ffffff;	
+	    background-image: url(); 	   
+		padding-top:5px;		
+		font-family: 'Droid Sans', arial, serif;;
+    }  
+ 
+ </h:outputStylesheet>
+   <h:messages globalOnly="true"/>
+   <h:panelGrid columns="2" border="0"  cellspacing="0" cellpadding="0" columnClasses="topAligned,topAlignedFull">
+   <h:panelGroup>
+ 
+      <rich:panel   style="margin-right:80px;background-color:#FBFBFB;padding:0px;" styleClass="panelSolid" headerClass="headerPanelSolid">
+     <f:facet name="header">
+        <h:outputText value="#{msg.quickSearch}" styleClass="headerPanelFont" style="font-family: Microsoft JhengHei UI"/>
+     </f:facet>
+     <richext:spacer width="3" height="20"/>
+     <h:form id="searchForm" >
+     <h:panelGrid columns="1" columnClasses="singleInput">
+           <h:inputText id="quickSearch" style="width:190px;">
+           <rich:placeholder value="#{msg.quickSearchPlaceholder}" />
+           </h:inputText>
+           <h:inputText id="quickRegion" style="width:190px;" >
+           <rich:placeholder value="#{msg.quickRegionPlaceholder}" />
+           </h:inputText>
+           <h:commandButton actionListener="#{manager.save}" styleClass="buttons" value="#{msg.quickSearchButton}" />
+            <h:messages />
+            <richext:spacer width="3" height="65"/>
+     </h:panelGrid>
+     </h:form>
+   </rich:panel> 
+  
+   </h:panelGroup> 
+     <rich:panel   style="margin-right:80px;background-color:#FBFBFB;padding:0px" styleClass="panelSolid" headerClass="headerPanelSolid">
+     <f:facet name="header">
+        <h:outputText value="This is the panel header" styleClass="headerPanelFont"/>
+     </f:facet>
+       <richext:spacer width="3" height="20"/>
+ 		<h:panelGrid columns="2" >
+ 		  <h:graphicImage value="/resources/gfx/checkList.png" height="16px" alt="check" style="margin-left:10px;margin-top:0px;margin-right:10px;"/>
+ 		  <h:outputLabel value="Profil schnell und anonym online erstellt." styleClass="checkList"/>
+ 		  <richext:spacer width="3" height="10"/> <richext:spacer width="3" height="10"/>
+ 		  <h:graphicImage value="/resources/gfx/checkList.png" height="16px" alt="check" style="margin-left:10px;margin-top:0px;margin-right:10px;font-family:Yu Gothic Light;"/>
+ 		  <h:outputLabel value="Mit potententiellen Arbeitgeber anonyme über unser Mailsystem kommunzieren, dafür erhalten Sie nach Registrieung eine anonyme Mailadresse" styleClass="checkList"/>
+ 		  <richext:spacer width="3" height="10"/> <richext:spacer width="3" height="10"/>
+ 		  <h:graphicImage value="/resources/gfx/checkList.png" height="16px" alt="check" style="margin-left:10px;margin-top:0px;margin-right:10px;"/>
+ 		  <h:outputLabel value="Mehrere Profile für den gewünschten Job einstellbar." styleClass="checkList"/>
+ 		  <richext:spacer width="3" height="10"/> <richext:spacer width="3" height="10"/>
+ 		  <h:graphicImage value="/resources/gfx/checkList.png" height="16px" alt="check" style="margin-left:10px;margin-top:0px;margin-right:10px;"/>
+ 		  <h:outputLabel value="Der Basis-Service (3 online geschaltete Profile zur gleichen Zeit) ist für Sie völlig kostenlos" styleClass="checkList"/>
+ 		  <richext:spacer width="3" height="10"/> <richext:spacer width="3" height="10"/>
+ 		  <h:graphicImage value="/resources/gfx/checkList.png" height="16px" alt="check" style="margin-left:10px;margin-top:0px;margin-right:10px;"/>
+ 		  <h:outputLabel value="Die Basis-Suche ist für Arbeitgeber kostenlos" styleClass="checkList"/>
+ 		  
+ </h:panelGrid>
+   </rich:panel>  
+   <h:outputText value="jdhfjdkwhfkjdhfwkdfhwk" style="font-size:medium;font-family:Microsoft JhengHei UI;"/>
+   jghjhghfgfdgfdgdhgfjh
+   </h:panelGrid>
+ 
+
+<br style="clear:both"/>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,26 @@
+<ui:component
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:cc="http://java.sun.com/jsf/composite"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:my="http://java.sun.com/jsf/composite/components">
+    <cc:interface>
+        <cc:attribute name="label" required="true"/>
+        <cc:attribute name="value" required="true"/>
+        <cc:editableValueHolder name="inputSecureConfirm" targets="inputSecureConfirm:textconfirmValdidation" />
+    </cc:interface>
+    <cc:implementation>
+        <my:input id="inputSecureConfirm" label="#{cc.attrs.label}">
+        <h:panelGrid columns="2" border="0" columnClasses="colStyleRegister1,colStyleRegister2">
+            <h:inputSecret id="textconfirmValdidation" value="#{cc.attrs.value}" validator="#{registrationBean.validatePasswordConfirm}" rendered="true">
+               <rich:validator event="blur" oninvalid="$(#{rich:element('textconfirmValdidation')}).addClass('invalid')"
+            	onvalid="$(#{rich:element('textconfirmValdidation')}).removeClass('invalid')"/>
+            	 <f:event listener="#{registrationBean.postValidatePasswordConfirm}" type="preValidate"></f:event>
+            </h:inputSecret>
+            <rich:message for="textconfirmValdidation"  ajaxRendered="true" /> 
+          </h:panelGrid>
+        </my:input>
+    </cc:implementation>
+</ui:component>

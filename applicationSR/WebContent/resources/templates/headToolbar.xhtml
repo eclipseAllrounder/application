@@ -1,0 +1,78 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+                xmlns:richext="http://java.sun.com/jsf/composite/richext"
+	xmlns:vcp="http://www.exadel.com/vcp/components">
+ 
+    <h:outputStylesheet>
+        .pic {
+           
+           display: inline;
+
+             vertical-align: middle;
+        }
+ 		.rf-ddm-lbl{
+ 	 <!--  color: #3e3e3e;-->
+ 		font-size:15px;
+       
+ 		}
+        .search .rf-ddm-itm-sel {
+         <!--     background-color: transparent;
+            background-image:none;
+            border-color: transparent;
+            cursor: default;-->
+        }
+    </h:outputStylesheet>
+	<rich:toolbar height="50px" width="100%">
+	<h:form id="toolbarPermanent">
+	<rich:dropDownMenu mode="ajax"  >
+	       <f:facet name="label">
+	           <h:panelGrid border="0" columns="2" style="margin:0px;padding:0px;">
+	              <richext:spacer height="40"/>
+	              <h:outputText value="Bearbeiten" style="line-height:30px;"/>
+	         </h:panelGrid>
+	      
+		 </f:facet>
+	       <rich:menuItem label="Arbeitskraft" action="#{dropDownMenuBean.doNew}"  style="margin-left:0px;padding-left:0px;height:30px;">
+           </rich:menuItem>
+           <rich:menuItem label="Job" action="#{dropDownMenuBean.doNew}">
+           </rich:menuItem>
+	</rich:dropDownMenu>
+	</h:form>
+    
+    <h:form id="toolbarForm" rendered="#{identity.loggedIn}">
+	   <rich:dropDownMenu mode="ajax">
+	       <f:facet name="label">
+	            <h:panelGrid border="0" columns="2" style="margin:0px;padding:0px;">
+	              <h:graphicImage value="/resources/gfx/work.png" height="40px" alt="bearbeiten" />
+	              <h:outputText value="Bearbeiten" style="line-height:30px;"/>
+	         </h:panelGrid>
+	       </f:facet>
+	       <rich:menuGroup label="Neu">
+	          <f:facet name="icon">
+	          
+	              <h:graphicImage value="/resources/gfx/new.png" alt="neu" width="15px"/>
+	          </f:facet>
+	          <rich:menuItem label="Group" action="#{dropDownMenuBean.switchToGroup}">
+	          <f:facet name="icon">
+	              <h:graphicImage value="/resources/gfx/parentGroup.png" alt="neu" width="15px"/>
+	          </f:facet>
+	          </rich:menuItem>
+	          <rich:menuItem label="Rolle" action="#{dropDownMenuBean.switchToRole}">
+	            <f:facet name="icon">
+	              <h:graphicImage value="/resources/gfx/role.png" alt="neu" width="15px"/>
+	          </f:facet>
+	          </rich:menuItem>
+	       </rich:menuGroup>
+	   </rich:dropDownMenu>
+	 </h:form> 
+</rich:toolbar>
+</ui:composition>   
+	   
+ 

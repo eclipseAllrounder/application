@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+	  xmlns:composite="http://java.sun.com/jsf/composite"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext">
+
+	<composite:interface>
+		<composite:attribute name="label"/>
+		<composite:attribute name="id"/>
+		<composite:attribute name="value" required="true"/>
+		
+	</composite:interface>
+
+	<composite:implementation>
+	
+	 	<h:outputLabel for="#{cc.attrs.id}" value="#{cc.attrs.label}"/>
+        <h:inputText id="#{cc.attrs.id}" value="#{cc.attrs.value}" > 
+            <rich:validator event="blur"/>
+        </h:inputText>
+        <rich:message for="aaa" ajaxRendered="true" /> 
+          	
+	</composite:implementation>
+</html>

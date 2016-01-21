@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+    
+ <managed-bean>
+  <managed-bean-name>skinBean</managed-bean-name>
+  <managed-bean-class>net.application.web.util.SkinBean</managed-bean-class>
+  <managed-bean-scope>application</managed-bean-scope>
+  <managed-property>
+   <property-name>skin</property-name>
+   <value>applicationSkin</value>
+  </managed-property>
+</managed-bean> 
+ <managed-bean>
+  <managed-bean-name>language</managed-bean-name>
+  <managed-bean-class>net.application.web.util.Language</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+</managed-bean>    
+    
+ <application>
+  	<locale-config>
+		<default-locale>de</default-locale>
+	</locale-config>
+	<resource-bundle>
+		<base-name>properties.Messages</base-name>
+		<var>msg</var>
+	</resource-bundle>
+ </application>
+  <application>
+        <message-bundle>ValidationMessages</message-bundle>
+   </application>
+ 
+ 
+
+ <navigation-rule>
+   <from-view-id>/*</from-view-id>
+    <navigation-case>
+    	<from-action>#{controller.login()}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>loggedIn.jsf</to-view-id>
+    </navigation-case>
+    <navigation-case>
+    	<from-action>#{controller.logout()}</from-action>
+		<from-outcome>logout</from-outcome>
+		<to-view-id>loggedOut.jsf</to-view-id>
+    </navigation-case>
+    <navigation-case>
+		<from-outcome>success</from-outcome>
+		<to-view-id>/loggedOut.jsf</to-view-id>
+    </navigation-case>
+        <navigation-case>
+        <from-action>#{dropDownMenuBean.switchToGroup}</from-action>
+		<from-outcome>toGroup</from-outcome>
+		<to-view-id>/secure/administration/utilCreateGroup.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-action>#{idmUtilCreateGroupController.createNewRootGroup}</from-action>
+		<from-outcome>sucess</from-outcome>
+		<to-view-id>/secure/administration/userAdministration.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-action>#{loggedInBean.switchToTask}</from-action>
+		<from-outcome>profileButton</from-outcome>
+		<to-view-id>/secure/userLoggedIn/loggedIn.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-action>#{loggedInBean.switchToTask}</from-action>
+		<from-outcome>messagesButton</from-outcome>
+		<to-view-id>/secure/userLoggedIn/loggedIn.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-action>#{loggedInBean.switchToTask}</from-action>
+		<from-outcome>inserateButton</from-outcome>
+		<to-view-id>/secure/userLoggedIn/loggedIn.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-action>#{loggedInBean.switchToTask}</from-action>
+		<from-outcome>tasksButton</from-outcome>
+		<to-view-id>/secure/userLoggedIn/loggedIn.xhtml</to-view-id>
+    </navigation-case>
+ </navigation-rule>
+
+   
+
+<converter>
+    <converter-id>countryConverter</converter-id>
+    <converter-class>net.application.web.converter.CountryConverter</converter-class>
+</converter>
+<factory>
+      <exception-handler-factory>net.application.util.ViewExpiredExceptionExceptionHandlerFactoryApp</exception-handler-factory>
+  </factory>
+    <validator>
+  <validator-id>net.application.web.validator.validGegisterCheckbox</validator-id>
+  <validator-class>
+    net.application.web.validator.ValidGegisterCheckbox
+  </validator-class>
+  </validator>
+      <validator>
+  <validator-id>net.application.web.validator.emptyGender</validator-id>
+  <validator-class>
+    net.application.web.validator.ValidRegisterGender
+  </validator-class>
+  </validator>
+  <validator>
+  <validator-id>net.application.web.validator.ValidMailserverApplicationName</validator-id>
+  <validator-class>
+    net.application.web.validator.ValidMailserverApplicationName
+  </validator-class>
+</validator>
+<validator>
+  <validator-id>net.application.web.validator.ValidUsername</validator-id>
+  <validator-class>
+    net.application.web.validator.ValidUsername
+  </validator-class>
+</validator>
+</faces-config>

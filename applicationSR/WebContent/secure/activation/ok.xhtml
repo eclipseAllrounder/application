@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="/template.xhtml">
+
+    <ui:define name="content">
+
+        <h2>Account is activated successfully!</h2>
+        <p> #{activationBean.email} is activated now !</p>
+
+              <p><h:commandButton id="return" value="return" action="taskFlowReturn1" /><h:commandButton id="home" value="home" action="/index" /><h:commandButton id="userList" value="User List" action="/users" /></p>
+
+    </ui:define>
+</ui:composition>

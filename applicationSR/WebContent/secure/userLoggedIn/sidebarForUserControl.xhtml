@@ -1,0 +1,55 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:richext="http://java.sun.com/jsf/composite/richext"
+    xmlns:my="http://java.sun.com/jsf/composite/components"
+    xmlns:ez="http://java.sun.com/jsf/composite/demo">
+    <h:outputStylesheet>
+
+    </h:outputStylesheet>
+    <h:form>
+  
+<rich:panel  style="top:0px;margin-bottom:0px;margin-top:0px;padding-left:0px;margin-left:0px;margin-right:0px;background-color:#F2F2F2;width: 100%;vertical-align:top;">
+          	<h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+    				<richext:spacer width="10" height="10"/> 
+    	
+    	<h:panelGroup>
+			<richext:spacer width="10" height="10"/>  
+           	<richext:spacer width="10" height="9"/>
+          <h:outputLabel value="Einstellungen" styleClass="DialogHeadlineSmall" style="margin-left:10px;padding:0px;margin:0;margin-top:0px;border-width:1;text-align:left;margin-right:0;"/>
+         <h:graphicImage value="/resources/gfx/borderLine.png" style="border:0;padding:0px;margin:0px;width:85%;border-width:0px;height:2px;" styleClass="imgStyle"/>
+<richext:spacer width="10" height="20"/> 
+	          <h:commandButton  action="#{loggedInBean.switchToTask('profileButton')}" id="profileButton" value="Mein Profil"
+	            		 styleClass="menuControlLink"  style="#{loggedInBean.selectedButtonString.matches('profileButton') ? loggedInBean.styleButtonSelected : loggedInBean.styleButtonNotSelected}"
+	            		 onmouseover="this.style.color='#ff8040';this.style.backgroundColor='#79C1D5'"
+	            		 onmouseout="#{loggedInBean.selectedButtonString.matches('profileButton') ? loggedInBean.styleButtonOnmouseoutSelected : loggedInBean.styleButtonOnmouseoutNotSelected}">
+	         			 <f:ajax execute="@form" render="@form"/>
+	         			 </h:commandButton>
+	          <h:commandButton  action="#{loggedInBean.switchToTask('messagesButton')}" id="menuControlLink2" value="Meine Nachrichten"
+	            	     styleClass="menuControlLink"  style="#{loggedInBean.selectedButtonString.matches('messagesButton') ? loggedInBean.styleButtonSelected : loggedInBean.styleButtonNotSelected}"
+	            		 onmouseover="this.style.color='#ff8040';this.style.backgroundColor='#79C1D5'"
+	            		 onmouseout="#{loggedInBean.selectedButtonString.matches('messagesButton') ? loggedInBean.styleButtonOnmouseoutSelected : loggedInBean.styleButtonOnmouseoutNotSelected}">
+	             		<f:ajax execute="@form" render="@form"/>
+	         			 </h:commandButton>
+	             <h:commandButton  action="#{loggedInBean.switchToTask('inserateButton')}" id="menuControlLink3" value="Meine Inserate"
+	            		styleClass="menuControlLink"  style="#{loggedInBean.selectedButtonString.matches('inserateButton') ? loggedInBean.styleButtonSelected : loggedInBean.styleButtonNotSelected}"
+	            		 onmouseover="this.style.color='#ff8040';this.style.backgroundColor='#79C1D5'"
+	            		 onmouseout="#{loggedInBean.selectedButtonString.matches('inserateButton') ? loggedInBean.styleButtonOnmouseoutSelected : loggedInBean.styleButtonOnmouseoutNotSelected}">
+	           			 <f:ajax execute="@form" render="@form"/>
+	         			 </h:commandButton>
+	            <h:commandButton  action="#{loggedInBean.switchToTask('tasksButton')}" id="menuControlLink4" value="Meine Aufträge"
+	            		styleClass="menuControlLink"  style="#{loggedInBean.selectedButtonString.matches('tasksButton') ? loggedInBean.styleButtonSelected : loggedInBean.styleButtonNotSelected}"
+	            		 onmouseover="this.style.color='#ff8040';this.style.backgroundColor='#79C1D5'"
+	            		 onmouseout="#{loggedInBean.selectedButtonString.matches('tasksButton') ? loggedInBean.styleButtonOnmouseoutSelected : loggedInBean.styleButtonOnmouseoutNotSelected}">
+         				 <f:ajax execute="@form" render="@form"/>
+	         			 </h:commandButton>
+		  	<richext:spacer width="10" height="150"/>
+		  	</h:panelGroup>
+</h:panelGrid>
+</rich:panel>
+</h:form>
+</ui:composition>

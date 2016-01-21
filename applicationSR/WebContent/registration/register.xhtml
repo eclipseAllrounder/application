@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo">
+    <ui:define name="content">
+   
+<h:form id="registerform" rendered="#{not identity.loggedIn}">
+<h:messages globalOnly="false" showSummary="true"/>
+	<rich:panel>
+	<f:facet name="header">
+	  <h:outputText value="#{msg.headerRegisterPerson}"/>
+	</f:facet>
+		
+		    <h:panelGrid columns="3" border="0">
+        	<h:panelGroup>
+      		 <richext:spacer width="123" height="1"/>
+      		 <h:outputLabel for="genderId" value="#{msg.registerGender}: " style="text-align:right;margin-right:0;margin-left:10px"/>
+      		</h:panelGroup>
+        	<h:panelGroup>
+			<h:selectOneRadio id="genderId" value="#{newCustomer.gender}">
+                <f:selectItem itemLabel="#{msg.registerGenderM}" itemValue="male" />
+                <f:selectItem itemLabel="#{msg.registerGenderF}" itemValue="femail" />
+            	<rich:validator event="blur" oninvalid="$(#{rich:element('genderId')}).addClass('invalid')"
+            	onvalid="$(#{rich:element('genderId')}).removeClass('invalid')" />
+            </h:selectOneRadio>
+            </h:panelGroup>
+            <rich:message for="genderId" ajaxRendered="true" />
+            
+			</h:panelGrid>
+			<my:inputText label="#{msg.registerFirstName}:" value="#{newCustomer.firstName}"/>
+            <my:inputText label="#{msg.registerLastName}:" value="#{newCustomer.lastName}"/>
+            
+            <h:panelGrid columns="3" border="0" columnClasses="colStyleRegister1,colStyleRegister2,colStyleRegister2">
+           
+        	<h:panelGroup>
+      		 <richext:spacer width="127" height="1"/>
+            <h:outputLabel for="countryId" value="#{msg.registerCountry}: " style="text-align:right;margin-right:0;margin-left:10px"/>
+            </h:panelGroup>
+			<h:selectOneMenu id="countryId" value="#{customerCreateController.country}" >
+	   			<f:selectItems value="#{customerCreateController.allCountries}"/>
+	   			
+	   		</h:selectOneMenu>
+	   		<rich:message for="countryId" ajaxRendered="true"/>  
+	   		</h:panelGrid>
+            <my:inputTextDouble label="#{msg.registerZipAndCity}:" value1="#{newCustomer.zip}" value2="#{newCustomer.city}" size1="5" size2="20"/>
+            <my:inputTextDouble label="#{msg.registerStreetAndNumber}:" value1="#{newCustomer.street}" value2="#{newCustomer.streetNumber}" size1="20" size2="5"/>
+        
+	</rich:panel>
+	<rich:panel>
+	<f:facet name="header">
+	  <h:outputText value="#{msg.headerRegisterMail}" />
+	</f:facet>
+	
+	<my:inputText label="#{msg.registerMail}: " value="#{newCustomer.email}"/>
+		
+	</rich:panel>
+	
+	<rich:panel>
+	<f:facet name="header">
+	  <h:outputText value="#{msg.headerRegisterAccess}" />
+	</f:facet>
+		
+		<h:outputText value="#{msg.registerPasswordSecurity}" /><br/>
+		<h:graphicImage value="/resources/gfx/grey4Led.png" style="border : 0 none;width : 184px; height : 22px;" rendered="#{customerCreateController.secureLevel==0}"/>
+		<h:graphicImage value="/resources/gfx/grey3Led.png" style="border : 0 none;width : 184px; height : 22px;" rendered="#{customerCreateController.secureLevel==1}"/>
+		<h:graphicImage value="/resources/gfx/grey2Led.png" style="border : 0 none;width : 184px; height : 22px;" rendered="#{customerCreateController.secureLevel==2}"/>
+		<h:graphicImage value="/resources/gfx/grey1Led.png" style="border : 0 none;width : 184px; height : 22px;" rendered="#{customerCreateController.secureLevel==3}"/>
+		<h:graphicImage value="/resources/gfx/grey0Led.png" style="border : 0 none;width : 184px; height : 22px;" rendered="#{customerCreateController.secureLevel==4}"/>
+		<br/>
+		<br/>
+		 
+		<h:panelGrid columns="3">
+		<h:panelGroup>
+         <richext:spacer width="125" height="1"/>
+            <h:outputLabel for="userNameId" value="#{msg.registerUserName}: "/>
+         </h:panelGroup>
+            <h:inputText id="userNameId" value="#{newCustomer.userName}" >
+               <rich:validator event="blur" oninvalid="$(#{rich:element('userNameId')}).addClass('invalid')"
+            	onvalid="$(#{rich:element('userNameId')}).removeClass('invalid')"/>
+            	 <f:validator validatorId="net.application.web.validator.validPasswordUsername"/>
+            </h:inputText>
+            <rich:message for="userNameId"  ajaxRendered="true" /> 
+          </h:panelGrid>
+         <br/>
+		<br/>
+          
+		<h:outputText value="#{msg.registerPasswordNotice}" />
+		
+		<h:panelGrid columns="3">
+		<h:panelGroup>
+         <richext:spacer width="125" height="1"/>
+            <h:outputLabel for="passwordId" value="#{msg.registerPassword}: "/>
+         </h:panelGroup>
+            <h:inputSecret id="passwordId"  value="#{customerCreateController.password}" >
+           	 	<rich:validator event="blur" oninvalid="$(#{rich:element('passwordId')}).addClass('invalid')"
+	            	onvalid="$(#{rich:element('passwordId')}).removeClass('invalid')" />
+	             	
+            </h:inputSecret>
+			<rich:message for="passwordId" ajaxRendered="true"/>  
+			
+			<h:panelGroup>
+         <richext:spacer width="125" height="1"/>
+            <h:outputLabel for="passwordRepeatId" value="#{msg.registerPasswordRepeat}: "/>
+            </h:panelGroup>
+            <h:inputSecret id="passwordRepeatId" value="#{customerCreateController.passwordConfirm}" >
+           
+             <f:validator validatorId="net.application.web.validator.ValidConfirmPassword"/>
+             <f:ajax event="blur" execute="passwordRepeatId passwordId" render="m_pwConfirm" />	
+            </h:inputSecret>
+            <rich:message id="m_pwConfirm" for="passwordRepeatId" ajaxRendered="true"></rich:message> 
+            	
+	   	</h:panelGrid>
+	 
+	</rich:panel>
+    <h:commandButton actionListener="#{customerCreateController.create}" value="#{msg.registerButtonLabel}" />
+   
+    
+   
+
+    
+
+       
+
+       
+
+</h:form>
+
+<br style="clear:both"/>
+
+    </ui:define>
+     <ui:define name="rside">hhhalllo khgui guigug oiugiu gigiuguigiu giuiugoigiugoiugoigiuguigiu ggugoigiuguigg  uiiuhuiguigiuguigiusete</ui:define>
+</ui:composition>

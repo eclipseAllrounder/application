@@ -1,0 +1,941 @@
+html {
+	overflow-y: scroll;
+}
+
+
+div, dd, dt, dl, ul, ol, li, p, h1, h2, h3, h4, h5, form {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    margin: 0;
+    border: none;
+}
+img {
+
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+h1 {
+	padding-top:20px;
+	margin-top:20px;
+	margin-bottom:20px;
+    font-family: "Times New Roman", Times, serif;
+    text-decoration: none;
+    color: #686868;
+}
+
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: small;
+    line-height: 1.25em;
+    color: #333;
+    position: relative;
+   /* background: #F5E4AB;
+   background: #fff url(img/bg.gif) 0 0 repeat-x;*/
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border:0;
+   
+    
+}
+
+#content {
+  width: 85%;
+  margin: 0px;
+  margin-top: 0px;
+  padding-top: 20px;
+  padding-left:0%;
+  padding-right:0%;
+
+}
+#rside {
+  font-size: 0.9em;
+  width: 15%;
+  float: right;
+  margin-top: 0px;
+  padding-top: 20px;
+  padding-left:5px;
+  padding-right:0%;
+}
+
+#contentToolbox {
+
+  width: 100%;
+  margin: 0px;
+  margin-top: 0px;
+  padding-top: 20px;
+  padding-left:1%;
+  padding-right:1%;
+
+}
+#rsideToolbox {
+  font-size: 0.9em;
+  width: 5%;
+  float: right;
+  margin-top: 0px;
+  padding-top: 20px;
+  padding-left:1%;
+  padding-right:1%;
+}
+
+#rside ul {
+  padding-left: 20px;
+}
+
+#footer {
+  clear: both;
+  text-align: center;
+  color: #666666;
+  font-size: 0.85em;
+}
+
+#head {
+ font-size: 0.9em;
+   width: 100%;
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-left:0%;
+  padding-right:0%;
+}
+
+input {
+    padding: 4px;
+}
+
+p {
+    text-align: justify;
+    margin: 12px;
+    line-height: 150%;
+}
+ol, ul {
+    margin: 10px 0px 10px 6px;
+}
+li {
+    margin: 10px 12px;
+}
+    
+/*</group>*/
+/* General form styles */
+
+div.formRow {
+  padding: 3px 4px 3px 2px;  
+  clear: both;
+}
+
+div.formRow label {
+  float: left;
+  width: 120px; 
+  padding: 2px 2px 2px 2px;
+}
+
+div.formRow input[type='text'] {
+  width: 120px;
+}
+
+div.formRow input[type='password'] {
+  width: 120px;
+}
+div.info {
+	font-size: 1.2em;
+}
+
+ul.bullets {
+	list-style: square;
+}
+
+ul.bullets li {
+	padding-bottom: 2px;
+}
+
+td.action {
+	text-align: center;
+	width: 8em;
+	white-space: nowrap;
+}
+
+td.action a {
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+table.radio {
+   border: 0;
+}
+
+table.radio td {
+   padding: 0 2px;
+}
+
+table.radio input[type=radio] {
+   vertical-align: bottom;
+}
+
+
+/*<group=Layout>*/
+
+        .inplace{
+            border: none;
+        }
+        .hover {
+            color: #{a4jSkin.generalTextColor};
+            background-color :#{a4jSkin.tipBorderColor};
+        }
+        .columns {
+            width: 33%; 
+        } 
+
+.screenDiv {
+	        width: 900px;
+	        padding:0px;
+	        border:0 none; 
+	        margin:10px auto 0;
+	        text-align:left;
+	}
+	
+/*dynamic screen width*/
+@media screen and (max-device-width: 2000px) {
+	.screenDiv {
+	        width: 1600px;
+	        padding:0px;
+	        border:0 none; 
+	        margin:10px auto 0;
+	        text-align:left;
+	}
+}  
+@media screen and (max-device-width: 1800px) {
+	.screenDiv {
+	        width: 1600px;
+	        padding:0px;
+	        border:0 none; 
+	        margin:10px auto 0;
+	        text-align:left;
+	}
+}
+@media screen and (max-device-width: 1500px) {
+	.screenDiv {
+	        width: 1400px;
+	        padding:0px;
+	        border:0 none; 
+	        margin:10px auto 0;
+	        text-align:left;
+	}
+}
+@media screen and (max-device-width: 1300px) {
+	.screenDiv {
+	        width: 1000px;
+	        padding:0px;
+	        border:0 none; 
+	        margin:10px auto 0;
+	        text-align:left;
+	}
+}
+@media screen and (max-device-width: 1100px) {
+	.screenDiv {
+	        width: 900px;
+	        padding:0px;
+	        border:0 none; 
+	        margin:10px auto 0;
+	        text-align:left;
+	}
+}
+@media screen and (max-device-width: 900px) {
+	.screenDiv {
+	        width: 800px;
+	        padding:0px;
+	        border:0 none; 
+	        margin:10px auto 0;
+	        text-align:left;
+	}
+}
+@media screen and (max-device-width: 800px) {
+	.screenDiv {
+	        width: 700px;
+	        padding:0px;
+	        border:0 none; 
+	        margin:10px auto 0;
+	        text-align:left;
+	}
+}
+@media screen and (max-device-width: 700px) {
+	.screenDiv {
+	        width: 600px;
+	        padding:0px;
+	        border:0 none; 
+	        margin:10px auto 0;
+	        text-align:left;
+	}
+}
+   
+.buttonDelete {
+    background-image: url('../img/delete.png');
+}
+.buttonMessage {
+    background-image: url('/img/message.png');
+}
+#document {
+        height: 100%;
+        margin-top: 50px;
+}
+#footer {
+        clear: both;
+        float: left;
+        width: 100%;
+        text-align: right;
+        display: block;
+        padding: 40px 192px 5px 5px;
+    
+        color: #ccc;
+        font-size: x-small;
+}
+
+
+#container {
+	width: 100%;
+        padding: 0px;
+        margin: 0px;
+        border:none;
+	
+	
+}
+#sidebar {
+	float: left;
+	width: 150px;
+	margin-top: 0px;
+	padding: 50px 0px 100px 10px;
+	border-right: 0px solid #eaeaea;
+	height: 600 px;
+	
+}
+
+#content2 {
+	
+	width: 1300px;
+	margin-top: 0px;
+	padding-top: 50px;
+	padding-left:10px;
+}
+#content_full {
+		left:0px;
+	    margin:0px;
+	    border-width:0px;
+	    border: none 0px; 
+	    padding:0px;
+	    width: 1300px;
+}
+
+#pgMainMenu {
+        width: 1300px;
+        
+}
+#pgMainMenu #container {
+        padding-left: 0;
+        padding-right: 0;
+}
+#dialog {
+ 
+  width: 200px;
+
+}
+
+.tableTextIBM {
+  font-size: 13px;
+  font-weight: bold;
+  color: #444444;
+  text-decoration: none;
+}
+.menuTxt {
+  font-size: 13px;
+  font-weight: bold;
+  color: #444444;
+  text-decoration: none;
+}
+.menuTxtActive {
+  font-size: 13px;
+  font-weight: bold;
+  color: #444444;
+  background:#DDDDDD;
+  text-decoration: none;
+}
+ .menuTxt:hover {
+  font-size: 13px;
+  font-weight: bold;
+  color: #cc6600;
+  text-decoration: none;
+}
+.menuTxt:visited {
+  font-size: 13px;
+  font-weight: bold;
+  color: #444444;
+  text-decoration: none;
+}   
+
+/*</group>*/
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+/*<group=header>*/
+.headerPanelFont {
+	font-size: 22px;
+   	color: #ffffff;
+   	background: #639cab;
+   	padding-left: 10px;  	
+   	font-family: 'Droid Sans', arial, serif;
+}
+
+.headerPanelSolid {
+	height:22px;
+   	background: #639cab;
+
+	
+		
+    
+}
+.panelSolid {   
+    border-top-color:#BFBFBF;
+}
+.headerBox {
+	background-image: url(); 
+	margin-left: 0px;
+	background-color: #639cab;
+	color: #639cab;
+	padding-top: 0px;
+	top: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	border-style: none;
+	border-color: #639cab;
+	border-width: 0px;
+	background: #639cab
+}
+
+.hidelink{
+margin-right: 10px;
+}
+.header {
+    
+    text-align: center;
+    font-size: 32px;
+    color: #264071;
+}
+
+.headertxt {
+     font-family: "Times New Roman", Times, serif;
+     font-size: 16px;
+     text-decoration: none;
+     color: #2d2d2d;
+     text-align: right;
+}
+.headerlink {
+     font-family:'Droid Sans', arial, serif;
+     font-size: 15px;
+     text-decoration: none;
+     color: #2d2d2d;
+     text-align: right;
+	font-weight: bold;
+	font-style: normal
+}
+
+.headerlink:visited {
+     color: #2d2d2d;
+     }
+
+.headerlink:hover {
+     color: #686868;
+     background: #ff8040 ;
+     }
+
+.headerlink:active {
+     color: #686868;
+     }
+ .blank {
+   padding: 0px;
+	margin: 0px;
+}    
+.menuControl:hover {
+	color: #686868;
+    background: #639cab;
+}
+.menuControlLink {
+	 font-family:'Droid Sans', arial, serif;
+     text-align: left;
+     padding: 10px;
+	 border: 0px;
+	 width: 180px;
+	 height: 25px;
+}
+
+.menuControlLink:visited {
+
+     }
+
+.menuControlLink:hover {
+   
+}
+
+.menuControlLink:active {
+  
+     }
+
+.divider {
+  color: #4d4d4d;
+  font-size: 16px;
+}
+    .className {
+    text-align: right;
+}
+.menulink {
+     font-family: "Times New Roman", Times, serif;
+     font-size: 12px;
+     text-decoration: none;
+     color: #2d2d2d;
+     text-align: right;
+}
+.menulink:visited {
+	font-size: 12px;
+     color: #2d2d2d;
+     }
+/*</group>*/
+.formtxt {
+     font-family: "Times New Roman", Times, serif;
+     font-size: 14px;
+     text-decoration: none;
+     color: #2d2d2d;
+     text-align:left;
+     text-indent:0em;
+}
+
+
+
+div.h1 {
+	font-size: 1.6em;
+	margin-top: 0;
+}
+
+input[type=submit], input[type=button] {
+	font-size: 11px;
+	margin: 5px 5px 5px 0;
+	cursor: pointer;
+}
+
+input[type=text], input[type=password], textarea {
+	font-size: 12px;
+	padding-left: 1px;
+}
+
+select {
+	font-size: 13px;
+}
+
+.content {
+	text-align: center;
+	
+	padding: 0px;
+	width: 800px;
+	margin: 0px;
+	background-color: #ffffff;
+}
+
+.tableControl, .actionButtons {
+	width: 100%;
+}
+
+.tableControl a {
+	padding-left: 10px;
+}
+
+.tableControl {
+	text-align: right;
+}
+
+.footer {
+	text-align: center;
+	font-size: 11px;
+	margin-bottom: 10px;
+}
+
+.rich-table {
+	width: 100%;
+}
+
+
+.message {
+	padding: 5px;
+	list-style: none;
+	border: 0;
+	background: none;
+	padding: 0;
+	color: #000000;
+	margin: 5px 0 8px 0;
+	font-size: 12px;
+}
+
+.message li {
+	background: no-repeat left center;
+	padding-top: 1px;
+	padding-left: 20px;
+	margin-left: 3px;
+}
+
+.message li.infomsg {
+	background-image: url(../img/msginfo.png);
+}
+
+.message li.errormsg {
+	background-image: url(../img/msgerror.png);
+}
+
+.message li.warnmsg {
+	background-image: url(../img/msgwarn.png);
+}
+
+.name {
+	vertical-align: top;
+	font-weight: bold;
+	width: 115px;
+	
+	padding: 5px;
+	margin-top: 3px;
+	
+}
+
+.value {
+	
+	padding: 5px;
+}
+
+.error {
+	float: left;
+	padding: 5px;
+}
+
+.errors {
+	color: #FF0000;
+	vertical-align: middle;
+}
+
+img.errors {
+	padding-right: 5px;
+}
+
+.errors input, .errors textarea, .errors select {
+	border: 1px solid red !important;
+}
+
+.required {
+	color: #FF0000;
+	padding-left: 2px;
+}
+
+.rich-stglpanel-body {
+	overflow: auto;
+} 
+
+/* the specificity here is necessary to override the defaults */
+/*
+.rich-panel .rich-panel-header,
+.rich-stglpanel .rich-stglpanel-header {
+	padding: 2px 3px;
+}*/
+
+.rich-panel input[type=submit], .rich-panel input[type=button],
+.rich-tabpanel input[type=submit], .rich-tabpanel input[type=button] {
+	margin-bottom: 0;
+}
+
+.tableControl input[type=submit], .tableControl input[type=button], .tableControl select {
+	margin: 5px 0 5px 5px;
+}
+
+/* I don't know why this is necessary, but the select is off by a pixel on the top and is padding too much on the left */
+.tableControl select {
+	margin-left: 2px;
+	position: relative;
+	top: 1px;
+}
+
+.actionButtons {
+	padding-left: 1px;
+}
+
+.actionButtons select {
+	margin: 5px 5px 5px 0;
+	vertical-align: bottom;
+}
+
+.rich-toolbar-item a {
+	text-decoration: none;
+}
+
+.rich-toolbar-item a:hover, .rich-ddmenu-label-select {
+	text-decoration: underline;
+}
+
+.rich-toolbar-item .rich-menu-item a:hover {
+	text-decoration: none;
+}
+
+.rich-datalist {
+	list-style: square;
+	margin: 6px 0 1px 0;
+	padding-left: 18px;
+}
+
+.rich-list-item {
+	padding-bottom: 4px;
+}
+.rich-picklist-list-content {
+	overflow-x:hidden;
+}
+.rich-panel-header {
+	background-image: none;
+	background-color: transparent;
+	border: 1;
+	height: 50px;
+	padding-top: -3px
+
+	
+	
+	 } 
+	 .rich-panel{
+	
+}
+.rich-toggle-header {
+	height: 13px;
+}
+
+/*
+.rf-p{
+background-color:'#{richSkin.generalBackgroundColor}';
+color:'#{richSkin.panelBorderColor}';
+border-width:1px;
+border-style:solid;
+padding:1px;
+}
+
+.rf-p-b{
+font-size:'#{richSkin.generalSizeFont}';
+color:'#{richSkin.generalTextColor}';
+font-family:'#{richSkin.generalFamilyFont}';
+padding:10px;
+}
+.rf-p-hdr{
+font-size:'#{richSkin.generalSizeFont}';
+color:grey;
+font-family:'#{richSkin.generalFamilyFont}';
+
+/*    background: rgb(255, 255, 255); /* Old browsers */
+  /*  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 10%,
+/*        rgba(255, 255, 255, 1) 35%, rgba(161, 214, 255, 1) 100% );
+    /* FF3.6+ */
+/*    background: -webkit-gradient(linear, left top, left bottom, color-stop(2%, rgba(255,
+/*        255, 255, 1) ), color-stop(35%, rgba(255, 255, 255, 1) ),
+/*        color-stop(100%, rgba(161, 214, 255, 1) ) ); /* Chrome,Safari4+ */
+/*    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 2%,
+/*        rgba(255, 255, 255, 1) 35%, rgba(161, 214, 255, 1) 100% );
+    /* Chrome10+,Safari5.1+ */
+/*    background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 2%,
+/*        rgba(255, 255, 255, 1) 35%, rgba(161, 214, 255, 1) 100% );
+    /* Opera 11.10+ */
+/*    background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 2%,
+/*        rgba(255, 255, 255, 1) 35%, rgba(161, 214, 255, 1) 100% ); /* IE10+ */
+/*    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 2%,
+/*        rgba(255, 255, 255, 1) 3%, rgba(161, 214, 255, 1) 100% ); /* W3C */
+/*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
+/*        endColorstr='#a1d6ff', GradientType=0 ); /* IE6-9 */
+
+
+/*}*/
+
+
+.rf-p-b {
+    padding: 0 !important;
+}
+
+
+.invalid {
+	border-color: #D91C0D !important;
+}
+.colStyle1 {
+	width: 300px;
+}
+.colStyle2 {
+	width: 20px;
+}
+.colStyle3 {
+	
+	width: 600px;
+	padding-left: 0px
+	
+}
+.colStyle4 {
+	width: 100%;
+	
+}
+.colStyleRegister0 {
+	width: 20px;
+}
+.colStyleRegister1 {
+	width: 120px;
+}
+.colStyleRegister2 { 
+	width: 400px;
+}
+.colStyleRegister3 { 
+	width: 600px;
+}
+.colStylePopupPanel {
+	width: 380px;
+}
+.colStylePopupPanelLong {
+	width: 680px;
+}
+.columnClass {
+	width: 40px;
+	white-space:normal!important
+}
+.topAligned{
+	vertical-align:top;
+}
+.topAlignedWithLeftSpace{
+	vertical-align:top;
+	margin-left: 20px;
+	padding-left: 70px;
+}
+ .picMenu {
+        margin-bottom: -5px;
+        margin-right: 2px;
+        }
+
+.preColumnClass {
+	vertical-align: top;
+    white-space: pre;       /* CSS 3 */
+    white-space: pre-wrap;       /* CSS 3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    overflow:hidden;width:150px;
+}
+.fixedColumnClass {
+	margin-right: 2px;
+	padding-right: 2px;
+	
+}
+.preClass {
+	white-space: pre;       /* CSS 3 */
+    white-space: pre-wrap;       /* CSS 3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    overflow:hidden;width:150px;
+}
+.rf-ddm-item {
+	
+	
+	font-size: 22px;
+}
+
+.cke_skin_richfaces {	
+	border-color: #f3f3f3;
+}
+.rf-ddm-lst{
+   
+}
+        .head2 {
+            background-image: url();
+            background-color: '#{richSkin.generalTextColor}';
+            height: 18px;
+            text-align: center;
+            vertical-align: middle;
+            padding: 4px 0;
+        }
+        
+.headToolbarButton{
+   font-size:22px;
+   font-weight: bold;
+   color: #444444;
+   text-decoration: none;
+}
+ .headToolbarButton:hover {
+font-size:22px;
+  font-weight: bold;
+  color: #cc6600;
+  text-decoration: none;
+}
+
+}
+.menuTxtActive {
+  font-weight: bold;
+  color: #444444;
+  background:#DDDDDD;
+  text-decoration: none;
+}
+ .menuTxt:hover {
+  font-size: 13px;
+  font-weight: bold;
+  color: #cc6600;
+  text-decoration: none;
+}
+.menuTxt:visited {
+  font-size: 13px;
+  font-weight: bold;
+  color: #444444;
+  text-decoration: none;
+}   
+.topAligned {
+    vertical-align: top;
+  
+}
+.topAlignedFull {
+    vertical-align: top;
+     width: 100%;
+    
+}
+.singleInput{
+	width: 300px;
+}
+.checkList{
+	font-size:medium;
+	font-family: 'Droid Sans', arial, serif;
+	
+}
+.inputRegister{
+	width:200px;
+		font-size:medium;
+	font-family:Microsoft JhengHei UI;
+}
+.DialogHeadline{
+	color: #444444;
+	font-weight: bold;
+    font-size:large;
+	font-family:Microsoft JhengHei UI;
+}
+.DialogHeadlineSmall{
+	color: #444444;
+	font-weight: bold;
+    font-size:12px;
+	font-family:Microsoft JhengHei UI;
+	margin: 0px;
+	padding: 0px;
+}
+.DialogBig{
+	color: #444444;
+	font-weight: bold;
+    font-size: medium;
+	font-family: Microsoft JhengHei UI;
+}
+.inputLabelRegister{
+		font-size:medium;
+	font-family:Microsoft JhengHei UI;
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo">
+    <ui:define name="content">
+   
+<h:form id="registerform" rendered="#{not identity.loggedIn}">
+
+	<rich:panel>
+	<f:facet name="header">
+	  <h:outputText value="#{msg.headerRegisterConfirm}"/>
+	</f:facet>
+		
+		   <h:panelGrid columns="1" border="0" style="font-size:medium;">
+		   <h:outputLabel value="#{msg.registerConfirmAdress}:" style="font-weight:bold;"/>
+        	<h:panelGroup>
+      	      <h:outputLabel value="#{msg.registerConfirmGenderMale} "  rendered="#{newCustomer.gender.startsWith('male')}"/>
+			  <h:outputLabel value="#{msg.registerConfirmGenderFemale} " rendered="#{newCustomer.gender.startsWith('female')}"/>
+			  <h:outputLabel value="#{newCustomer.firstName} " />
+			  <h:outputLabel value="#{newCustomer.lastName}"/>
+	   		</h:panelGroup>
+	   		<h:panelGroup>
+      	      <h:outputLabel value="#{newCustomer.street} " />
+			  <h:outputLabel value="#{newCustomer.streetNumber}" />
+	   		</h:panelGroup>
+	   		<h:panelGroup>
+      	      <h:outputLabel value="#{newCustomer.zip} " />
+			  <h:outputLabel value="#{newCustomer.city}" />
+	   		</h:panelGroup>
+	   		<h:panelGroup>
+      	      <h:outputLabel value="#{registrationBean.country} "/>
+	   		</h:panelGroup>
+	   		<br/>
+			<br/>
+	   		<h:outputLabel value="#{msg.registerConfirmMail}:" style="font-weight:bold;"/>
+        	<h:panelGroup>
+      	    <h:outputLabel value="#{newCustomer.email} " />
+			</h:panelGroup>
+			<br/>
+			<br/>
+			<h:outputLabel value="#{msg.registerConfirmUsername}:" style="font-weight:bold;"/>
+        	<h:panelGroup>
+      	    <h:outputLabel value="#{newCustomer.userName} "/>
+			</h:panelGroup>
+				<br/>
+			<br/>
+			<h:outputLabel value="#{msg.registerConfirmAgb}:" style="font-weight:bold;"/>
+			<h:selectBooleanCheckbox value="#{registrationBean.confirmAgb}" id="confirmAgb" required="true">
+			 <h:outputLabel value="#{msg.registerConfirmAgbCheckbox}" for="confirmAgb" />
+			</h:selectBooleanCheckbox>
+           </h:panelGrid>
+          
+      
+	 
+	</rich:panel>
+	<h:commandButton value="zurück" action="registration"/>
+    <h:commandButton action="end" value="#{msg.registerButtonLabel}" />
+   
+    
+   
+
+    
+
+       
+
+       
+
+</h:form>
+
+<br style="clear:both"/>
+
+    </ui:define>
+     <ui:define name="rside">hhhalllo khgui guigug oiugiu gigiuguigiu giuiugoigiugoiugoigiuguigiu ggugoigiuguigg  uiiuhuiguigiuguigiusete</ui:define>
+</ui:composition>

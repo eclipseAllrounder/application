@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/templateFull2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo"
+                xmlns:t="http://myfaces.apache.org/tomahawk">
+  
+ 
+<ui:define name="content"> 
+   
+    <script type="text/javascript">
+	    function fixPositioning(panelId) {
+	        var popupPanel = document.getElementById(panelId);
+	        if (popupPanel) {
+	            popupPanel.style.visibility = "hidden";
+	            popupPanel.style.display = "block";
+	        }
+	    }
+
+	</script>
+	
+	<h:outputStylesheet>
+		.rf-ds-btn {
+		    cursor: pointer;
+		    padding: 2px 10px 3px 10px;
+		    border-width: 1px;
+		    border-style: solid;
+		    border-color: '#{richSkin.tableBorderColor}';
+		    display: inline-block;
+		    background-position: top left;
+		    background-repeat: repeat-x;
+		    background-color: '#{richSkin.headerBackgroundColor}';
+		    background-image: "url(#{resource['org.richfaces.images:dsBtnGrad.png']})";
+		    font-size: '#{richSkin.generalSizeFont}';
+		    font-family: '#{richSkin.generalFamilyFont}';
+		    color: '#{richSkin.generalTextColor}';
+		    text-decoration: none;
+		    font-weight: normal;
+		}
+		
+		.rf-ds-btn:hover {
+		    color: gray;
+		}
+		.rf-dt-hdr-c {
+		   
+		    background-repeat: repeat-x;
+		   
+		}
+	
+	</h:outputStylesheet>
+
+  	   <h:panelGrid  id="contentGrid" columns="1" border="0" cellspacing="0" cellpadding="0" width="100%">
+  	       <a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />
+   
+
+  	       
+  	    
+  <richext:spacer width="300" height="20"/>
+
+<h:form id="masterForm">
+ <rich:tabPanel  id="userManagerTab" switchType="ajax" activeItem="#{userManagementController.selectedTab}" itemChangeListener="#{userManagementController.processItemChange}">
+
+ <rich:tab header="#{msg.userManagementCustomerListTabHeader}" id="userTab" >    
+
+ 
+             <h:panelGroup >
+                <em>No registered members.</em>
+             </h:panelGroup>
+             <rich:dataTable id="userTable" var="_user" value="#{userManagementController.usersCustomersBean.usersCustomers}" iterationStatusVar="it" 
+              style="width: 100%" rows="#{userManagementController.rowCount}" 
+             columnClasses="fixedColumnClass,fixedColumnClass,fixedColumnClass,fixedColumnClass,fixedColumnClass,fixedColumnClass,fixedColumnClass,fixedColumnClass,fixedColumnClass,fixedColumnClass,fixedColumnClass,fixedColumnClass" headerClass="fixedColumnClass">
+               	       <a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />
+              <f:facet name="header">
+             <rich:columnGroup>
+            
+             <rich:column colspan="1" rowspan="1">
+              <h:panelGrid columns="1" border="0">
+               <h:panelGrid columns="4" border="0">
+             	<richext:spacer width="20" height="7"/>  
+             	<h:outputText value=" #{msg.userManagementCustomerListColumnUsername}" />
+             	<richext:spacer width="5" height="7"/>  
+             	<h:panelGroup>
+             	 	<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                     	 <a4j:commandLink styleClass="no-decor"  action="#{userManagementController.usersCustomersBean.toggleSort('sortLoginNameUp')}" render="userTable"> 
+                			<a4j:ajax event="click" render="userTable" execute="@this" />
+							<h:graphicImage value="/resources/gfx/upActive.png" rendered="#{userManagementController.usersCustomersBean.sortLoginNameUp}" width="12px" ></h:graphicImage>
+							<h:graphicImage value="/resources/gfx/upInactive.png" rendered="#{!userManagementController.usersCustomersBean.sortLoginNameUp}" width="12px"></h:graphicImage>							
+						</a4j:commandLink> 
+						<a4j:commandLink styleClass="no-decor"  action="#{userManagementController.usersCustomersBean.toggleSort('sortLoginNameDown')}" render="userTable"> 
+                			<a4j:ajax event="click" render="userTable" execute="@this" />
+							<h:graphicImage value="/resources/gfx/downActive.png" rendered="#{userManagementController.usersCustomersBean.sortLoginNameDown}" width="12px"></h:graphicImage>
+							<h:graphicImage value="/resources/gfx/downInactive.png" rendered="#{!userManagementController.usersCustomersBean.sortLoginNameDown}" width="12px"></h:graphicImage>							
+						</a4j:commandLink> 
+					</h:panelGrid>
+				</h:panelGroup>					
+			   </h:panelGrid>
+			   <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+					<h:inputText value="#{userManagementController.usersCustomersBean.customerListColumnUsernameFilter}">
+                	<a4j:ajax event="change" render="userTable" execute="@this" />
+                </h:inputText>
+               </h:panelGrid>
+              </h:panelGrid>
+             </rich:column>
+             <rich:column colspan="1" rowspan="2">
+              <h:panelGrid columns="1" border="0">
+               <h:panelGrid columns="4" border="0">
+             	<richext:spacer width="1" height="7"/>  
+             	<h:outputText value=" #{msg.userManagementCustomerListColumnCreatedDate}" />
+             	<richext:spacer width="5" height="7"/>  
+             	<h:panelGroup>
+             	 	<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                     	 <a4j:commandLink styleClass="no-decor"  action="#{userManagementController.toggleSort('sortCreateDateUp')}"> 
+							<a4j:ajax render="userTable"/>
+							<h:graphicImage value="/resources/gfx/upActive.png" rendered="#{userManagementController.sortCreateDateUp}" width="12px" ></h:graphicImage>
+							<h:graphicImage value="/resources/gfx/upInactive.png" rendered="#{!userManagementController.sortCreateDateUp}" width="12px"></h:graphicImage>							
+						</a4j:commandLink> 
+						<a4j:commandLink styleClass="no-decor"  action="#{userManagementController.toggleSort('sortCreateDateDown')}"> 
+							<a4j:ajax render="userTable"/>
+							<h:graphicImage value="/resources/gfx/downActive.png" rendered="#{userManagementController.sortCreateDateDown}" width="12px"></h:graphicImage>
+							<h:graphicImage value="/resources/gfx/downInactive.png" rendered="#{!userManagementController.sortCreateDateDown}" width="12px"></h:graphicImage>							
+						</a4j:commandLink> 
+					</h:panelGrid>
+				</h:panelGroup>					
+			   </h:panelGrid>
+			   
+              </h:panelGrid>
+             </rich:column>
+             <rich:column colspan="1" rowspan="2">
+             	<h:panelGrid columns="1" border="0">
+               <h:panelGrid columns="4" border="0">
+             	<richext:spacer width="1" height="7"/>  
+             	<h:outputText value=" #{msg.userManagementCustomerListColumnEnable}" />
+             	<richext:spacer width="5" height="7"/>  
+             	<h:panelGroup>
+             	 	<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                     	 <a4j:commandLink styleClass="no-decor"  action="#{userManagementController.toggleSort('sortEnableUp')}"> 
+							<a4j:ajax render="userTable"/>
+							<h:graphicImage value="/resources/gfx/upActive.png" rendered="#{userManagementController.sortEnableUp}" width="12px" ></h:graphicImage>
+							<h:graphicImage value="/resources/gfx/upInactive.png" rendered="#{!userManagementController.sortEnableUp}" width="12px"></h:graphicImage>							
+						</a4j:commandLink> 
+						<a4j:commandLink styleClass="no-decor"  action="#{userManagementController.toggleSort('sortEnableDown')}"> 
+							<a4j:ajax render="userTable"/>
+							<h:graphicImage value="/resources/gfx/downActive.png" rendered="#{userManagementController.sortEnableDown}" width="12px"></h:graphicImage>
+							<h:graphicImage value="/resources/gfx/downInactive.png" rendered="#{!userManagementController.sortEnableDown}" width="12px"></h:graphicImage>							
+						</a4j:commandLink> 
+					</h:panelGrid>
+				</h:panelGroup>					
+			   </h:panelGrid>
+			  
+              </h:panelGrid>
+             </rich:column>
+             <rich:column colspan="1" rowspan="2">
+             	<h:outputText value=" #{msg.userManagementCustomerListColumnFirstname}" />
+             	<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+					<h:inputText value="#{userManagementController.customerListColumnFirstnameFilter}">
+                	<a4j:ajax event="change" render="userTable" execute="@this" />
+                </h:inputText>
+               </h:panelGrid>
+             </rich:column>
+             <rich:column colspan="1" rowspan="1">
+             	<h:outputText value=" #{msg.userManagementCustomerListColumnLastname}" />
+             	<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+					<h:inputText value="#{userManagementController.customerListColumnLastnameFilter}">
+                	<a4j:ajax event="change" render="userTable" execute="@this" />
+                </h:inputText>
+               </h:panelGrid>
+             </rich:column>
+             <rich:column colspan="1" rowspan="1">
+             	<h:outputText value=" #{msg.userManagementCustomerListColumnMail}" />
+             </rich:column>
+             <rich:column colspan="1" rowspan="1">
+             	<h:outputText value=" #{msg.userManagementCustomerListColumnCity}" />
+             </rich:column>
+             <rich:column colspan="1" rowspan="1">
+             </rich:column>
+             <rich:column colspan="1" rowspan="1">
+             </rich:column>
+             <rich:column colspan="1" rowspan="1">
+             </rich:column>
+             
+            
+             </rich:columnGroup>
+             </f:facet>
+                  <!-- <rich:column>
+                      <a4j:commandLink styleClass="no-decor" render="memberPanel" execute="@this"
+                                       oncomplete="#{rich:component('memberPopup')}.show()">
+                         View
+                         <f:setPropertyActionListener target="#{memberController.member}" value="#{_member}"/>
+                      </a4j:commandLink>
+                   </rich:column>-->
+                   
+                    <rich:column >
+                    	<div style="max-height:47px;max-width:100px;overflow:hidden">
+                      	#{_user.idmUsername}
+             	    	</div>
+                   </rich:column>
+                    <rich:column>
+                       <div style="max-height:47px;overflow:hidden;min-width:140px;max-width:150px;">
+                         <h:outputText value="#{_user.idmCreatedDate}">
+                         <f:convertDateTime locale="#{language.localeCode}" type="both" />
+                         </h:outputText>
+                       </div>
+                   </rich:column>
+                  <rich:column width="80">
+					<h:graphicImage value="/resources/gfx/nok_red.png" width="15px" height="15px" rendered="#{!_user.enabled.booleanValue()}"></h:graphicImage>
+					<h:graphicImage value="/resources/gfx/ok_green.png" width="15px" height="15px" rendered="#{_user.enabled.booleanValue()}"></h:graphicImage>
+				   </rich:column>
+                   <rich:column>
+                      <div style="max-height:47px;overflow:hidden;min-width:100px;max-width:150px;">
+                      #{_user.idmFirstname}
+             	    </div>
+                   </rich:column>
+                   <rich:column>
+                      <div style="max-height:47px;overflow:hidden;min-width:100px;max-width:150px;">
+                      #{_user.idmLastname}
+             	    </div>
+                   </rich:column>
+                   <rich:column>
+        			<div style="max-height:47px;overflow:hidden;min-width:100px;;max-width:200px;">
+                      #{_user.idmMail}
+             	    </div>
+                   </rich:column>
+                   <rich:column>
+                      <div style="max-height:47px;overflow:hidden;min-width:100px;max-width:150px;">
+                      #{_user.city}
+             	    </div>
+                   </rich:column>
+                    <rich:column>
+						<div style="max-height:47px;width:17px;">
+						<a4j:commandLink styleClass="no-decor" oncomplete="#{rich:component('editUserPanel')}.show()" render="currentUserOut">
+							<h:graphicImage value="/resources/gfx/work.png" width="15px" height="15px" alt="bearbeiten" />
+							<!--<rich:componentControl target="editUserPanel" operation="show"/>-->
+							<a4j:param value="#{_user.idmUsername}" assignTo="#{userManagementController.usersCustomersBean.currentUserCustomerName}" />
+							<!--<rich:componentControl target="editUserPanel" operation="show"/>-->
+							
+						</a4j:commandLink>
+						</div>
+					</rich:column>
+					<rich:column>
+						<div style="max-height:47px;width:17px;">
+						<a4j:commandLink styleClass="no-decor"
+						oncomplete="#{rich:component('deleteUserPanel')}.show()" render="warnDeleteUser">
+						<h:graphicImage value="/resources/gfx/false.png" width="15px" height="15px"></h:graphicImage>
+						<a4j:param value="#{_user.idmUsername}" assignTo="#{userManagementController.usersCustomersBean.currentUserCustomerName}" />
+						</a4j:commandLink>
+						</div>
+					</rich:column>
+					<rich:column>
+						<div style="max-height:47px;width:17px;">
+						<a4j:commandLink styleClass="no-decor"
+						oncomplete="#{rich:component('showUserPanel')}.show()" render="currentUserOutShowUserPanel">
+						<h:graphicImage value="/resources/gfx/msginfo.png" width="15px" height="15px"></h:graphicImage>
+						<a4j:param value="#{_user.idmUsername}" assignTo="#{userManagementController.usersCustomersBean.currentUserCustomerName}" />
+						</a4j:commandLink>
+						</div>
+					</rich:column> 
+             	   
+             	 
+                    <f:facet name="footer">
+		                <rich:dataScroller id="scrollerUserTable" for="userTable" 
+		               	scrollListener="#{userManagementController.srollerSelected}" fastControls="hide">
+		                	<f:facet name="first">
+		                  		<h:outputLabel value="#{msg.scrollerFirstSite}" onclick="showFirstUserInTable();"/>	                	
+		                		<a4j:jsFunction name="showFirstUserInTable" actionListener="#{userManagementController.showFirstUserInTable}" render="userTable,scrollerUserTable" execute="@this"/> 		                		
+		                  	</f:facet>
+		                  	<f:facet name="previous">
+		                  	    <h:outputLabel value="#{msg.scrollerPreviousSite}" />
+		                  	</f:facet>
+		                  	<f:facet name="next">
+		                  	    <h:outputLabel value="#{msg.scrollerNextSite}" />
+		                  	</f:facet>
+		                  	<f:facet name="last">	
+		                  		<h:outputLabel value="#{msg.scrollerLastSite}" onclick="showLastUserInTable();"/>	                	
+		                  		<a4j:jsFunction name="showLastUserInTable" actionListener="#{userManagementController.showLastUserInTable}" render="userTable,scrollerUserTable" execute="@this"/> 
+			    		  		                		
+		                  	</f:facet>
+		        
+				   		</rich:dataScroller>
+				   	
+		     		</f:facet>
+		       <a4j:jsFunction name="resetIdmUser" actionListener="#{userManagementController.resetIdmUser}" render="userTable" execute="@this"/> 
+		            
+              </rich:dataTable>
+                
+                         
+    </rich:tab> 
+  
+
+	
+   
+	
+	
+	
+     
+ 
+     
+ <rich:tab header="#{msg.userManagementGroupListTabHeader}" id="groupTab" >   
+      
+            <h:panelGroup rendered="#{empty userManagementController.allCustomerIdmGroups}">
+                <em>No registered members.</em>
+             </h:panelGroup>
+             <rich:dataTable id="groupTable" var="_group" value="#{userManagementController.allCustomerIdmGroups}" 
+             iterationStatusVar="it" rendered="#{not empty userManagementController.allCustomerIdmGroups}" style="width: 100%" rows="20">
+             
+                    <rich:column> 
+		               <f:facet name="header">#{msg.userManagementSerialNumber}</f:facet>
+		                <div style="max-height:47px;max-width:20px;overflow:hidden">
+		                #{it.index}
+		                </div> 
+		            </rich:column> 
+                  
+                   <rich:column width="80">
+                      <f:facet name="header">#{msg.userManagementCustomerListColumnGroupCreatedDate}</f:facet>
+                      <div style="overflow:hidden;width:150px">
+                      #{_group.idmCreatedDate}
+             	    </div>
+                   </rich:column>
+                   <rich:column width="80">
+                      <f:facet name="header">#{msg.userManagementCustomerListColumnGroupName}</f:facet>
+                      <div style="overflow:hidden;width:100px">
+                      #{_group.idmGroupName}
+             	    </div>
+                   </rich:column>
+                   <rich:column width="80">
+                      <f:facet name="header">#{msg.userManagementCustomerListColumnGroupPath}</f:facet>
+                      <div style="overflow:hidden;width:100px">
+                      #{_group.idmGroupPath}
+             	    </div>
+                   </rich:column>
+                   <rich:column width="20">
+                      <f:facet name="header">#{msg.userManagementCustomerListColumnGroupCustomerCount}</f:facet>
+                      <div style="overflow:hidden;width:20px">
+                      #{_group.customerCount}
+             	    </div>
+                   </rich:column>
+                   <rich:column width="140">
+                      <f:facet name="header">#{msg.userManagementCustomerListColumnGroupRoles}</f:facet>
+                      <div style="overflow:hidden;width:130px">
+                      #{_group.roles}
+             	    </div>
+                   </rich:column>
+                       <rich:column> 
+             	     <div style="max-height:47px;width:17px;">
+						<a4j:commandLink styleClass="no-decor" 
+							oncomplete="#{rich:component('editGroupPanel')}.show()" render="currentGoupOut"> 
+					<!--      <rich:componentControl target="editUserPanel" operation="show"/>-->	
+             	     	<h:graphicImage value="/resources/gfx/work.png" width="15px" height="15px" alt="bearbeiten" />
+						<a4j:param value="#{_group.idmGroupPath}" assignTo="#{userManagementController.currentGroupPath}" /> 
+						<f:setPropertyActionListener target="#{userManagementController.currentCustomerIdmGroup}" value="#{_group}" />
+						</a4j:commandLink> 
+					    
+					</div>
+			       </rich:column> 
+                   <rich:column> 
+						<a4j:commandLink styleClass="no-decor" execute="@this" render="warnDeleteGroup"
+                   			 oncomplete="#{rich:component('deleteGroupPanel')}.show()">
+                    		<h:graphicImage value="/resources/gfx/false.png" alt="delete" />
+                    		<a4j:param value="#{_group.idmGroupPath}" assignTo="#{userManagementController.currentGroupPath}" />
+               			 </a4j:commandLink>
+						
+						</rich:column> 
+                   
+               <f:facet name="footer">                 <rich:dataScroller id="scroller" />             </f:facet> 
+               
+                </rich:dataTable>
+         
+         
+     
+ 
+
+ </rich:tab>    
+  <rich:tab header="#{msg.userManagementRoleListTabHeader}" id="roleTab">   
+
+
+ 
+             <h:panelGroup rendered="#{empty userManagementController.allCustomerIdmRoles}">
+                <em>No registered members.</em>
+             </h:panelGroup>
+             <rich:dataTable id="roleTable" var="_role" value="#{userManagementController.allCustomerIdmRoles}" iterationStatusVar="it" rendered="#{not empty userManagementController.allCustomerIdmRoles}" style="width: 100%" rows="20">
+                
+                   <rich:column> 
+		             <f:facet name="header">#{msg.userManagementSerialNumber}</f:facet>
+		             <div style="max-height:47px;max-width:20px;overflow:hidden">
+		              #{it.index}
+		             </div> 
+		           </rich:column> 
+                  
+                   <rich:column width="80">
+                      <f:facet name="header">#{msg.userManagementCustomerListColumnRoleCreatedDate}</f:facet>
+                      <div style="overflow:hidden;width:150px">
+                      #{_role.idmRoleCreatedDate}
+             	    </div>
+                   </rich:column>
+                   <rich:column width="80">
+                      <f:facet name="header">#{msg.userManagementCustomerListColumnRoleName}</f:facet>
+                      <div style="overflow:hidden;width:100px">
+                      #{_role.idmRoleName}
+             	    </div>
+                 </rich:column>
+                 <rich:column> 
+						<a4j:commandLink styleClass="no-decor" execute="@this" render="warnDeleteRole"
+							oncomplete="#{rich:component('deleteRolePanel')}.show()"> 
+						<h:graphicImage value="/resources/gfx/false.png" width="15px" height="15px"></h:graphicImage>
+						<a4j:param value="#{_role.idmRoleName}" assignTo="#{userManagementController.currentRoleName}" /> 
+						</a4j:commandLink> 
+		          </rich:column> 
+		         
+                   
+               <f:facet name="footer">                 <rich:dataScroller id="scroller" />             </f:facet> 
+                </rich:dataTable>
+ 
+
+ </rich:tab>  
+ </rich:tabPanel>
+ 
+         <rich:popupPanel id="statPane" autosized="true">
+            <h:graphicImage value="/resources/gfx/ai_32.gif" alt="ai" />
+            Please wait...
+        </rich:popupPanel>
+
+ </h:form>
+       
+    <h:form>    
+
+           
+            
+     <rich:popupPanel id="showUserPanel" modal="true" resizeable="true" onmaskclick="#{rich:component('showUserPanel')}.hide()"
+           autosized="false" width="800"  height="500" >
+        <f:facet name="header">
+         <h:panelGroup>
+          <h:outputText value="#{msg.userManagementCustomerPanel}"></h:outputText>
+         </h:panelGroup>
+        </f:facet>
+        <f:facet name="controls">
+        
+          <h:graphicImage  styleClass="hidelink" id="hidelink3" onclick="#{rich:component('showUserPanel')}.hide(); return false;" value="/resources/gfx/false.png"/>
+          
+                      
+         </f:facet>
+         
+            <h:panelGrid columns="2" border="0">	
+		    <h:outputFormat  value="#{msg['currentUser.n']} Index #{userManagementController.currentCustomerIdmUserIndex}"  styleClass="headertxt" id="currentUserOutShowUserPanel">
+   				<f:param value="#{userManagementController.currentUserName}" />	    
+		    </h:outputFormat >
+		    </h:panelGrid>
+		    <richext:spacer width="3" height="10"/> 
+         
+         <a4j:outputPanel  ajaxRendered="true"> 
+ 		<h:panelGroup>
+        
+      		
+		   <h:panelGrid columns="1" border="0" id="editGrid" rowClasses="fixedColumnClass">
+		   <h:panelGroup>
+			<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;">#{msg.registerAddress}:</legend>
+			   <h:panelGroup rendered="#{empty userManagementController.currentCustomerIdmUser.city}">
+			     <h:outputLabel value="#{msg.registerConfirmMissingRegisterData}!" style="color:Red;font-weight:bold;"/>
+			   </h:panelGroup>
+			  <h:panelGroup rendered="#{not empty userManagementController.currentCustomerIdmUser.city}">
+			  <h:panelGrid columns="2" border="0" style="font-size:1.2em;font-family:Times New Roman;" columnClasses="topAligned">
+			   <h:panelGroup>
+				<h:outputLabel value="#{msg.registerConfirmAdress}:" style="font-weight:bold;" />
+				
+				  </h:panelGroup>
+		   		<h:panelGroup>
+		   	    <h:panelGrid columns="1" border="0"  >
+	        	<h:panelGroup>
+	      	      <h:outputLabel value="#{msg.registerConfirmGenderMale} "  rendered="#{userManagementController.currentCustomerIdmUser.gender.startsWith('male')}"/>
+				  <h:outputLabel value="#{msg.registerConfirmGenderFemale} " rendered="#{userManagementController.currentCustomerIdmUser.gender.startsWith('female')}"/>
+				  <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.firstName} " />
+				  <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.lastName}"/>
+		   		</h:panelGroup>
+		   		
+		   		<h:panelGroup>
+	      	      <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.street} " />
+				  <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.streetNumber}" />
+		   		</h:panelGroup>
+		   		<h:panelGroup>
+	      	      <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.zip} " />
+				  <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.city}" />
+		   		</h:panelGroup>	
+	      	    <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.country} " />
+				</h:panelGrid>
+				</h:panelGroup>
+				</h:panelGrid>
+				</h:panelGroup>
+		    </fieldset>
+		 </h:panelGroup>  
+	    <h:panelGroup >
+		<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman">#{msg.registerUserAccount}:</legend>	
+		
+		 <h:panelGroup rendered="#{not empty userManagementController.currentCustomerIdmUser.idmUsername}">
+		  <h:panelGrid columns="2" border="0" style="font-size:1.2em;font-family:Times New Roman;" rowClasses="preColumnClass,preColumnClass">
+    	    <h:panelGroup>
+			 <h:outputLabel value="#{msg.registerConfirmUsername}:" style="font-weight:bold;" /></h:panelGroup>
+      	    <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.idmUsername} "/>
+			<h:outputLabel value="#{msg.registerConfirmMail}:" style="font-weight:bold;"/>
+      	    <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.idmMail} " />
+      	    <h:outputLabel value="#{msg.registerGroups}:" style="font-weight:bold;"/>
+      	    <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.groups} " />
+			<h:outputLabel value="#{msg.registerRoles}:" style="font-weight:bold;"/>
+      	    <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.roles} " />
+      	    <h:outputLabel value="#{msg.registerGroupRoles}:" style="font-weight:bold;"/>
+      	    <h:outputLabel value="#{userManagementController.currentCustomerIdmUser.groupRoles} " />
+		 </h:panelGrid>
+		 </h:panelGroup>
+	    </fieldset>	
+	   </h:panelGroup>
+      </h:panelGrid>
+      
+	
+	</h:panelGroup>
+            <a4j:commandButton value="Close" onclick="#{rich:component('showUserPanel')}.hide(); return false;" /> 
+      </a4j:outputPanel>
+    </rich:popupPanel>   
+     <rich:popupPanel id="deleteRolePanel"  resizeable="false" onmaskclick="#{rich:component('deleteRolePanel')}.hide()"
+           			 autosized="true" domElementAttachment="parent">
+	   	<f:facet name="header">
+	    	<h:panelGroup>
+	        	<h:outputText value="#{msg.roleDelete}"></h:outputText>
+	         </h:panelGroup>
+	    </f:facet>
+	    <f:facet name="controls">
+	    	<h:graphicImage  styleClass="hidelink" id="hidelinkDeleteRole" onclick="#{rich:component('deleteRolePanel')}.hide(); return false;"
+		    				 value="/resources/gfx/false.png"/>
+	    </f:facet>
+	
+		
+	    <h:panelGrid columnClasses="colStylePopupPanel" columns="1" border="0">
+			<h:panelGroup>
+				<fieldset> 
+				<legend style="font-size:1.3em;font-family:Times New Roman;">
+				<h:panelGrid  columns="2" border="0">
+				<h:graphicImage value="/resources/gfx/msgwarn.png" alt="warning" />
+				<h:outputText  value=" #{msg.warn}"></h:outputText>
+				</h:panelGrid>
+				</legend>
+		 			<richext:spacer width="100" height="7"/> 
+					<h:outputFormat id="warnDeleteRole" value="#{msg['warnDeleteRole.n']}"  styleClass="headertxt">
+   					<f:param value="#{userManagementController.currentRoleName}" />	    
+		    		</h:outputFormat >
+					<richext:spacer width="100" height="5"/> 
+				</fieldset>
+		 	</h:panelGroup> 
+		 	<richext:spacer width="100" height="10"/> 
+	    	<h:panelGroup>
+            	<a4j:commandButton value="#{msg.buttonCancel}" onclick="#{rich:component('deleteRolePanel')}.hide(); return false;" />
+            	<a4j:commandButton value="#{msg.buttonDelete}" onclick="removeRole(); return false;" />
+            </h:panelGroup>
+        </h:panelGrid>
+           <a4j:jsFunction name="removeRole" actionListener="#{userManagementController.removeRole()}" render="tree,roleTab" execute="@this"
+				    oncomplete="#{rich:component('deleteRolePanel')}.hide();" />
+	</rich:popupPanel>
+     <rich:popupPanel id="deleteGroupPanel"  resizeable="false" onmaskclick="#{rich:component('deleteGroupPanel')}.hide()"
+           			 autosized="true" domElementAttachment="parent">
+	   	<f:facet name="header">
+	    	<h:panelGroup>
+	        	<h:outputText value="#{msg.groupDelete}"></h:outputText>
+	         </h:panelGroup>
+	    </f:facet>
+	    <f:facet name="controls">
+	    	<h:graphicImage  styleClass="hidelink" id="hidelinkDeletegroup" onclick="#{rich:component('deleteGroupPanel')}.hide(); return false;"
+		    				 value="/resources/gfx/false.png"/>
+	    </f:facet>
+	
+		
+	    <h:panelGrid columnClasses="colStylePopupPanel" columns="1" border="0">
+			<h:panelGroup>
+				<fieldset> 
+				<legend style="font-size:1.3em;font-family:Times New Roman;">
+				<h:panelGrid  columns="2" border="0">
+				<h:graphicImage value="/resources/gfx/msgwarn.png" alt="warning" />
+				<h:outputText  value=" #{msg.warn}"></h:outputText>
+				</h:panelGrid>
+				</legend>
+		 			<richext:spacer width="100" height="7"/> 
+					<h:outputFormat id="warnDeleteGroup" value="#{msg['warnDeleteGroup.n']}"  styleClass="headertxt">
+   					<f:param value="#{userManagementController.currentGroupPath}" />	    
+		    		</h:outputFormat >
+					<richext:spacer width="100" height="5"/> 
+				</fieldset>
+		 	</h:panelGroup> 
+		 	<richext:spacer width="100" height="10"/> 
+	    	<h:panelGroup>
+            	<a4j:commandButton value="#{msg.buttonCancel}" onclick="#{rich:component('deleteGroupPanel')}.hide(); return false;" />
+            	<a4j:commandButton value="#{msg.buttonDelete}" onclick="removeGroup(); return false;" />
+            </h:panelGroup>
+        </h:panelGrid>
+           <a4j:jsFunction name="removeGroup" actionListener="#{userManagementController.removeGroup()}" render="tree,userTab,groupTab" execute="@this"
+				    oncomplete="#{rich:component('deleteGroupPanel')}.hide();" />
+	</rich:popupPanel>
+     <rich:popupPanel id="deleteUserPanel"  resizeable="false" onmaskclick="#{rich:component('deleteUserPanel')}.hide()"
+           			 autosized="true" domElementAttachment="parent">
+	   	<f:facet name="header">
+	    	<h:panelGroup>
+	        	<h:outputText value="#{msg.deleteCustomer}"></h:outputText>
+	         </h:panelGroup>
+	    </f:facet>
+	    <f:facet name="controls">
+	    	<h:graphicImage  styleClass="hidelink" id="hidelinkDeleteUser" onclick="#{rich:component('deleteUserPanel')}.hide(); return false;"
+		    				 value="/resources/gfx/false.png"/>
+	    </f:facet>
+	
+		
+	    <h:panelGrid columnClasses="colStylePopupPanel" columns="1" border="0">
+			<h:panelGroup>
+				<fieldset>
+		 			<legend style="font-size:1.3em;font-family:Times New Roman;">
+					<h:panelGrid  columns="2" border="0">
+					<h:graphicImage value="/resources/gfx/msgwarn.png" alt="warning" />
+					<h:outputText  value=" #{msg.warn}"></h:outputText>
+					</h:panelGrid>
+					</legend>
+		 			<richext:spacer width="100" height="7"/> 
+		 			<h:outputFormat id="warnDeleteUser"  value="#{msg['warnDeleteUser.n']}"  styleClass="headertxt" >
+   					<f:param value="#{userManagementController.currentUserName}" />	    
+		    		</h:outputFormat >
+					<richext:spacer width="100" height="5"/> 
+				</fieldset>
+		 	</h:panelGroup> 
+		 	<richext:spacer width="100" height="10"/> 
+	    	<h:panelGroup>
+            	<a4j:commandButton value="#{msg.buttonCancel}" onclick="#{rich:component('deleteUserPanel')}.hide(); return false;" />
+            	<a4j:commandButton value="#{msg.buttonDelete}" onclick="removeUser(); return false;" />
+            </h:panelGroup>
+        </h:panelGrid>
+           <a4j:jsFunction name="removeUser" actionListener="#{userManagementController.removeUser()}" render="tree,userTab" execute="@this"
+				    oncomplete="#{rich:component('deleteUserPanel')}.hide();" />
+	</rich:popupPanel>
+     <rich:popupPanel id="editUserPanel"  resizeable="false" onmaskclick="#{rich:component('editUserPanel')}.hide()"
+           			 autosized="true" onbeforeshow="fixPositioning('#{rich:clientId('editUserPanel')}');" domElementAttachment="form">
+	   	<f:facet name="header">
+	    	<h:panelGroup>
+	        	<h:outputText value="#{msg.editCustomer}"></h:outputText>
+	         </h:panelGroup>
+	    </f:facet>
+	    <f:facet name="controls">
+	    	<h:graphicImage  styleClass="hidelink" onclick="#{rich:component('editUserPanel')}.hide(); return false;"
+		    				 value="/resources/gfx/false.png"/>
+	    </f:facet>
+	    <a4j:ajax event="beforeshow" render="currentUserOut" execute="@this" />
+	      <h:panelGrid columns="2" border="0">	
+		    <h:outputFormat  value="#{msg['currentUser.n']}"  styleClass="headertxt" id="currentUserOut">
+   				<f:param value="#{userManagementController.currentUserName}" />	    
+		    </h:outputFormat >
+		    </h:panelGrid>
+		    <richext:spacer width="3" height="10"/> 
+	 <a4j:outputPanel ajaxRendered="true">
+	 <rich:tabPanel  id="editUserTab" switchType="ajax" >
+ 		<rich:tab header="#{msg.groupAdd}" id="addGroupTab" >
+ 		<richext:spacer width="650" height="7"/> 
+		  
+	    <fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.groupAdd}"></h:outputText></legend>
+	       <richext:spacer width="3" height="10"/> 
+			<h:selectBooleanCheckbox 
+			value="#{userManagementController.activateForAllAddSubGroups}" id="checkBoxForAllAddSubgroups" 
+			required="true" valueChangeListener="#{userManagementController.checkBoxForAllAddSubgroupsChanged}">
+            <a4j:ajax event="click" reRender="checkBoxForAllAddSubgroups" />
+            
+			 <h:outputLabel value="#{msg.checkBoxForAllAddSubgroups} " for="checkBoxForAllAddSubgroups" />
+			</h:selectBooleanCheckbox>
+		   	 <richext:spacer width="3" height="10"/> 
+	   		<h:panelGrid columns="3" border="0">
+	      		<h:panelGroup>
+		 			<rich:tree id="treePanelAddGroup" nodeType="#{node.type}" var="node" value="#{userManagementController.treeBeanAdd.rootNodes}" toggleType="ajax" 
+						selectionType="ajax"  render="groupOut" selectionChangeListener="#{userManagementController.selectionChanged}" toggleListener="#{userManagementController.treeBeanAdd.processTreeToggle}" > 			
+						
+						<a4j:ajax event="click" render="groupInput,tree"></a4j:ajax>
+						<rich:treeNode type="group" iconLeaf="/resources/gfx/parentGroup.png" iconCollapsed="/resources/gfx/parentGroup.png" iconExpanded="/resources/gfx/parentGroup.png" > 
+						#{node.name} 
+						</rich:treeNode> 
+						<rich:treeNode type="subGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+						#{node.name} 
+						</rich:treeNode> 
+						<rich:treeNode type="subSubGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+						#{node.name}
+						</rich:treeNode> 
+					</rich:tree>
+				</h:panelGroup>
+				<h:panelGroup>
+					<richext:spacer width="3" height="7"/> 
+				</h:panelGroup>
+				<h:panelGroup id="groupOut">
+					<richext:spacer width="300" height="7"/> 
+					<h:outputText space="100"  value="#{msg.adviceToTree}"  rendered="#{userManagementController.treeBeanAdd.showGroupName and userManagementController.treeBeanAdd.showSubGroupName and userManagementController.treeBeanAdd.showSubSubGroupName}" columnClasses1="colStyleRegister0"/>
+					<my:outputLabel space="100" label="Mitglied in Gruppe: " value="#{userManagementController.treeBeanAdd.groupNamePath}"  rendered="#{!userManagementController.treeBeanAdd.showGroupName and userManagementController.treeBeanAdd.showSubGroupName and userManagementController.treeBeanAdd.showSubSubGroupName}" columnClasses1="colStyleRegister0"/>
+					<my:outputLabel space="100" label="Mitglied in Gruppe: " value="#{userManagementController.treeBeanAdd.groupNamePath}"  rendered="#{!userManagementController.treeBeanAdd.showGroupName and !userManagementController.treeBeanAdd.showSubGroupName and userManagementController.treeBeanAdd.showSubSubGroupName}" columnClasses1="colStyleRegister0"/>
+				   	<my:outputLabel space="100" label="Mitglied in Gruppe: " value="#{userManagementController.treeBeanAdd.groupNamePath}"  rendered="#{userManagementController.treeBeanAdd.showGroupName and userManagementController.treeBeanAdd.showSubGroupName and !userManagementController.treeBeanAdd.showSubSubGroupName}" columnClasses1="colStyleRegister0"/>
+ 				</h:panelGroup>
+			</h:panelGrid>
+			<richext:spacer width="3" height="7"/> 
+		</fieldset>
+		 </rich:tab>
+		 <rich:tab header="#{msg.groupDelete}" id="deleteGroupTab" >
+		 <richext:spacer width="650" height="7"/> 
+		<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.groupDelete}"></h:outputText></legend>
+	       <richext:spacer width="3" height="10"/> 
+			<h:selectBooleanCheckbox 
+			value="#{userManagementController.activateForAllDeleteSubGroups}" id="checkBoxForAllDeleteSubgroups" 
+			required="true" valueChangeListener="#{userManagementController.checkBoxForAllDeleteSubgroupsChanged}"
+			>
+            <a4j:ajax event="click" reRender="checkBoxForAllDeleteSubgroups" />
+            
+			 <h:outputLabel value="#{msg.checkBoxForAllDeleteSubgroups} " for="checkBoxForAllDeleteSubgroups" />
+			</h:selectBooleanCheckbox>
+		    <richext:spacer width="3" height="10"/> 
+	   		<h:panelGrid columns="3" border="0">
+	      		<h:panelGroup>
+		 			<rich:tree id="treePanelDeleteGroup" nodeType="#{node.type}" var="node" value="#{userManagementController.treeBeanDelete.rootNodes}" toggleType="ajax"  
+						 render="groupOut2" selectionType="ajax"  selectionChangeListener="#{userManagementController.selectionChanged}"    toggleListener="#{userManagementController.treeBeanDelete.processTreeToggle}" > 
+						 			
+						<rich:treeNode type="group" iconLeaf="/resources/gfx/parentGroup.png" iconCollapsed="/resources/gfx/parentGroup.png" iconExpanded="/resources/gfx/parentGroup.png" > 
+						#{node.name} 
+						</rich:treeNode> 
+						<rich:treeNode type="subGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+						#{node.name} 
+						</rich:treeNode> 
+						<rich:treeNode type="subSubGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+						#{node.name}
+						</rich:treeNode> 
+					</rich:tree>
+						
+			</h:panelGroup>
+				<h:panelGroup>
+					<richext:spacer width="3" height="7"/> 
+				</h:panelGroup>
+				<h:panelGroup id="groupOut2">
+					<richext:spacer width="300" height="7"/> 
+					<h:outputText space="100"  value="#{msg.adviceToTree}"  rendered="#{userManagementController.treeBeanDelete.showGroupName and userManagementController.treeBeanDelete.showSubGroupName and userManagementController.treeBeanDelete.showSubSubGroupName}" columnClasses1="colStyleRegister0"/>
+					<my:outputLabel space="100" label="Mitglied in Gruppe: " value="#{userManagementController.treeBeanDelete.groupNamePath}"  rendered="#{!userManagementController.treeBeanDelete.showGroupName and userManagementController.treeBeanDelete.showSubGroupName and userManagementController.treeBeanDelete.showSubSubGroupName}" columnClasses1="colStyleRegister0"/>
+					<my:outputLabel space="100" label="Mitglied in Gruppe: " value="#{userManagementController.treeBeanDelete.groupNamePath}"  rendered="#{!userManagementController.treeBeanDelete.showGroupName and !userManagementController.treeBeanDelete.showSubGroupName and userManagementController.treeBeanDelete.showSubSubGroupName}" columnClasses1="colStyleRegister0"/>
+				   	<my:outputLabel space="100" label="Mitglied in Gruppe: " value="#{userManagementController.treeBeanDelete.groupNamePath}"  rendered="#{userManagementController.treeBeanDelete.showGroupName and userManagementController.treeBeanDelete.showSubGroupName and !userManagementController.treeBeanDelete.showSubSubGroupName}" columnClasses1="colStyleRegister0"/>
+ 				</h:panelGroup>
+			</h:panelGrid>
+			<richext:spacer width="3" height="7"/> 
+		</fieldset>
+		</rich:tab>
+				 <rich:tab header="#{msg.groupRoleEditTab}" id="groupRoleEditTab" >
+		 <richext:spacer width="650" height="7"/> 
+		<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.groupRoleEditHead}"></h:outputText></legend>
+	       <richext:spacer width="3" height="10"/> 
+			
+	   		<h:panelGrid columns="1" border="0">
+	      		
+				<h:panelGroup>
+					<rich:pickList  id="pickListGroupRole" value="#{userManagementController.selectedCustomerIdmGroupRolesCombinationStrings}">
+				    <f:selectItems value="#{userManagementController.customerIdmGroupRolesCombinationStrings}"/>
+	    		</rich:pickList>
+				</h:panelGroup>
+			</h:panelGrid>
+			<richext:spacer width="3" height="7"/> 
+		</fieldset>
+		</rich:tab>
+	
+		 <rich:tab header="#{msg.roleRelation}" id="roleRelationTab" >
+		 <richext:spacer width="650" height="7"/> 
+		<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.roleRelation}"></h:outputText></legend>
+			<richext:spacer width="3" height="10"/> 
+			 <!-- 
+			  <rich:select id="selectRole" defaultLabel="#{msg.defaultLabelSelectRole}">
+				    <f:selectItems value="#{userManagementController.selectedCustomerIdmRolesCombination}" var="item" itemLabel="#{item.idmRoleName}" itemValue="#{item}"/>
+				    <a4j:ajax event="selectitem" oncomplete="updateBean(#{rich:component('selectRole')}.getValue())" />
+				</rich:select>
+				
+				<a4j:jsFunction name="updateBean">
+				    <a4j:param assignTo="#{userManagementController.selectedRole}" name="value" />
+				</a4j:jsFunction>
+				 -->
+			
+				<rich:pickList  id="pickListRole" value="#{userManagementController.selectedCustomerIdmRolesCombinationStrings}">
+				    <f:selectItems value="#{userManagementController.customerIdmRolesCombinationStrings}"/>				         
+				</rich:pickList>
+				
+	
+			 <richext:spacer width="3" height="7"/>  
+		</fieldset>
+		</rich:tab>
+		</rich:tabPanel>
+		<h:panelGroup id="pGB">
+		<a4j:commandButton value="#{msg.buttonCancel}" onclick="#{rich:component('editUserPanel')}.hide(); return false;" />
+		<a4j:commandButton id="edit" value="#{msg.buttonEdit}"  action="#{userManagementController.editUser}" render="tree,userManagerTab"
+				    oncomplete="#{rich:component('editUserPanel')}.hide(); return false;" />
+	</h:panelGroup>
+	  <a4j:jsFunction name="initAddTree" actionListener="#{userManagementController.initAddTree}" execute="@form"/>  
+	  <a4j:jsFunction name="initDeleteTree" actionListener="#{userManagementController.initDeleteTree}" execute="@form"/>  
+	  <a4j:jsFunction name="onBeforeSelection" actionListener="#{userManagementController.onBeforeSelectionChanged}" execute="@form"/>
+	
+     
+	 <a4j:jsFunction name="editUser" actionListener="#{userManagementController.editUser()}" render="tree,userManagerTab" execute="@form"
+				    oncomplete="#{rich:component('editUserPanel')}.hide(); return false;" /> 
+	    <a4j:jsFunction name="deleteTreeSelection" actionListener="#{idmUtilCreateController.treeBeanGroupRole.deleteTreeSelection()}"  execute="@this" /> 
+    
+</a4j:outputPanel>
+	</rich:popupPanel>
+	 <rich:popupPanel id="editGroupPanel"  resizeable="false" onmaskclick="#{rich:component('editGroupPanel')}.hide()"
+           			 autosized="true" onbeforeshow="fixPositioning('#{rich:clientId('editGroupPanel')}');" domElementAttachment="form">
+	   	<f:facet name="header">
+	    	<h:panelGroup>
+	        	<h:outputText value="#{msg.editCustomer}"></h:outputText>
+	         </h:panelGroup>
+	    </f:facet>
+	    <f:facet name="controls">
+	    	<h:graphicImage  styleClass="hidelink" onclick="#{rich:component('editGroupPanel')}.hide(); return false;"
+		    				 value="/resources/gfx/false.png"/>
+	    </f:facet>
+	      <h:panelGrid columns="2" border="0">	
+		    <h:outputFormat  value="#{msg['currentGroup.n']}"  styleClass="headertxt" id="currentGroupOut">
+   				<f:param value="#{userManagementController.currentGroupPath}" />	    
+		    </h:outputFormat >
+		    </h:panelGrid>
+		    <richext:spacer width="3" height="10"/> 
+	 <a4j:outputPanel ajaxRendered="true">
+	 <rich:tabPanel  id="editRoleTab" switchType="ajax" >
+ 	
+		 <rich:tab header="#{msg.roleRelation}" id="groupoleRelationTab" >
+		 <richext:spacer width="650" height="7"/> 
+		<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.roleRelation}"></h:outputText></legend>
+			<richext:spacer width="3" height="10"/> 
+			 <!-- 
+			  <rich:select id="selectRole" defaultLabel="#{msg.defaultLabelSelectRole}">
+				    <f:selectItems value="#{userManagementController.selectedCustomerIdmRolesCombination}" var="item" itemLabel="#{item.idmRoleName}" itemValue="#{item}"/>
+				    <a4j:ajax event="selectitem" oncomplete="updateBean(#{rich:component('selectRole')}.getValue())" />
+				</rich:select>
+				
+				<a4j:jsFunction name="updateBean">
+				    <a4j:param assignTo="#{userManagementController.selectedRole}" name="value" />
+				</a4j:jsFunction>
+				 -->
+			
+				
+	    		
+	
+			 <richext:spacer width="3" height="7"/>  
+		</fieldset>
+		</rich:tab>
+		</rich:tabPanel>
+		<h:panelGroup>
+		<a4j:commandButton value="#{msg.buttonCancel}" onclick="#{rich:component('editGroupPanel')}.hide(); return false;" />
+		<a4j:commandButton id="editGroup" value="#{msg.buttonEdit}"  action="#{userManagementController.editGroup}" render="tree,userManagerTab"
+				    oncomplete="#{rich:component('editGroupPanel')}.hide(); return false;" />
+	</h:panelGroup>
+	
+     
+	 <a4j:jsFunction name="editGroup" actionListener="#{userManagementController.editGroup()}" render="tree,groupManagerTab" execute="@form"
+				    oncomplete="#{rich:component('editGroupPanel')}.hide(); return false;" /> 
+    
+</a4j:outputPanel>
+	</rich:popupPanel>
+    </h:form>
+ 
+    
+  </h:panelGrid>
+  </ui:define>
+  
+     <ui:define name="rside">
+       <richext:spacer width="30" height="20"/>
+    
+      <fieldset>                         <legend>Gruppen-Filter</legend>
+     
+     <h:form id="treeForm">
+     <a4j:outputPanel  ajaxRendered="true"> 
+     <a4j:commandButton action="#{userManagementController.deleteGroupFilter()}" render="groupTab" value="Filter zurücksetzen" ></a4j:commandButton>
+     <richext:spacer width="20" height="10"/>
+		<rich:tree ajaxSubmitSelection="true"  id="tree" nodeType="#{node.type}" var="node" value="#{userManagementController.treeBean.rootNodes}" toggleType="ajax"
+			 render="groupTab" > 
+			<rich:treeSelectionChangeListener listener="#{userManagementController.selectionChanged}"/>
+			<rich:treeNode type="group" iconLeaf="/resources/gfx/parentGroup.png" iconCollapsed="/resources/gfx/parentGroup.png" iconExpanded="/resources/gfx/parentGroup.png" >
+			#{node.name} 
+			</rich:treeNode> 
+			<rich:treeNode type="subGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+			#{node.name} 
+			</rich:treeNode> 
+			<rich:treeNode type="subSubGroup" iconLeaf="/resources/gfx/childGroup.png" iconExpanded="/resources/gfx/childGroup.png" iconCollapsed="/resources/gfx/childGroup.png"> 
+			#{node.name}
+			</rich:treeNode> 
+			
+		</rich:tree>
+		<a4j:jsFunction name="select" actionListener="#{userManagementController.select()}" render="groupTab,treePanel,editUserPanel" execute="@this"/> 
+</a4j:outputPanel>
+</h:form>
+</fieldset> 
+
+</ui:define>
+</ui:composition>

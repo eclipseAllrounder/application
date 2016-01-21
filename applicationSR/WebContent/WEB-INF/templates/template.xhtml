@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:a4j="http://richfaces.org/a4j"
+ xmlns:richext="http://java.sun.com/jsf/composite/richext"
+ xmlns:rich="http://richfaces.org/rich">
+ <f:view contentType="text/html">
+ 
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+  <title>xxx</title>
+  <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico"/>
+
+  <h:outputStylesheet name="theme.css" library="css"/>
+  <style type="text/css">
+  .invalid {             border-color: #D91C0D !important;         }
+	.colStyle1 { width: 360px;
+	
+	}
+	.colStyle2 { width: 100%;
+	
+	}
+	.colStyle3 { width: 500px;
+	
+	}
+   </style>
+ </h:head>
+ <h:body>
+  <div id="pageMain" style="text-align:left;background-color:#FCF9CD;border-style:solid;border-color:BurlyWood;margin:10px auto 0;border-width:thin;padding:0px;width:#{sreenWidth}px">
+  <richext:spacer width="3" height="2"/>
+   <!--Tabelle für den Header (links Bild, rechts Links) -->
+   <h:panelGrid columnClasses="colStyle1,colStyle2,colStyle3" columns="3" border="0" cellspacing="0" cellpadding="0" width="100%" style="padding-left:0px;text-align:right;margin-left:0px;right:0px;">
+    <h:graphicImage value="/img/Logo_Sessionviewer.png" style="border : 0 none;width : 290px; height : 48px;"/>
+    <richext:spacer width="300"/>
+    
+    <h:panelGroup>
+    <h:form id="language">
+    <!-- Switch to german -->
+    <h:panelGrid columnClasses="className" columns="3" border="0" cellspacing="0" cellpadding="0" style="margin-right:0;margin-left:auto;">
+  
+
+  	<ui:fragment rendered="#{localeCode.matches('en')}" id="Len">
+  	
+  	 <h:commandLink action="#{language.changeToGerman}">
+		<h:graphicImage value="/resources/gfx/germany.png" width="20px" height="16px"></h:graphicImage>
+		<richext:spacer width="10" height="5"/>
+	 </h:commandLink>
+
+	</ui:fragment>
+	
+    <!-- Switch to english -->
+  	<ui:fragment rendered="#{localeCode.matches('de')}" id="Lde">
+ 
+  	 <h:commandLink action="#{language.changeToEnglish}">
+		<h:graphicImage value="/resources/gfx/england.png" width="20px" height="16px"></h:graphicImage>
+		<richext:spacer width="10" height="5"/>
+	 </h:commandLink>
+	
+	</ui:fragment>
+	<richext:spacer width="10"/>
+	</h:panelGrid>
+	</h:form>
+     <h:panelGrid columnClasses="className" columns="7" border="0" cellspacing="0" cellpadding="0" style="margin-right:0;margin-left:auto;">
+     
+     <!-- Logged in -->
+  	<ui:fragment rendered="#{identity.loggedIn}" id="f1">
+     <h:panelGrid columnClasses="className" columns="6" border="0" cellspacing="0" cellpadding="0" style="margin-right:0;margin-left:auto;">
+      <h:panelGroup>
+         <h:outputText styleClass="headertxt" value="#{msg.loginAs}"/>
+         <ui:fragment rendered="#{localeCode.matches('en')}">
+         <richext:spacer width="88"/>
+         </ui:fragment>
+         <ui:fragment rendered="#{localeCode.matches('de')}">
+         <richext:spacer width="100"/>
+         </ui:fragment>
+      </h:panelGroup>
+      <h:panelGroup>
+      		<richext:spacer width="5"/>
+      </h:panelGroup>
+      <h:panelGroup>
+       <h:outputText styleClass="headertxt" value=" #{identity.account.loginName}"/>    	 	
+      </h:panelGroup>
+      <h:panelGroup>
+      		<richext:spacer width="10"/>
+      </h:panelGroup>
+      <h:panelGroup>
+      		<h:outputText styleClass="divider" value="|"/>
+      </h:panelGroup>
+      <h:panelGroup>
+           	<richext:spacer width="10"/>
+      </h:panelGroup>
+     </h:panelGrid>
+    </ui:fragment>
+    <ui:fragment rendered="#{identity.loggedIn}" id="f2"><ui:fragment rendered="#{authorizationChecker.isMember('head')}" id="f22">
+     <h:panelGrid columnClasses="className" columns="4" border="0" cellspacing="0" cellpadding="0">
+      <h:panelGroup>
+      		<h:link id="profile" view="userManager" value="#{msg.userManager}"  styleClass="headerlink">
+		    	<f:param name="name" value="#{selectedUser.userName}"/>
+			</h:link>
+			 <ui:fragment rendered="#{localeCode.matches('en')}">
+         <richext:spacer width="110"/>
+         </ui:fragment>
+         <ui:fragment rendered="#{localeCode.matches('de')}">
+         <richext:spacer width="115"/>
+         </ui:fragment>
+   	  </h:panelGroup>
+   	  <h:panelGroup>
+           	<richext:spacer width="10"/>
+      </h:panelGroup>
+      <h:panelGroup>
+      	 	<h:outputText styleClass="divider" value="|"/>
+      </h:panelGroup>
+      <h:panelGroup>
+           	<richext:spacer width="10"/>
+      </h:panelGroup>
+     </h:panelGrid>
+    </ui:fragment></ui:fragment>
+    <ui:fragment rendered="#{identity.loggedIn}" id="f3">
+     <h:panelGroup style="margin-right:0;margin-left:auto;">
+     <h:form id="logoutForm">
+        <h:commandButton id="submitlo" value="#{msg.logout}" action="#{controller.logout()}" style="margin-right:0;margin-left:auto;"/>
+     </h:form>
+     </h:panelGroup>
+    </ui:fragment>  
+    	 
+    <ui:fragment rendered="#{not identity.loggedIn}" id="f4">
+     <h:form id="register">
+     <h:panelGrid columnClasses="className" columns="5" border="0" cellspacing="0" cellpadding="0">
+      <h:panelGroup>
+         	 <h:commandLink  action="/registration/register?faces-redirect=true" id="register" value="#{msg.register}"  styleClass="headerlink"/>
+         	 	
+      </h:panelGroup>
+   	  <h:panelGroup>
+      	     <richext:spacer width="10"/>
+      </h:panelGroup>
+      <h:panelGroup>
+        	 <h:outputText styleClass="divider" value="|"/>
+      </h:panelGroup>
+      <h:panelGroup>
+             <richext:spacer width="10"/>
+      </h:panelGroup>
+    
+   
+     <h:panelGroup>
+             <a4j:commandLink styleClass="headerlink" value="#{msg.login}">
+        		<rich:componentControl target="loginPanel" operation="show"/>
+       		 </a4j:commandLink>
+     </h:panelGroup>
+     </h:panelGrid>
+   </h:form>
+    </ui:fragment>
+       <h:panelGroup>
+          <richext:spacer width="10"/>
+     </h:panelGroup> 
+    </h:panelGrid>
+    </h:panelGroup>  
+         
+          <rich:popupPanel id="loginPanel" modal="true" resizeable="false" onmaskclick="#{rich:component('loginPanel')}.hide()" width="350" height="230">
+        <f:facet name="header">
+         <h:panelGroup>
+          <h:outputText value="#{msg.login}"></h:outputText>
+         </h:panelGroup>
+        </f:facet>
+        <f:facet name="controls">
+        
+          <h:graphicImage  styleClass="hidelink" id="hidelink" onclick="#{rich:component('loginPanel')}.hide(); return false;" value="/resources/gfx/false.png"/>
+          
+                      
+         </f:facet>
+         <h:form id="loginForm">
+          <div class="dialog">
+           <richext:spacer width="300"/>
+           <h:outputLabel styleClass="headertxt">#{msg.authorizationCredInput}</h:outputLabel>
+           <richext:spacer width="300" height="10"/>
+           <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value" style="margin:0;padding:0;">
+           
+            <h:outputLabel for="username" styleClass="headertxt">#{msg.username}</h:outputLabel>
+            <h:inputText id="username" value="#{loginCredentials.userId}" style="width: 150px;"/>
+            <h:outputLabel for="password" styleClass="headertxt">#{msg.password}</h:outputLabel>
+            <h:inputSecret id="password" value="#{loginCredentials.password}" style="width: 150px;"/>
+           </h:panelGrid>
+          </div>
+          <div class="actionButtons">
+           <h:commandButton id="submit" value="#{msg.login}" action="#{controller.login()}" style="width:80px;"/>
+          </div>
+         </h:form>     
+        </rich:popupPanel>
+         
+     
+        	 
+  	  </h:panelGrid> 
+    <h:panelGrid  columns="1" border="0" cellspacing="0" cellpadding="0" width="100%">
+<richext:spacer width="10" height="10"/>
+   
+   </h:panelGrid>
+  <!--Linkleiste -->
+   <h:panelGrid  columns="1" border="0" cellspacing="0" cellpadding="0" width="100%">
+	   <rich:toolbar height="26px" width="100%">
+	   </rich:toolbar>
+   
+   </h:panelGrid>
+    <div id="container">
+    <div id="rside" style="border-style:solid;border-color:BurlyWood;border-width:thin;">
+           <ui:insert name="rside">
+                [Template right side will be inserted here]
+            </ui:insert>
+        </div>
+        <div id="content" >
+            <ui:insert name="content">
+                [Template content will be inserted here]
+            </ui:insert>
+        </div>
+        
+        <div id="footer">
+            <p>
+             <ui:insert name="footer">
+                [Template footer will be inserted here]
+            </ui:insert>
+            </p>
+        </div>
+    </div>
+    
+  
+    </div>
+   </h:body>
+   </f:view>
+   
+   </html>

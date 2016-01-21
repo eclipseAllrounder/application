@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/templateFull2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:richext="http://java.sun.com/jsf/composite/richext"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:ez="http://java.sun.com/jsf/composite/demo">
+                
+<f:metadata>
+  <f:event type="preRenderView" listener="#{webAdminController.changeSidebarString('userControl')}"/>
+</f:metadata>
+          
+  <ui:define name="content">
+        <h:outputStylesheet>
+
+      .rf-tab-cnt
+ 		{
+            
+            background-color: #F2F2F2;           
+        }
+        .rf-tab-hdr-spcr
+ 		{
+            
+            background-color: #ffe6d9; 
+            padding:0px;
+            margin:0px;          
+        }
+       .rf-tab-hdr-tabline-top, .rf-tbp, .rf-tab-hdr-spcr, .rf-tab-hdn, .rf-tab-hdr-tablst, .rf-tab-hdr-brd, .rf-tab-hdr-spcr, .rf-tab-cnt, .rf-tab-hdr-scrl-lft, .rf-tab-hdr-scrl-rgh, .rf-tab-hdr-act, .rf-tab-hdr-inact, .rf-tab-hdr, .rf-tab-hdr-dis, .rf-tab-hdr-tabline-vis, .rf-tab-hdr-tabs
+        {
+
+        }
+        
+        
+        .rf-tab-hdr{
+        height:20px;
+        
+        }
+        </h:outputStylesheet>
+<rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:20px;background-color:#F2F2F2" rendered="#{identity.loggedIn}">  
+  	<richext:spacer width="190" height="30"/>
+	<h:outputLabel value="Logged In" styleClass="DialogHeadline" style="text-align:left;margin-right:0;margin-left:60px;margin-top:0px;"/>
+	<richext:spacer width="190" height="15"/>
+	<h:graphicImage value="/resources/gfx/borderLine.png" style="border:0 none;width:85%; height:2px;margin-left:60px;"/>
+	<richext:spacer width="190" height="10"/> 
+    <h:form id="parentForm">
+
+    
+    </h:form>
+</rich:panel>
+<br style="clear:both"/>
+ </ui:define>
+    
+     <ui:define name="rside">
+     
+		<a4j:outputPanel id="sidebar" style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;padding:0px;background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{identity.loggedIn}">
+		
+			 <a4j:outputPanel id="sidebarUser" style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;padding:0px;background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{webAdminController.sideBar.matches('userControl')}">
+			 	<ui:include src="/secure/userLoggedIn/sidebarForUserControl.xhtml" />
+			 </a4j:outputPanel>
+		
+	   	</a4j:outputPanel>
+
+     </ui:define>
+</ui:composition>

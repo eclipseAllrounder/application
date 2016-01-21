@@ -1,0 +1,32 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+                xmlns:richext="http://java.sun.com/jsf/composite/richext"
+	xmlns:vcp="http://www.exadel.com/vcp/components">
+ 
+       <h:outputStylesheet>
+
+    .rf-p-hdr {
+		font-size: 25px;
+	   	color: #ffffff;	
+	    background-image: url(); 
+	    font-weight: normal;
+		font-style: normal;
+		padding-top:5px; 
+    }   
+    </h:outputStylesheet>
+      <rich:panel   style="margin-left:3px;background-color:#FBFBFB;padding:0px" styleClass="panelSolid" headerClass="headerPanelSolid">
+     <f:facet name="header">
+        <h:outputText value="Werbung" styleClass="headerPanelFont"/>
+     </f:facet>
+
+           <richext:spacer width="3" height="500"/>
+
+</rich:panel>
+</ui:composition>   

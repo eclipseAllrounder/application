@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/resources/templates/template2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:my="http://java.sun.com/jsf/composite/components">
+    <ui:define name="content">
+   
+  <p>
+    This quickstart demonstrates how we can use PicketLink IDM's groups and roles to provide authorization checks within an application.
+  </p>
+  
+  <p>
+    The identity management configuration is based on PicketLink's JPAIdentityStore, which uses a database to store the application's
+    users, groups and roles, and the relationships between them.
+  </p>
+
+<ui:fragment rendered="#{identity.loggedIn}">
+    <div>Congratulations! You are currently logged in as: <b>#{loginController.loggedinUserName}</b></div>
+
+ 
+    
+    <ui:fragment rendered="#{authorizationChecker.isSubGroupMember('company', 'head')}">
+      <div>You are a member of the 'head' group.</div>
+    </ui:fragment>
+    
+    
+
+    <h:form>
+        <h:commandButton id="logout" value="Log out" action="#{identity.logout}"/>
+    </h:form>
+</ui:fragment>
+
+<h:form id="loginForm2" rendered="#{not identity.loggedIn}">
+    <h:messages globalOnly="true"/>
+
+          <h:panelGrid columns="2" styleClass="default">
+
+            <h:outputText value="Enter key:" />
+            <h:inputText value="#{property.key}" />
+
+            <h:outputText value="Enter value:" />
+            <h:inputText value="#{property.value}" />
+
+            <h:commandButton actionListener="#{manager.save}"
+                styleClass="buttons" value="Save key/value" />
+      
+      		  <h:commandButton actionListener="#{manager.startHumanTaskProcess()}"
+                styleClass="buttons" value="Start Process" />
+            <h:messages />
+
+        </h:panelGrid>
+
+        <h:dataTable value="#{propertyList}" var="item"
+            styleClass="table" headerClass="table-header"
+            rowClasses="table-odd-row,table-even-row">
+            <h:column>
+                <f:facet name="header">Key</f:facet>
+                <h:outputText value="#{item.key}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Value</f:facet>
+                <h:outputText value="#{item.value}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton actionListener="#{manager.clear(item)}"
+                styleClass="buttons" value="Delete" />
+            </h:column>
+
+        </h:dataTable>
+
+	
+</h:form>
+
+<br style="clear:both"/>
+
+    </ui:define>
+     <ui:define name="rside">hhhalllo khgui guigug oiugiu gigiuguigiu giuiugoigiugoiugoigiuguigiu ggugoigiuguigg  uiiuhuiguigiuguigiusete</ui:define>
+</ui:composition>
