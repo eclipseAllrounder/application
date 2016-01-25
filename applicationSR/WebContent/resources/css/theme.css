@@ -468,10 +468,9 @@ margin-right: 10px;
 .menuControlLink {
 	 font-family:'Droid Sans', arial, serif;
      text-align: left;
-     padding: 10px;
 	 border: 0px;
 	 width: 180px;
-	 height: 25px;
+
 }
 
 .menuControlLink:visited {

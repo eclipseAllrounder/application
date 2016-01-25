@@ -8,6 +8,7 @@
                 xmlns:rich="http://richfaces.org/rich"
                  xmlns:richext="http://java.sun.com/jsf/composite/richext"
                 xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:hf="http://highfaces.org" 
                 xmlns:ez="http://java.sun.com/jsf/composite/demo">
                 
 <f:metadata>
@@ -39,17 +40,247 @@
         height:20px;
         
         }
-        </h:outputStylesheet>
+         .pic-normal {
+           display:none;
+        }
+ 
+        .wrap1 {
+           display:block;
+        }
+ .demo-placeholder {
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	line-height: 1.2em;
+	size: 15,
+    					    lineHeight: 13;
+    					    style: "italic";
+    					    weight: "bold";
+    					    family: "sans-serif";
+    					    variant: "small-caps";
+    					    color: "#545454";
+}
+.demo-container {
+	box-sizing: border-box;
+	width: 850px;
+	height: 250px;
+	padding: 20px 15px 15px 15px;
+	margin: 15px auto 30px auto;
+	border: 1px solid #ddd;
+	background: #fff;
+	background: linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+	box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+	-o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+     </h:outputStylesheet>
+     
+
+  
+  
+ 
+
+
 <rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:20px;background-color:#F2F2F2" rendered="#{identity.loggedIn}">  
+		
+
+ <h:form id="parentFor">
+ 
   	<richext:spacer width="190" height="30"/>
-	<h:outputLabel value="Logged In" styleClass="DialogHeadline" style="text-align:left;margin-right:0;margin-left:60px;margin-top:0px;"/>
-	<richext:spacer width="190" height="15"/>
-	<h:graphicImage value="/resources/gfx/borderLine.png" style="border:0 none;width:85%; height:2px;margin-left:60px;"/>
-	<richext:spacer width="190" height="10"/> 
-    <h:form id="parentForm">
+  	 <h:panelGrid columns="2" border="0">  
+  	 <h:panelGroup>
+	<h:commandButton  action="#{loggedInBean.switchToSubTask('address')}" id="labelLogin" value="Meine persönlichen Daten"
+	     style="#{loggedInBean.selectedButtonSubTaskString.matches('address') ? 'margin-left:40px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none' : 
+                                                                               'margin-left:40px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#2d2d2d;font-size:15px;border:none'}">
+	     <f:ajax execute="@form" render="@form"/> </h:commandButton>
+	 <h:graphicImage id="line" value="/resources/gfx/borderLine.png" style="#{loggedInBean.selectedButtonSubTaskString.matches('address') ? 'margin-left:40px;display:block;width:180px;height:2px;' : 'margin-left:40px;display:none;width:150px;height:2px;'}"/>
+	</h:panelGroup>
+	<h:panelGroup>
+	
+	<h:commandButton  action="#{loggedInBean.switchToSubTask('skill')}" id="labelLogin2" value="Meine Skills"
+	    style="#{loggedInBean.selectedButtonSubTaskString.matches('skill') ? 'margin-left:70px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none' : 
+                                                                               'margin-left:70px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#2d2d2d;font-size:15px;border:none'}">
+	     <f:ajax execute="@form" render="@form"/> </h:commandButton>
+	 <h:graphicImage id="line2" value="/resources/gfx/borderLine.png" style="#{loggedInBean.selectedButtonSubTaskString.matches('skill') ? 'margin-left:40px;display:block;width:150px;height:2px;' : 'margin-left:40px;display:none;width:150px;height:2px;'}"/>
+
+	 </h:panelGroup>
+	
+   
+ 
+    
+</h:panelGrid>  
+  <richext:spacer width="190" height="30"/>
+    <script language="javascript" type="text/javascript" src="flot/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="flot/jquery.flot.js"></script>
+    <script language="javascript" type="text/javascript" src="flot/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="flot/jquery.flot.js"></script>
+	<script language="javascript" type="text/javascript" src="flot/jquery.flot.stack.js"></script>
+	<script language="javascript" type="text/javascript" src="flot/jquery.flot.time.js"></script>
+	<script language="javascript" type="text/javascript" src="flot/jquery.flot.categories.js"></script>
+        
+        <script type="text/javascript">
+      //<![CDATA[
+            $(function () {
+                
+            	function showTooltip(x, y, contents) {
+                    $('<div id="tooltip">' + contents + '</div>').css({
+                        position: 'absolute',
+                        display: 'none',
+                        top: y + 5,
+                        left: x + 5,
+                        border: '1px solid #fdd',
+                        padding: '2px',
+                        'background-color': '#fee'
+                    }).appendTo("body").fadeIn(200);
+                }
+                
+            	date1 = (new Date(1999, 11)).getTime();
+            	date2 = (new Date(2003, 9)).getTime();
+            	date3 = (new Date(2006, 1)).getTime();
+            	date4 = (new Date(2016, 1)).getTime();
+            	
+        		var d1 = [];
+        		d1.push([date3, "Müllabfuhr", date4]);
+        		d1.push([date2, "Wagos", date3]);
+        		d1.push([date1, "Deutsche Telekom", date2]);
+        		d1.push([date1, "", date1]);
+
+        		var stack = 0,
+        			bars = true,
+        			lines = false,
+        			steps = false;
+
+        		function plotWithOptions() {
+        			var data = [{data: d1 , color: "red"}];
+        			$.plot("#placeholder",data, {
+        				series: {
+        					
+        					bars: {
+        						show: true,
+        						barWidth: 0.9,
+        						horizontal: true,
+        						align: "center",
+        					    lineWidth: 0,
+        						fill: true,
+        						color: "#639cab",
+        						fillColor: { colors: [ { opacity: 0.3 }, { opacity: 1 } ] },  
+			        			font:{
+									  color: "#545454",
+								      size:12,
+								      family:"sans-serif",
+								      variant:"small-caps"
+								   } 						
+        					}
+        					
+        				},
+        				yaxis: {
+    						mode: "categories",
+    						tickColor: "#aaaaaa",
+    						font:{
+        						  color: "#545454",
+    						      size:12,
+    						      weight:"bold",
+    						      family:"sans-serif",
+    						      variant:"small-caps"
+    						   }
+    						
+    					},
+    					xaxis: {
+    						mode: "time",
+    						minTickSize: [1, "year"],
+    						timeformat: "%Y/%m",
+    						tickColor: "#aaaaaa"
+        						
+        					    
+    					},
+    					grid: {
+    					    show: true,
+    					    aboveData: true,
+    					    color: "red",
+    					    backgroundColor: { colors: ["#bbbbbb", "#ffffff"] },   					   
+    					    borderWidth: 1,
+    					    borderColor: "#aaaaaa",
+    					    	hoverable: true,
+    							clickable: true
+    					    
+    					}
+    					
+        			});
+        		}
+
+        		plotWithOptions();
+        		$("#placeholder").bind("plothover", function (event, pos, item) {
+        			 if (item) {
+        		            if (previousPoint != item.dataIndex) {
+        		                previousPoint = item.dataIndex;
+
+        		                $("#tooltip").remove();
+        		                var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        		                
+        		                var x = new Date(+item.datapoint[0].toFixed(0)).toLocaleDateString(),
+        		                    y = new Date(+item.datapoint[2].toFixed(0)).toLocaleDateString();
+
+        		                showTooltip(item.pageX, item.pageY, "(" + x + " bis " + y + ")");
+        		            }
+        		        }
+        		        else {
+        		            $("#tooltip").remove();
+        		            previousPoint = null;
+        		        }
+        		});
+
+        		$(".stackControls button").click(function (e) {
+        			e.preventDefault();
+        			stack = $(this).text() == "With stacking" ? true : null;
+        			plotWithOptions();
+        		});
+
+        		$(".graphControls button").click(function (e) {
+        			e.preventDefault();
+        			bars = $(this).text().indexOf("Bars") != -1;
+        			lines = $(this).text().indexOf("Lines") != -1;
+        			steps = $(this).text().indexOf("steps") != -1;
+        			plotWithOptions();
+        		});
+
+        		// Add the Flot version string to the footer
+
+        		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+        	});
+            //]]>
+        </script>        
+         
+        <div class="demo-container">
+            <div id="placeholder" class="demo-placeholder"></div>
+    </div>        
+
+  
+  
+
+ 
+   <richext:spacer width="190" height="300"/>
 
     
-    </h:form>
+   
+     <!-- <rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseover" query="jQuery(#{rich:element('line')}).css({'display': 'block'})" />  -->
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('address')}"><rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseout" query="jQuery(#{rich:element('line')}).css({'display': 'none'})" /></ui:fragment> 
+     <rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseover" query="jQuery(this).css({'color': '#ff8040'})" /> 
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('address')}"><rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseout" query="jQuery(this).css({'color': '#2d2d2d'})" /> </ui:fragment>
+     
+    <!-- <rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseover" query="jQuery(#{rich:element('line2')}).css({'display': 'block'})" />  -->
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('skill')}"><rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseout" query="jQuery(#{rich:element('line2')}).css({'display': 'none'})" /></ui:fragment> 
+     <rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseover" query="jQuery(this).css({'color': '#ff8040'})" /> 
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('skill')}"><rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseout" query="jQuery(this).css({'color': '#2d2d2d'})" /> </ui:fragment>
+   
+     </h:form>
+    
 </rich:panel>
 <br style="clear:both"/>
  </ui:define>

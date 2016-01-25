@@ -466,6 +466,11 @@
   <artifactId>jsoup</artifactId>
   <version>1.8.3</version>
 </dependency>
+ <dependency>
+                         <groupId>org.highfaces</groupId>
+                         <artifactId>highfaces</artifactId>
+                         <version>1.0</version>
+                    </dependency>
     
   <!--   <dependency>
 	      <groupId>org.jbpm</groupId>

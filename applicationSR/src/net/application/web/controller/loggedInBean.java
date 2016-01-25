@@ -16,8 +16,11 @@ public class loggedInBean  implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String selectedButtonString;
+	private String selectedButtonSubTaskString;
 	private String styleButtonNotSelected;
 	private String styleButtonSelected;
+	private String styleButtonSubTaskNotSelected;
+	private String styleButtonSubTaskSelected;
 	private String styleButtonOnmouseoutNotSelected;
 	private String styleButtonOnmouseoutSelected;
 	
@@ -28,12 +31,13 @@ public class loggedInBean  implements Serializable {
     public void init() {
     	System.out.println("init");
     	selectedButtonString="profileButton";
+    	selectedButtonSubTaskString="address";
     	System.out.println("init " + selectedButtonString);
     	String fontFamily="font-family:'Droid Sans', arial, serif;";
     	String fontSize="font-size:16px;";
-    	String  textDecoration="text-decoration:none;";
+    	String textDecoration="text-decoration:none;";
     	String backGroundimage="background-image:none;";
-    	String padding="padding:5px;";
+    	String padding="padding:1px;";
     	String margin="margin:0px;";
     	styleButtonNotSelected=padding + margin + backGroundimage + fontFamily + fontSize + textDecoration +"color:#2d2d2d;background-color:#f2f2f2;";
     	styleButtonSelected=padding + margin + backGroundimage + fontFamily + fontSize + textDecoration + "color:#ffffff;background-color:#639cab;";
@@ -43,6 +47,11 @@ public class loggedInBean  implements Serializable {
 	
 	public String switchToTask(String switcher){
 		selectedButtonString=switcher;
+		System.out.println("switch to " + switcher);
+		return switcher;
+	}
+	public String switchToSubTask(String switcher){
+		setSelectedButtonSubTaskString(switcher);
 		System.out.println("switch to " + switcher);
 		return switcher;
 	}
@@ -95,6 +104,14 @@ public class loggedInBean  implements Serializable {
 
 	public void setStyleButtonOnmouseout(String styleButtonOnmouseout) {
 		this.styleButtonOnmouseout = styleButtonOnmouseout;
+	}
+
+	public String getSelectedButtonSubTaskString() {
+		return selectedButtonSubTaskString;
+	}
+
+	public void setSelectedButtonSubTaskString(String selectedButtonSubTaskString) {
+		this.selectedButtonSubTaskString = selectedButtonSubTaskString;
 	}
 	
 }
