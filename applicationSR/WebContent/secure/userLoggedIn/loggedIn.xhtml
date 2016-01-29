@@ -56,7 +56,7 @@
 .demo-container {
 	box-sizing: border-box;
 	width: 850px;
-	height: 250px;
+	height: 200px;
 	padding: 20px 15px 15px 15px;
 	margin: 15px auto 30px auto;
 	border: 1px solid #ddd;
@@ -70,11 +70,14 @@
 	-o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
 	-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
 	-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
-	-webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-	  
-		
-	
+	-webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
 }
+.flot-y-axis  {
+
+padding-right: 5px;
+word-wrap: break-word; 
+}
+
 
      </h:outputStylesheet>
      
@@ -126,18 +129,22 @@
         <script type="text/javascript">
       //<![CDATA[
             $(function () {
-                
-            	function showTooltip(x, y, contents) {
-                    $('<div id="tooltip">' + contents + '</div>').css({
-                        position: 'absolute',
-                        display: 'none',
-                        top: y + 5,
-                        left: x + 5,
-                        border: '1px solid #fdd',
-                        padding: '2px',
-                        'background-color': '#fee'
-                    }).appendTo("body").fadeIn(200);
-                }
+            	
+            	function showTooltip(x, y, color, contents) {
+            	    $('<div id="tooltip">' + contents + '</div>').css({
+            	        position: 'absolute',
+            	        display: 'none',
+            	        top: y - 10,
+            	        left: x + 10,
+            	        border: '2px solid' + color,
+            	        padding: '3px',
+            	        'font-size': '9px',
+            	        'border-radius': '5px',
+            	        'background-color': '#fff',
+            	        'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+            	        opacity: 0.9
+            	    }).appendTo("body").fadeIn(200);
+            	}
                 
             	date1 = (new Date(1999, 11)).getTime();
             	date2 = (new Date(2003, 9)).getTime();
@@ -145,10 +152,9 @@
             	date4 = (new Date(2016, 1)).getTime();
             	
         		var d1 = [];
-        		d1.push([date3, "Müllabfuhr", date4]);
-        		d1.push([date2, "Wagos", date3]);
         		d1.push([date1, "Deutsche Telekom", date2]);
-        		d1.push([date1, "", date1]);
+        		d1.push([date2, "Wagos", date3]);
+        		d1.push([date3, "Müllabfuhr", date4]);
 
         		var stack = 0,
         			bars = true,
@@ -156,7 +162,7 @@
         			steps = false;
 
         		function plotWithOptions() {
-        			var data = [{data: d1 , color: "red"}];
+        			var data = [{data: d1 , color: "#ff8040"}];
         			$.plot("#placeholder",data, {
         				series: {
         					
@@ -181,6 +187,7 @@
         				yaxis: {
     						mode: "categories",
     						tickColor: "#aaaaaa",
+    						 labelWidth: 120,
     						font:{
         						  color: "#545454",
     						      size:12,
@@ -193,8 +200,10 @@
     					xaxis: {
     						mode: "time",
     						minTickSize: [1, "year"],
-    						timeformat: "%Y/%m",
+    						timeformat: "%Y",
     						tickColor: "#aaaaaa",
+    						axisLabelFontFamily: 'Verdana, Arial',
+    					    tickSize: [1, "year"],
     						font:{
       						  color: "#545454",
   						      size:10,
@@ -205,11 +214,25 @@
         					    
     					},
     					grid: {
+    						
+    						borderWidth: {
+    							top: 1,
+    							right: 1,
+    							bottom: 2,
+    							left: 2
+    						},
     					    show: true,
     					    aboveData: true,
     					    color: "red",
-    					    backgroundColor: { colors: ["#bbbbbb", "#ffffff"] },   					   
+    					    backgroundColor: { colors: [ "#fff", "#eee" ] },  					   
     					    borderWidth: 1,
+    					    margin: {
+    					        top: 5,
+    					        left: 5,
+    					        bottom: 20,
+    					        right: 5
+    					    },
+    					    labelMargin: 5,
     					    borderColor: "#aaaaaa",
     					    	hoverable: true,
     							clickable: true
@@ -227,11 +250,10 @@
 
         		                $("#tooltip").remove();
         		                var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        		                
+        		                var color = item.series.color;
         		                var x = new Date(+item.datapoint[0].toFixed(0)).toLocaleDateString(),
         		                    y = new Date(+item.datapoint[2].toFixed(0)).toLocaleDateString();
-
-        		                showTooltip(item.pageX, item.pageY, "(" + x + " bis " + y + ")");
+        		                showTooltip(item.pageX, item.pageY, color, "von " + "<strong>"+ x + "</strong>" + " bis " + "<strong>" + y + "</strong>");
         		            }
         		        }
         		        else {
@@ -262,6 +284,7 @@
         </script>        
          
         <div class="demo-container">
+        <h:outputText value="Berufliche Laufbahn" style="padding-left:130px;"/>
             <div id="placeholder" class="demo-placeholder"></div>
     </div>        
 
