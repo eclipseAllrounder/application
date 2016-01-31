@@ -15,9 +15,10 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <title>xxx</title>
   <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico"/>
-
+<link  href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"/>
 
   <h:outputStylesheet name="theme.css" library="css">
+  
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans);
  </h:outputStylesheet>
  </h:head>
@@ -194,7 +195,7 @@
       </h:panelGroup>
      </f:facet>
      <f:facet name="controls">
-       <h:graphicImage  styleClass="hidelink" id="hidelink" onclick="#{rich:component('loginPanel')}.hide(); return false;" value="/resources/gfx/false.png"/>
+       <h:graphicImage  styleClass="hidelink" id="hidelink" onclick="#{rich:component('loginPanel')}.fadeOut('slow'); return false;" value="/resources/gfx/false.png"/>
      </f:facet>
      <h:form id="loginForm">
        <rich:focus />

@@ -18,6 +18,7 @@ public class loggedInBean  implements Serializable {
 	private String selectedButtonString;
 	private String selectedButtonSubTaskString;
 	private String styleButtonNotSelected;
+	private Boolean showMessage;
 	private String styleButtonSelected;
 	private String styleButtonSubTaskNotSelected;
 	private String styleButtonSubTaskSelected;
@@ -30,21 +31,26 @@ public class loggedInBean  implements Serializable {
 	@PostConstruct
     public void init() {
     	System.out.println("init");
+    	showMessage=true;
     	selectedButtonString="profileButton";
-    	selectedButtonSubTaskString="address";
+    	selectedButtonSubTaskString="personal";
     	System.out.println("init " + selectedButtonString);
-    	String fontFamily="font-family:'Droid Sans', arial, serif;";
+    	String fontFamily="font-family:'Open Sans', arial, serif;";
     	String fontSize="font-size:16px;";
     	String textDecoration="text-decoration:none;";
     	String backGroundimage="background-image:none;";
     	String padding="padding:1px;";
     	String margin="margin:0px;";
-    	styleButtonNotSelected=padding + margin + backGroundimage + fontFamily + fontSize + textDecoration +"color:#2d2d2d;background-color:#f2f2f2;";
-    	styleButtonSelected=padding + margin + backGroundimage + fontFamily + fontSize + textDecoration + "color:#ffffff;background-color:#639cab;";
+    	styleButtonNotSelected=padding + margin + backGroundimage + fontFamily + fontSize +"color:#2d2d2d;background-color:#f2f2f2;";
+    	styleButtonSelected=padding + margin + backGroundimage + fontFamily + fontSize + "color:#ffffff;background-color:#639cab;";
     	styleButtonOnmouseoutNotSelected="this.style.color='#2d2d2d';this.style.backgroundColor='#f2f2f2';this.style.border='0px';";
     	styleButtonOnmouseoutSelected=   "this.style.color='#ffffff';this.style.backgroundColor='#639cab';this.style.border='0px';";    	
 	}
 	
+	public void closeMessageBox(){	
+		System.out.println("disssssabled");
+		showMessage=false;
+	}
 	public String switchToTask(String switcher){
 		selectedButtonString=switcher;
 		System.out.println("switch to " + switcher);
@@ -112,6 +118,14 @@ public class loggedInBean  implements Serializable {
 
 	public void setSelectedButtonSubTaskString(String selectedButtonSubTaskString) {
 		this.selectedButtonSubTaskString = selectedButtonSubTaskString;
+	}
+
+	public Boolean getShowMessage() {
+		return showMessage;
+	}
+
+	public void setShowMessage(Boolean showMessage) {
+		this.showMessage = showMessage;
 	}
 	
 }

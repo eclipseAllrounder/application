@@ -1,0 +1,314 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:richext="http://java.sun.com/jsf/composite/richext"
+    xmlns:my="http://java.sun.com/jsf/composite/components"
+    xmlns:ez="http://java.sun.com/jsf/composite/demo">
+    <h:outputStylesheet>
+ .demo-placeholder {
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	line-height: 1.2em;    
+	 z-index: 0;					
+}
+.demo-container {
+z-index: -99;	
+	box-sizing: border-box;
+	width: 400px;
+	height: 200px;
+	padding: 20px 15px 15px 15px;
+	margin: 15px auto 30px auto;
+	border: 1px solid #ddd;
+	background: #fff;	
+	background: linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -o-linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);	
+	box-shadow: 0 3px 10px rgba(0,0,0,0.15);	
+	-o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
+	-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
+	-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
+	-webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
+}
+
+	.flot-y-axis  {
+		padding-right: 5px;
+		word-wrap: break-word; 
+	}
+	
+	.input-container {
+	box-sizing: border-box;
+	width: 600px;
+	height: 300px;
+	padding: 5px 5px 5px 5px;
+	margin: 15px auto 15px auto;
+	 overflow: visible;
+	 z-index: 1000;
+	border: 1px solid #555;
+	background: #fff;	
+	background: linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -o-linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);	
+	box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-o-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-ms-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-moz-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-webkit-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+}
+	
+    </h:outputStylesheet>
+    
+    
+    
+    <script type="text/javascript" src="flot/excanvas.min.js"></script>
+    <script type="text/javascript" src="flot/jquery.min.js"></script>
+    <script type="text/javascript" src="flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="flot/jquery.js"></script>
+	<script type="text/javascript" src="flot/jquery.flot.js"></script>
+	<script type="text/javascript" src="flot/jquery.flot.stack.js"></script>
+	<script type="text/javascript" src="flot/jquery.flot.time.js"></script>
+	<script type="text/javascript" src="flot/jquery.flot.categories.js"></script>
+        
+    <script type="text/javascript">
+      //<![CDATA[
+            $(function () {
+            	
+            	function showTooltip(x, y, color, contents) {
+            	    $('<div id="tooltip">' + contents + '</div>').css({
+            	        position: 'absolute',
+            	        display: 'none',
+            	        top: y - 50,
+            	        left: x + 10,
+            	        border: '2px solid' + color,
+            	        padding: '3px',
+            	        'font-size': '9px',
+            	        'border-radius': '5px',
+            	        'background-color': '#fff',
+            	        'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+            	        opacity: 0.9
+            	    }).appendTo("body").fadeIn(200);
+            	}
+                
+            	date1 = (new Date(1999, 11)).getTime();
+            	date2 = (new Date(2003, 9)).getTime();
+            	date3 = (new Date(2006, 1)).getTime();
+            	date4 = (new Date(2016, 1)).getTime();
+            	
+        		var d1 = [];
+        		d1.push([date1, "Deutsche Telekom", date2]);
+        		d1.push([date2, "Wagos", date3]);
+        		d1.push([date3, "Müllabfuhr", date4]);
+
+        		var stack = 0,
+        			bars = true,
+        			lines = false,
+        			steps = false;
+
+        		function plotWithOptions() {
+        			var data = [{data: d1 , color: "#ff8040"}];
+        			$.plot("#placeholder",data, {
+        				series: {
+        					
+        					bars: {
+        						show: true,
+        						barWidth: 0.9,
+        						horizontal: true,
+        						align: "center",
+        					    lineWidth: 0,
+        						fill: true,
+        						color: "#639cab",
+        						fillColor: { colors: [ { opacity: 0.3 }, { opacity: 1 } ] },  
+			        			font:{
+									  color: "#545454",
+								      size:12,
+								      family:"sans-serif",
+								      variant:"small-caps"
+								   } 						
+        					}
+        					
+        				},
+        				yaxis: {
+    						mode: "categories",
+    						tickColor: "#aaaaaa",
+    						 labelWidth: 120,
+    						font:{
+        						  color: "#545454",
+    						      size:12,
+    						      weight:"bold",
+    						      family:"sans-serif",
+    						      variant:"small-caps"
+    						   }
+    						
+    					},
+    					xaxis: {
+    						mode: "time",
+    						minTickSize: [1, "year"],
+    						timeformat: "%Y",
+    						tickColor: "#aaaaaa",
+    						axisLabelFontFamily: 'Verdana, Arial',
+    					    tickSize: [1, "year"],
+    						font:{
+      						  color: "#545454",
+  						      size:10,
+  						      family:"sans-serif",
+  						      variant:"small-caps"
+  						   }
+        						
+        					    
+    					},
+    					grid: {
+    						
+    						borderWidth: {
+    							top: 1,
+    							right: 1,
+    							bottom: 2,
+    							left: 2
+    						},
+    					    show: true,
+    					    aboveData: true,
+    					    color: "red",
+    					    backgroundColor: { colors: [ "#fff", "#eee" ] },  					   
+    					    borderWidth: 1,
+    					    margin: {
+    					        top: 5,
+    					        left: 5,
+    					        bottom: 20,
+    					        right: 5
+    					    },
+    					    labelMargin: 5,
+    					    borderColor: "#aaaaaa",
+    					    	hoverable: true,
+    							clickable: false
+    					    
+    					}
+    					
+        			});
+        		}
+
+        		plotWithOptions();
+        		$("#placeholder").bind("plothover", function (event, pos, item) {
+        			 if (item) {
+        		            if (previousPoint != item.dataIndex) {
+        		                previousPoint = item.dataIndex;
+
+        		                $("#tooltip").remove();
+        		                var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        		                var color = item.series.color;
+        		                var x = new Date(+item.datapoint[0].toFixed(0)).toLocaleDateString(),
+        		                    y = new Date(+item.datapoint[2].toFixed(0)).toLocaleDateString();
+        		                showTooltip(item.pageX, item.pageY, color, "von " + "<strong>"+ x + "</strong>" + " bis " + "<strong>" + y + "</strong>");
+        		            }
+        		        }
+        		        else {
+        		            $("#tooltip").remove();
+        		            previousPoint = null;
+        		        }
+        		});
+
+        		$(".stackControls button").click(function (e) {
+        			e.preventDefault();
+        			stack = $(this).text() == "With stacking" ? true : null;
+        			plotWithOptions();
+        		});
+
+        		$(".graphControls button").click(function (e) {
+        			e.preventDefault();
+        			bars = $(this).text().indexOf("Bars") != -1;
+        			lines = $(this).text().indexOf("Lines") != -1;
+        			steps = $(this).text().indexOf("steps") != -1;
+        			plotWithOptions();
+        		});
+
+        		// Add the Flot version string to the footer
+
+        		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+        	});
+            //]]>
+        </script>   
+    <h:form>
+  		<h:panelGrid cellpadding="0" cellspacing="0" columns="1" border="0" width="100%">
+    		<h:panelGroup>
+				<richext:spacer width="10" height="10"/>  
+    	        <rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-left:40px;margin-right:40px;background-color:#F2F2F2" rendered="#{identity.loggedIn}" >
+	         	<my:inputText label="#{msg.mailUserName}:" value="#{newMailserver.userName}" space="200" size="50"/>
+			   	<my:inputTextSecure label="#{msg.mailPassword}:" value="#{newMailserver.password}" space="200" size="50"/>
+			   	<my:inputText label="#{msg.mailSmtpHost}:" value="#{newMailserver.mailSmtpHost}" space="200" size="50"/>
+			   	<my:inputText converterMessage="#{msg.notInteger}" label="#{msg.mailSmtpPort}:" value="#{newMailserver.mailSmtpPort}" space="200" size="50"/>
+   				 <h:panelGrid columns="3" border="0">
+      <h:panelGroup>
+      <richext:spacer width="200" height="1"/>
+      
+       <h:panelGrid columns="2" border="0">
+        <h:panelGroup>
+       
+       <h:outputLabel for="text" value="#{msg.application}:" styleClass="formtxt" style="text-align:left;margin-right:0;margin-left:0px"/>
+      </h:panelGroup>
+      </h:panelGrid>
+      </h:panelGroup>
+      	<h:panelGroup>
+      		<h:inputText id="text" value="#{newMailserver.application}" required="false" size="50">
+               <rich:validator event="blur" oninvalid="$(#{rich:element('text')}).addClass('invalid')"
+            	onvalid="$(#{rich:element('text')}).removeClass('invalid')"/>
+            	<f:validator binding="#{validMailserverApplicationName}" />
+            </h:inputText>
+         </h:panelGroup>
+            <h:panelGroup><rich:message for="text"  ajaxRendered="true" /> </h:panelGroup>
+            
+       </h:panelGrid>
+
+
+	<h:panelGrid columns="3" border="0">
+	   	<h:panelGroup>
+	   		<richext:spacer width="188" height="1"/>
+	    	<h:outputLabel for="mailSmtpAuthId" value="#{msg.mailSmtpAuth}: " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:0px"/>
+	    </h:panelGroup>
+	    <h:panelGroup>
+			<h:selectOneRadio id="mailSmtpAuthId" value="#{newMailserver.mailSmtpAuth}">
+	        	<f:selectItem itemLabel="#{msg.yes}" itemValue="true" />
+	            <f:selectItem itemLabel="#{msg.no}" itemValue="false" />
+	            <rich:validator event="blur" oninvalid="$(#{rich:element('mailSmtpAuthId')}).addClass('invalid')"
+	            	onvalid="$(#{rich:element('mailSmtpAuthId')}).removeClass('invalid')" />
+	        </h:selectOneRadio>
+	    </h:panelGroup>
+	    <rich:message for="mailSmtpAuthId" ajaxRendered="true" />
+	</h:panelGrid>
+	
+	<h:panelGrid columns="3" border="0">
+	   	<h:panelGroup>
+	   		<richext:spacer width="188" height="1"/>
+	    	<h:outputLabel for="mailSmtpStarttlsEnableId" value="#{msg.mailSmtpStarttlsEnable}: " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:0px"/>
+	    </h:panelGroup>
+	    <h:panelGroup>
+			<h:selectOneRadio id="mailSmtpStarttlsEnableId" value="#{newMailserver.mailSmtpStarttlsEnable}">
+	        	<f:selectItem itemLabel="#{msg.yes}" itemValue="true" />
+	            <f:selectItem itemLabel="#{msg.no}" itemValue="false" />
+	            <rich:validator event="blur" oninvalid="$(#{rich:element('mailSmtpStarttlsEnableId')}).addClass('invalid')"
+	            	onvalid="$(#{rich:element('mailSmtpStarttlsEnableId')}).removeClass('invalid')" />
+	        </h:selectOneRadio>
+	    </h:panelGroup>
+	    <rich:message for="mailSmtpStarttlsEnableId" ajaxRendered="true" />
+	</h:panelGrid>
+       <h:commandButton id="createServerButton" actionListener="#{webAdminController.createMailserver}" value="#{msg.buttonEdit}" />
+ <h:messages  showDetail="true" showSummary="false" globalOnly="true"/>
+	        </rich:panel>
+	  
+		  	</h:panelGroup>
+		  		
+		<h:panelGroup>
+  
+       <div class="demo-container">
+	        <h:outputText value="Berufliche Laufbahn" style="padding-left:130px;"/>
+	            <div id="placeholder" class="demo-placeholder"></div>
+	    </div> 
+	    </h:panelGroup> 
+</h:panelGrid>
+</h:form>
+</ui:composition>

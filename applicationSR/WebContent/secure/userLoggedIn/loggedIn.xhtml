@@ -47,265 +47,201 @@
         .wrap1 {
            display:block;
         }
- .demo-placeholder {
-	width: 100%;
-	height: 100%;
-	font-size: 14px;
-	line-height: 1.2em;    					
-}
-.demo-container {
+.message-container {
 	box-sizing: border-box;
-	width: 850px;
-	height: 200px;
-	padding: 20px 15px 15px 15px;
-	margin: 15px auto 30px auto;
-	border: 1px solid #ddd;
+	width: 190px;
+	height: 300px;
+	padding: 5px 5px 5px 5px;
+	margin: 15px auto 15px auto;
+	 overflow: visible;
+	 z-index: 1000;
+	border: 1px solid #555;
 	background: #fff;	
 	background: linear-gradient(#f6f6f6 0, #fff 50px);	
 	background: -o-linear-gradient(#f6f6f6 0, #fff 50px);	
 	background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);	
 	background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);	
 	background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);	
-	box-shadow: 0 3px 10px rgba(0,0,0,0.15);	
-	-o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
-	-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
-	-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
-	-webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);	
+	box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-o-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-ms-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-moz-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-webkit-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
 }
-.flot-y-axis  {
-
-padding-right: 5px;
-word-wrap: break-word; 
-}
-
-
-     </h:outputStylesheet>
-     
-
-  
-  
- 
-
-
-<rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:20px;background-color:#F2F2F2" rendered="#{identity.loggedIn}">  
+ </h:outputStylesheet>
+<rich:panel style="top:0px;margin-left:0px;padding-left:0px;margin-bottom:0px;margin-top:0px;margin-right:20px;padding-right:0px;background-color:#F2F2F2;position: relative;" rendered="#{identity.loggedIn}" styleClass="panelShadowBox">  
 		
 
  <h:form id="parentFor">
+
+         
+
+  
  
   	<richext:spacer width="190" height="30"/>
-  	 <h:panelGrid columns="2" border="0">  
+  	 <h:panelGrid columns="4" border="0">  
   	 <h:panelGroup>
-	<h:commandButton  action="#{loggedInBean.switchToSubTask('address')}" id="labelLogin" value="Meine persönlichen Daten"
-	     style="#{loggedInBean.selectedButtonSubTaskString.matches('address') ? 'margin-left:40px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none' : 
-                                                                               'margin-left:40px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#2d2d2d;font-size:15px;border:none'}">
-	     <f:ajax execute="@form" render="@form"/> </h:commandButton>
-	 <h:graphicImage id="line" value="/resources/gfx/borderLine.png" style="#{loggedInBean.selectedButtonSubTaskString.matches('address') ? 'margin-left:40px;display:block;width:180px;height:2px;' : 'margin-left:40px;display:none;width:150px;height:2px;'}"/>
-	</h:panelGroup>
-	<h:panelGroup>
-	
-	<h:commandButton  action="#{loggedInBean.switchToSubTask('skill')}" id="labelLogin2" value="Meine Skills"
-	    style="#{loggedInBean.selectedButtonSubTaskString.matches('skill') ? 'margin-left:70px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none' : 
-                                                                               'margin-left:70px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#2d2d2d;font-size:15px;border:none'}">
-	     <f:ajax execute="@form" render="@form"/> </h:commandButton>
-	 <h:graphicImage id="line2" value="/resources/gfx/borderLine.png" style="#{loggedInBean.selectedButtonSubTaskString.matches('skill') ? 'margin-left:40px;display:block;width:150px;height:2px;' : 'margin-left:40px;display:none;width:150px;height:2px;'}"/>
-
+		 <h:commandButton  action="#{loggedInBean.switchToSubTask('personal')}" id="labelLogin" value="Meine persönlichen Daten" 
+		     style="#{loggedInBean.selectedButtonSubTaskString.matches('personal') ? 'margin-left:30px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;color:#ff8040;font-size:15px;border:none;font-weight: bold;
+		     																			overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)' : 
+	                                                                                  'margin-left:30px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;color:#515151;font-size:15px;border:none;font-weight: bold;
+	                                                                                  	overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)'}">
+		     <f:ajax execute="@form" render="@form"/> 
+		 </h:commandButton>
+		 <h:graphicImage id="line" value="/resources/gfx/borderLine.png" style="#{loggedInBean.selectedButtonSubTaskString.matches('personal') ? 'margin-left:30px;display:block;width:200px;height:2px;' : 'margin-left:30px;display:none;width:150px;height:2px;'}"/>
 	 </h:panelGroup>
-	
-   
- 
+	<h:panelGroup>	
+		<h:commandButton  action="#{loggedInBean.switchToSubTask('training')}" id="labelLogin2" value="Meine Ausbildung"
+		    style="#{loggedInBean.selectedButtonSubTaskString.matches('training') ? 'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none;font-weight: bold;
+		     																			overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)' :  
+	                                                                                'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#515151;font-size:15px;border:none;font-weight: bold;
+	                                                                                  	overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)'}">
+		     <f:ajax execute="@form" render="@form"/> </h:commandButton>
+		 <h:graphicImage id="line2" value="/resources/gfx/borderLine.png" style="#{loggedInBean.selectedButtonSubTaskString.matches('training') ? 'margin-left:60px;display:block;width:130px;height:2px;' : 'margin-left:30px;display:none;width:150px;height:2px;'}"/>
+    </h:panelGroup>
+	<h:panelGroup>	
+		<h:commandButton  action="#{loggedInBean.switchToSubTask('career')}" id="labelLogin3" value="Meine Berufliche Karriere"
+		    style="#{loggedInBean.selectedButtonSubTaskString.matches('career') ? 'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none;font-weight: bold;
+		     																			overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)' :  
+	                                                                                'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#515151;font-size:15px;border:none;font-weight: bold;
+	                                                                                  	overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)'}">
+		     <f:ajax execute="@form" render="@form"/> </h:commandButton>
+		 <h:graphicImage id="line3" value="/resources/gfx/borderLine.png" style="#{loggedInBean.selectedButtonSubTaskString.matches('career') ? 'margin-left:60px;display:block;width:190px;height:2px;' : 'margin-left:30px;display:none;width:150px;height:2px;'}"/>
+    </h:panelGroup>
+    	<h:panelGroup>	
+		<h:commandButton  action="#{loggedInBean.switchToSubTask('skills')}" id="labelLogin4" value="Meine persönlichen Fähigkeiten"
+		    style="#{loggedInBean.selectedButtonSubTaskString.matches('skills') ? 'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none;font-weight: bold;
+		     																			overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)' :  
+	                                                                                'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#515151;font-size:15px;border:none;font-weight: bold;
+	                                                                                  	overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)'}">
+		     <f:ajax execute="@form" render="@form"/> </h:commandButton>
+		 <h:graphicImage id="line4" value="/resources/gfx/borderLine.png" style="#{loggedInBean.selectedButtonSubTaskString.matches('skills') ? 'margin-left:60px;display:block;width:235px;height:2px;' : 'margin-left:30px;display:none;width:150px;height:2px;'}"/>
+    </h:panelGroup>
     
-</h:panelGrid>  
-  <richext:spacer width="190" height="30"/>
-  
-    <script type="text/javascript" src="flot/excanvas.min.js"></script>
-    <script type="text/javascript" src="flot/jquery.min.js"></script>
-    <script type="text/javascript" src="flot/jquery.flot.js"></script>
-    <script type="text/javascript" src="flot/jquery.js"></script>
-	<script type="text/javascript" src="flot/jquery.flot.js"></script>
-	<script type="text/javascript" src="flot/jquery.flot.stack.js"></script>
-	<script type="text/javascript" src="flot/jquery.flot.time.js"></script>
-	<script type="text/javascript" src="flot/jquery.flot.categories.js"></script>
-        
-        <script type="text/javascript">
-      //<![CDATA[
-            $(function () {
-            	
-            	function showTooltip(x, y, color, contents) {
-            	    $('<div id="tooltip">' + contents + '</div>').css({
-            	        position: 'absolute',
-            	        display: 'none',
-            	        top: y - 10,
-            	        left: x + 10,
-            	        border: '2px solid' + color,
-            	        padding: '3px',
-            	        'font-size': '9px',
-            	        'border-radius': '5px',
-            	        'background-color': '#fff',
-            	        'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
-            	        opacity: 0.9
-            	    }).appendTo("body").fadeIn(200);
-            	}
-                
-            	date1 = (new Date(1999, 11)).getTime();
-            	date2 = (new Date(2003, 9)).getTime();
-            	date3 = (new Date(2006, 1)).getTime();
-            	date4 = (new Date(2016, 1)).getTime();
-            	
-        		var d1 = [];
-        		d1.push([date1, "Deutsche Telekom", date2]);
-        		d1.push([date2, "Wagos", date3]);
-        		d1.push([date3, "Müllabfuhr", date4]);
-
-        		var stack = 0,
-        			bars = true,
-        			lines = false,
-        			steps = false;
-
-        		function plotWithOptions() {
-        			var data = [{data: d1 , color: "#ff8040"}];
-        			$.plot("#placeholder",data, {
-        				series: {
-        					
-        					bars: {
-        						show: true,
-        						barWidth: 0.9,
-        						horizontal: true,
-        						align: "center",
-        					    lineWidth: 0,
-        						fill: true,
-        						color: "#639cab",
-        						fillColor: { colors: [ { opacity: 0.3 }, { opacity: 1 } ] },  
-			        			font:{
-									  color: "#545454",
-								      size:12,
-								      family:"sans-serif",
-								      variant:"small-caps"
-								   } 						
-        					}
-        					
-        				},
-        				yaxis: {
-    						mode: "categories",
-    						tickColor: "#aaaaaa",
-    						 labelWidth: 120,
-    						font:{
-        						  color: "#545454",
-    						      size:12,
-    						      weight:"bold",
-    						      family:"sans-serif",
-    						      variant:"small-caps"
-    						   }
-    						
-    					},
-    					xaxis: {
-    						mode: "time",
-    						minTickSize: [1, "year"],
-    						timeformat: "%Y",
-    						tickColor: "#aaaaaa",
-    						axisLabelFontFamily: 'Verdana, Arial',
-    					    tickSize: [1, "year"],
-    						font:{
-      						  color: "#545454",
-  						      size:10,
-  						      family:"sans-serif",
-  						      variant:"small-caps"
-  						   }
-        						
-        					    
-    					},
-    					grid: {
-    						
-    						borderWidth: {
-    							top: 1,
-    							right: 1,
-    							bottom: 2,
-    							left: 2
-    						},
-    					    show: true,
-    					    aboveData: true,
-    					    color: "red",
-    					    backgroundColor: { colors: [ "#fff", "#eee" ] },  					   
-    					    borderWidth: 1,
-    					    margin: {
-    					        top: 5,
-    					        left: 5,
-    					        bottom: 20,
-    					        right: 5
-    					    },
-    					    labelMargin: 5,
-    					    borderColor: "#aaaaaa",
-    					    	hoverable: true,
-    							clickable: true
-    					    
-    					}
-    					
-        			});
-        		}
-
-        		plotWithOptions();
-        		$("#placeholder").bind("plothover", function (event, pos, item) {
-        			 if (item) {
-        		            if (previousPoint != item.dataIndex) {
-        		                previousPoint = item.dataIndex;
-
-        		                $("#tooltip").remove();
-        		                var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        		                var color = item.series.color;
-        		                var x = new Date(+item.datapoint[0].toFixed(0)).toLocaleDateString(),
-        		                    y = new Date(+item.datapoint[2].toFixed(0)).toLocaleDateString();
-        		                showTooltip(item.pageX, item.pageY, color, "von " + "<strong>"+ x + "</strong>" + " bis " + "<strong>" + y + "</strong>");
-        		            }
-        		        }
-        		        else {
-        		            $("#tooltip").remove();
-        		            previousPoint = null;
-        		        }
-        		});
-
-        		$(".stackControls button").click(function (e) {
-        			e.preventDefault();
-        			stack = $(this).text() == "With stacking" ? true : null;
-        			plotWithOptions();
-        		});
-
-        		$(".graphControls button").click(function (e) {
-        			e.preventDefault();
-        			bars = $(this).text().indexOf("Bars") != -1;
-        			lines = $(this).text().indexOf("Lines") != -1;
-        			steps = $(this).text().indexOf("steps") != -1;
-        			plotWithOptions();
-        		});
-
-        		// Add the Flot version string to the footer
-
-        		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
-        	});
-            //]]>
-        </script>        
-         
-        <div class="demo-container">
-        <h:outputText value="Berufliche Laufbahn" style="padding-left:130px;"/>
-            <div id="placeholder" class="demo-placeholder"></div>
-    </div>        
-
-  
-  
-
- 
-   <richext:spacer width="190" height="300"/>
-
-    
-   
-     <!-- <rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseover" query="jQuery(#{rich:element('line')}).css({'display': 'block'})" />  -->
-    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('address')}"><rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseout" query="jQuery(#{rich:element('line')}).css({'display': 'none'})" /></ui:fragment> 
+        <!-- <rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseover" query="jQuery(#{rich:element('line')}).css({'display': 'block'})" />  -->
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('personal')}"><rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseout" query="jQuery(#{rich:element('line')}).css({'display': 'none'})" /></ui:fragment> 
      <rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseover" query="jQuery(this).css({'color': '#ff8040'})" /> 
-    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('address')}"><rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseout" query="jQuery(this).css({'color': '#2d2d2d'})" /> </ui:fragment>
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('personal')}"><rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseout" query="jQuery(this).css({'color': '#515151'})" /> </ui:fragment>
      
     <!-- <rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseover" query="jQuery(#{rich:element('line2')}).css({'display': 'block'})" />  -->
-    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('skill')}"><rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseout" query="jQuery(#{rich:element('line2')}).css({'display': 'none'})" /></ui:fragment> 
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('training')}"><rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseout" query="jQuery(#{rich:element('line2')}).css({'display': 'none'})" /></ui:fragment> 
      <rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseover" query="jQuery(this).css({'color': '#ff8040'})" /> 
-    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('skill')}"><rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseout" query="jQuery(this).css({'color': '#2d2d2d'})" /> </ui:fragment>
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('training')}"><rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseout" query="jQuery(this).css({'color': '#515151'})" /> </ui:fragment>
    
+     <!-- <rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseover" query="jQuery(#{rich:element('line2')}).css({'display': 'block'})" />  -->
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('career')}"><rich:jQuery selector="#{rich:element('labelLogin3')}" event="mouseout" query="jQuery(#{rich:element('line3')}).css({'display': 'none'})" /></ui:fragment> 
+     <rich:jQuery selector="#{rich:element('labelLogin3')}" event="mouseover" query="jQuery(this).css({'color': '#ff8040'})" /> 
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('career')}"><rich:jQuery selector="#{rich:element('labelLogin3')}" event="mouseout" query="jQuery(this).css({'color': '#515151'})" /> </ui:fragment>
+   
+     <!-- <rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseover" query="jQuery(#{rich:element('line2')}).css({'display': 'block'})" />  -->
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('skills')}"><rich:jQuery selector="#{rich:element('labelLogin4')}" event="mouseout" query="jQuery(#{rich:element('line4')}).css({'display': 'none'})" /></ui:fragment> 
+     <rich:jQuery selector="#{rich:element('labelLogin4')}" event="mouseover" query="jQuery(this).css({'color': '#ff8040'})" /> 
+    <ui:fragment rendered="#{not loggedInBean.selectedButtonSubTaskString.matches('skills')}"><rich:jQuery selector="#{rich:element('labelLogin4')}" event="mouseout" query="jQuery(this).css({'color': '#515151'})" /> </ui:fragment>
+     
+</h:panelGrid>  
+
+
+ <richext:spacer width="190" height="2"/>
+ <h:panelGrid columns="2" border="0" width="100%" style="position:relative;" cellpadding="0" cellspacing="0" columnClasses="topAligned, topAligned"> 
+
+
+<h:panelGroup>
+
+<ui:fragment rendered="#{loggedInBean.selectedButtonSubTaskString.matches('career')}">
+<ui:include src="/secure/userLoggedIn/careerForUser.xhtml" />
+</ui:fragment>
+
+</h:panelGroup>
+
+
+
+<h:panelGroup >
+ <richext:spacer width="10" height="3"/>
+ <rich:jQuery selector="#{rich:element('t1')}" event="click" query="jQuery(this).fadeOut('slow')" />
+ <rich:jQuery selector="#{rich:element('t1')}" event="click" query="jQuery(#{rich:element('t2')}).fadeIn('slow')" />
+ <rich:jQuery selector="#{rich:element('t2')}" event="click" query="jQuery(this).fadeOut('slow')" />
+ <rich:jQuery selector="#{rich:element('t2')}" event="click" query="jQuery(#{rich:element('t1')}).fadeIn('slow')" />
+  
+ <ui:fragment rendered="#{loggedInBean.showMessage==true}"> 
+ <h:panelGrid columns="1" cellpadding="0" border="0" style="right:0px;position: absolute;right: 0px;padding:0px;right:0px;" cellspacing="0" id="t1" styleClass="hideOnLoad"> 
+ <rich:panel style="padding-left:0px;margin:0px;width:20px;margin-top:15px;height:298px;"></rich:panel>
+ </h:panelGrid>
+ <h:panelGrid columns="1" cellpadding="0" border="0" style="right:0px;position: absolute;right: 0px;padding:0px;right:0px;z-index:1000" cellspacing="0" id="t2" styleClass="showOnLoad">
+  <h:panelGroup layout="block" styleClass="message-container" style="right:0px;left: 0px;padding:0px;right:0px;" onclick="doAwesomeness(); return false;">
+ <rich:panel style="padding-left:0px;margin-left:-2px;width:20px;margin-top:-3px;height:301px;" onclick="doAwesomeness(); return false;"></rich:panel>
+ <a4j:ajax event="click" execute="doAwesomeness()"></a4j:ajax>
+</h:panelGroup>
+</h:panelGrid>
+</ui:fragment>
+
+ <rich:jQuery selector="#{rich:element('t3')}" event="click" query="jQuery(this).fadeOut('slow')" />
+  <rich:jQuery selector="#{rich:element('t3')}" event="click" query="jQuery(#{rich:element('t4')}).fadeIn('slow')" />
+   <rich:jQuery selector="#{rich:element('t4')}" event="click" query="jQuery(this).fadeOut('slow')" />
+  <rich:jQuery selector="#{rich:element('t4')}" event="click" query="jQuery(#{rich:element('t3')}).fadeIn('slow')" />
+
+<ui:fragment rendered="#{loggedInBean.showMessage==false}"> 
+ <h:panelGrid columns="1" cellpadding="0" border="0" style="right:0px;position: absolute;right: 0px;padding:0px;right:0px;" cellspacing="0" id="t3" styleClass="showOnLoad"> 
+ <rich:panel style="padding-left:0px;margin:0px;width:20px;margin-top:15px;height:298px;"></rich:panel>
+ </h:panelGrid>
+ <h:panelGrid columns="1" cellpadding="0" border="0" style="right:0px;position: absolute;right: 0px;padding:0px;right:0px;z-index:1000" cellspacing="0" id="t4" styleClass="hideOnLoad">
+  <h:panelGroup layout="block" styleClass="message-container" style="right:0px;left: 0px;padding:0px;right:0px;" onclick="doAwesomeness(); return false;">
+ <rich:panel style="padding-left:0px;margin-left:-2px;width:20px;margin-top:-3px;height:301px;" onclick="doAwesomeness(); return false;"></rich:panel>
+ <a4j:ajax event="click" execute="doAwesomeness()"></a4j:ajax>
+</h:panelGroup>
+</h:panelGrid>
+</ui:fragment>
+ <a4j:jsFunction name="doAwesomeness" actionListener="#{loggedInBean.closeMessageBox()}"/>
+</h:panelGroup>		    
+ </h:panelGrid>  
+         
+           
+
+ 
+   <richext:spacer width="190" height="30"/>
+
+    
+   
+
      </h:form>
     
 </rich:panel>
@@ -314,12 +250,15 @@ word-wrap: break-word;
     
      <ui:define name="rside">
      
-		<a4j:outputPanel id="sidebar" style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;padding:0px;background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{identity.loggedIn}">
+		<a4j:outputPanel id="sidebar" style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;padding:0px;background-color:#FFFFFF; width:100%;vertical-align:top;" rendered="#{identity.loggedIn}">
 		
 			 <a4j:outputPanel id="sidebarUser" style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;padding:0px;background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{webAdminController.sideBar.matches('userControl')}">
 			 	<ui:include src="/secure/userLoggedIn/sidebarForUserControl.xhtml" />
 			 </a4j:outputPanel>
-		
+			 <richext:spacer width="10" height="10"/>
+		 <a4j:outputPanel id="sidebarUserTip" style="top:0px;margin-bottom:0px;margin-top:10px;margin-right:0px;padding-top:10px;background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{webAdminController.sideBar.matches('userControl')}">
+			 	<ui:include src="/secure/userLoggedIn/sidebarForUserTip.xhtml" />
+			 </a4j:outputPanel>
 	   	</a4j:outputPanel>
 
      </ui:define>

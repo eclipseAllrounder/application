@@ -1,5 +1,6 @@
 html {
 	overflow-y: scroll;
+	font-weight: normal
 }
 
 
@@ -27,13 +28,13 @@ h1 {
 	padding-top:20px;
 	margin-top:20px;
 	margin-bottom:20px;
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Open Sans", "Times New Roman", Times, serif;
     text-decoration: none;
     color: #686868;
 }
 
 body {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Open Sans", "Times New Roman", Times, serif;
     font-size: small;
     line-height: 1.25em;
     color: #333;
@@ -64,7 +65,7 @@ body {
   float: right;
   margin-top: 0px;
   padding-top: 20px;
-  padding-left:5px;
+  padding-left:0px;
   padding-right:0%;
 }
 
@@ -75,7 +76,7 @@ body {
   margin-top: 0px;
   padding-top: 20px;
   padding-left:1%;
-  padding-right:1%;
+  padding-right:0%;
 
 }
 #rsideToolbox {
@@ -85,7 +86,7 @@ body {
   margin-top: 0px;
   padding-top: 20px;
   padding-left:1%;
-  padding-right:1%;
+  padding-right:0%;
 }
 
 #rside ul {
@@ -380,14 +381,14 @@ table.radio input[type=radio] {
 }   
 
 /*</group>*/
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans);*/
 /*<group=header>*/
 .headerPanelFont {
-	font-size: 22px;
+	font-size: 20px;
    	color: #ffffff;
    	background: #639cab;
    	padding-left: 10px;  	
-   	font-family: 'Droid Sans', arial, serif;
+   	font-family: 'Open Sans';
 }
 
 .headerPanelSolid {
@@ -435,14 +436,37 @@ margin-right: 10px;
      color: #2d2d2d;
      text-align: right;
 }
-.headerlink {
-     font-family:'Droid Sans', arial, serif;
-     font-size: 15px;
+
+.headerlinkBold {
+     font-family:'Open Sans', arial, serif;
+     font-size: 14px;
      text-decoration: none;
-     color: #2d2d2d;
+     color: #515151;
      text-align: right;
 	font-weight: bold;
 	font-style: normal
+}
+
+.headerlinkBold:visited {
+     color: #676767;
+     }
+
+.headerlinkBold:hover {
+     color: #676767;
+     background: #ff8040 ;
+     }
+
+.headerlinkBold:active {
+     color: #676767;
+     }
+     
+ .headerlink {
+     font-family:'Open Sans', arial, serif;
+     font-size: 14px;
+     text-decoration: none;
+     color: #2d2d2d;
+     text-align: right;	
+	 font-style: normal;
 }
 
 .headerlink:visited {
@@ -457,6 +481,9 @@ margin-right: 10px;
 .headerlink:active {
      color: #686868;
      }
+     
+     
+     
  .blank {
    padding: 0px;
 	margin: 0px;
@@ -466,7 +493,7 @@ margin-right: 10px;
     background: #639cab;
 }
 .menuControlLink {
-	 font-family:'Droid Sans', arial, serif;
+	 font-family:'Open Sans', arial, serif;
      text-align: left;
 	 border: 0px;
 	 width: 180px;
@@ -905,10 +932,12 @@ font-size:22px;
 	width: 300px;
 }
 .checkList{
-	font-size:medium;
-	font-family: 'Droid Sans', arial, serif;
+	font-size:18px;
+	font-family: 'Ubuntu', 'Syncopate', 'Orbitron', 'Cantarell', 'Anonymous Pro', 'Nobile','PT Sans Narrow', 'Raleway', 'Geo', serif;
+	color:gray;
 	
 }
+
 .inputRegister{
 	width:200px;
 		font-size:medium;
@@ -937,4 +966,38 @@ font-size:22px;
 .inputLabelRegister{
 		font-size:medium;
 	font-family:Microsoft JhengHei UI;
+}
+.hideOnLoad {
+    display: none;
+}
+.showOnLoad {
+   
+}
+.panelShadowBox {
+	box-sizing: border-box;
+	
+	padding: 5px 5px 5px 5px;
+	margin: 15px auto 15px auto;
+	overflow: visible;
+	background: linear-gradient(#E2E2E2 0, #F2F2F2 50px);	
+	background: -o-linear-gradient(#E2E2E2 0, #F2F2F2 50px);	
+	background: -ms-linear-gradient(#E2E2E2 0, #F2F2F2 50px);	
+	background: -moz-linear-gradient(#E2E2E2 0, #F2F2F2 50px);	
+	background: -webkit-linear-gradient(#E2E2E2 0, #F2F2F2 50px);	
+	box-shadow: -10px 10px 10px rgba(0,0,0,0.3);	
+	-o-box-shadow: -10px 10px 10px rgba(0,0,0,0.3);	
+	-ms-box-shadow: -10px 10px 10px rgba(0,0,0,0.3);	
+	-moz-box-shadow: -10px 10px 10px rgba(0,0,0,0.3);	
+	-webkit-box-shadow: -10px 10px 10px rgba(0,0,0,0.3);
+		
+}
+.headerGradientBackground {
+	overflow: visible;
+	background: linear-gradient(#E2E2E2 0, #F2F2F2 20px);	
+	background: -o-linear-gradient(#E2E2E2 0, #F2F2F2 20px);	
+	background: -ms-linear-gradient(#E2E2E2 0, #F2F2F2 20px);	
+	background: -moz-linear-gradient(#E2E2E2 0, #F2F2F2 20px);	
+	background: -webkit-linear-gradient(#E2E2E2 0, #F2F2F2 20px);	
+
+		
 }

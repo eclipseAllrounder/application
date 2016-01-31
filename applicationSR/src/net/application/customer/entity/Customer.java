@@ -6,10 +6,12 @@
 package net.application.customer.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -76,13 +78,9 @@ public class Customer implements Serializable
    private Date userSince;
    private Boolean confirmAgb;
    @Enumerated
-   private Status userStatus;
-
- 
+   private Status userStatus;   
   
-   
  
-
    @Id @GeneratedValue
    public Integer getCustomerId(){ return customerId; }
    public void setCustomerId(Integer customerId) { this.customerId = customerId; }   
@@ -195,8 +193,8 @@ public Boolean getConfirmAgb() {
 public void setConfirmAgb(Boolean confirmAgb) {
 	this.confirmAgb = confirmAgb;
 }
-   
-  
- 
+   @OneToMany(mappedBy="customer")
+private Set<Profile> profiles;
+
     
 }
