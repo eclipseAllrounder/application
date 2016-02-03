@@ -1,0 +1,43 @@
+<ui:component
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:cc="http://java.sun.com/jsf/composite"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:richext="http://java.sun.com/jsf/composite/richext"
+    xmlns:my="http://java.sun.com/jsf/composite/components">
+    <cc:interface>
+        <cc:attribute name="space" required="false" />
+        <cc:attribute name="size" required="false" />
+        <cc:attribute name="label" required="true" />
+        <cc:attribute name="value" required="true" />
+        <cc:attribute name="rendered" required="false" />
+        <cc:attribute name="disabled" required="false" />
+        <cc:attribute name="columnClasses1" required="false" />
+        <cc:attribute name="id" required="false" />
+        <cc:attribute name="converterMessage" required="false" />
+        <cc:attribute name="labelStyleClass" required="false" />
+        <cc:attribute name="inputStyleClass" required="false" />
+        <cc:attribute name="required" required="false" />
+        <cc:attribute name="enableManualInput" required="false" />
+          <cc:attribute name="selectItemsValue" required="false" />
+          <cc:attribute name="defaultLabel" required="false" />
+        <cc:editableValueHolder name="input" targets="select" />
+    </cc:interface>
+    <cc:implementation>
+      <h:panelGrid columns="1" border="0" columnClasses="#{cc.attrs.columnClasses1}">
+	      <h:panelGroup>
+	      <richext:spacer width="#{cc.attrs.space}" height="1"/>
+	      <my:inputLabel id="input" labelString="#{cc.attrs.label}" labelStyleClass="#{cc.attrs.labelStyleClass}"/>
+	      </h:panelGroup>
+	      <h:panelGroup>
+	      	<rich:select id="select" styleClass="#{cc.attrs.inputStyleClass}" enableManualInput="#{cc.attrs.enableManualInput}" defaultLabel="#{cc.attrs.defaultLabel}">
+                <f:selectItems value="#{cc.attrs.selectItemsValue}" />
+                <rich:validator event="blur" oninvalid="$(#{rich:element('select')}).addClass('invalid')"
+	            	onvalid="$(#{rich:element('select')}).removeClass('invalid')"/>
+            </rich:select>
+	      </h:panelGroup>
+	      <h:panelGroup><rich:message for="select"  ajaxRendered="false" /> </h:panelGroup>
+       </h:panelGrid>
+     </cc:implementation>
+</ui:component>
