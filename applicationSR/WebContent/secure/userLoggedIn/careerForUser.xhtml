@@ -63,6 +63,10 @@ z-index: -99;
 	-moz-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
 	-webkit-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
 }
+.select input{
+font-size:15px;
+height:25px;
+}
 	
     </h:outputStylesheet>
     
@@ -238,7 +242,8 @@ z-index: -99;
     		<h:panelGroup>
 				<richext:spacer width="10" height="10"/>  
     	        <rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-left:40px;margin-right:40px;background-color:#F2F2F2" rendered="#{identity.loggedIn}" >
-	         	<my:inputText label="#{msg.mailUserName}:" value="#{newMailserver.userName}" space="200" size="50"/>
+	         
+	         	<my:inputSelectWithUpperLabel label="#{msg.mailUserName}:" enableManualInput="true" inputStyleClass="select" defaultLabel="Branche eingeben"/>
 			   	<my:inputTextSecure label="#{msg.mailPassword}:" value="#{newMailserver.password}" space="200" size="50"/>
 			   	<my:inputText label="#{msg.mailSmtpHost}:" value="#{newMailserver.mailSmtpHost}" space="200" size="50"/>
 			   	<my:inputText converterMessage="#{msg.notInteger}" label="#{msg.mailSmtpPort}:" value="#{newMailserver.mailSmtpPort}" space="200" size="50"/>
