@@ -104,11 +104,12 @@ public class AuthorizationChecker implements Serializable {
              Role role = BasicModel.getRole(identityManager, roleName);
              roleNameS=roleName;
              groupNameS=groupName;
-             log.info("hasGroupRole: " + groupName + " - " + roleName);
+             log.info(((User) identity.getAccount()).getLoginName() + " hasGroupRole: " + groupName + " - " + roleName);
              return BasicModel.hasGroupRole(relationshipManager,identity.getAccount(), role, group);
          }
+         
          if ( (roleName!=null && groupName!=null) &&(roleName.matches(roleNameS) || groupName.matches(groupNameS))){
-        	 log.info("hasGroupRole: without idm call " + groupName + " - " + roleName);
+        	 log.info(((User) identity.getAccount()).getLoginName() + " hasGroupRole: without idm call " + groupName + " - " + roleName);
         	 return true;
          }
          

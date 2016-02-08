@@ -997,7 +997,26 @@ font-size:22px;
 	background: -o-linear-gradient(#E2E2E2 0, #F2F2F2 20px);	
 	background: -ms-linear-gradient(#E2E2E2 0, #F2F2F2 20px);	
 	background: -moz-linear-gradient(#E2E2E2 0, #F2F2F2 20px);	
-	background: -webkit-linear-gradient(#E2E2E2 0, #F2F2F2 20px);	
-
-		
+	background: -webkit-linear-gradient(#E2E2E2 0, #F2F2F2 20px);			
+}
+.message-container {
+	box-sizing: border-box;
+	width: 190px;
+	height: 300px;
+	padding: 5px 5px 5px 5px;
+	margin: 15px auto 15px auto;
+	 overflow: visible;
+	 z-index: 1000;
+	border: 1px solid #555;
+	background: #fff;	
+	background: linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -o-linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);	
+	background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);	
+	box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-o-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-ms-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-moz-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
+	-webkit-box-shadow: -15px 10px 10px rgba(0,0,0,0.3);	
 }

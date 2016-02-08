@@ -20,11 +20,8 @@ public class loggedInBean  implements Serializable {
 	private String styleButtonNotSelected;
 	private Boolean showMessage;
 	private String styleButtonSelected;
-	private String styleButtonSubTaskNotSelected;
-	private String styleButtonSubTaskSelected;
 	private String styleButtonOnmouseoutNotSelected;
-	private String styleButtonOnmouseoutSelected;
-	
+	private String styleButtonOnmouseoutSelected;	
 	private String styleButton;
 	private String styleButtonOnmouseout;
 	

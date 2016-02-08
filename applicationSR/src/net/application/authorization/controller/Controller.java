@@ -100,7 +100,7 @@ public class Controller {
         	return "/loggedIn.jsf?faces-redirect=true";
         }
     	AuthenticationResult result = identity.login();
-    	log.info(result.toString());
+    	log.info(result.toString() + " for user " + credentials.getUserId());
         if (AuthenticationResult.FAILED.equals(result)) {
             FacesContext.getCurrentInstance().addMessage("loggi", new FacesMessage(
                     "Authentication was unsuccessful.  Please check your username and password " + "before trying again."));

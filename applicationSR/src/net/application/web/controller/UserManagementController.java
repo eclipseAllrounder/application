@@ -1358,7 +1358,10 @@ public class UserManagementController  implements Serializable {
 
 		public void setCurrentCustomerIdmUserIndex(
 				Integer currentCustomerIdmUserIndex) {
-			if(currentCustomerIdmUserIndex!=null)setCurrentCustomerIdmUser(allCustomerIdmUsers.get(currentCustomerIdmUserIndex));
+			if(currentCustomerIdmUserIndex!=null){
+				setCurrentCustomerIdmUser(allCustomerIdmUsers.get(currentCustomerIdmUserIndex));
+				log.info("currentCustomerIdmUserIndex: " + currentCustomerIdmUserIndex);
+			}
 			this.currentCustomerIdmUserIndex = currentCustomerIdmUserIndex;
 		}
 		public void toggleSort(String sortType){

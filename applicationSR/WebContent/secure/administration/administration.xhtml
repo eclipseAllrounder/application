@@ -36,13 +36,128 @@
         
         }
         </h:outputStylesheet>
-<rich:panel style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:20px;background-color:#F2F2F2" rendered="#{identity.loggedIn}">  
+<rich:panel style="top:0px;margin-left:0px;padding-left:0px;margin-bottom:0px;margin-top:0px;margin-right:20px;padding-right:0px;background-color:#F2F2F2;" rendered="#{identity.loggedIn}" styleClass="panelShadowBox">  
+  
   	<richext:spacer width="190" height="30"/>
 	<h:outputLabel value="Applikation Control" styleClass="DialogHeadline" style="text-align:left;margin-right:0;margin-left:60px;margin-top:0px;"/>
 	<richext:spacer width="190" height="15"/>
 	<h:graphicImage value="/resources/gfx/borderLine.png" style="border:0 none;width:85%; height:2px;margin-left:60px;"/>
 	<richext:spacer width="190" height="10"/> 
     <h:form id="parentForm">
+    
+    	<richext:spacer width="190" height="30"/>
+  	 <h:panelGrid columns="4" border="0">  
+  	 <h:panelGroup>
+		 <h:commandButton  action="#{webAdminController.switchToSubTask('sandboxControl')}" id="labelLogin" value="Sandbox"  immediate="true"
+		     style="#{webAdminController.selectedButtonSubTaskString.matches('sandboxControl') ? 'margin-left:30px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none;font-weight: bold;
+		     																			overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)' : 
+	                                                                                  'margin-left:30px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#515151;font-size:15px;border:none;font-weight: bold;
+	                                                                                  	overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)'}">
+		     <f:ajax execute="@form" render="@form"/> 
+		 </h:commandButton>
+		 <h:graphicImage id="line" value="/resources/gfx/borderLine.png" style="#{webAdminController.selectedButtonSubTaskString.matches('sandboxControl') ? 'margin-left:30px;display:block;width:110px;height:2px;' : 'margin-left:30px;display:none;width:110px;height:2px;'}"/>
+	 </h:panelGroup>
+	<h:panelGroup>	
+		<h:commandButton  action="#{webAdminController.switchToSubTask('mailControl')}" id="labelLogin2" value="Mailserver" immediate="true"
+		    style="#{webAdminController.selectedButtonSubTaskString.matches('mailControl') ? 'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none;font-weight: bold;
+		     																			overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)' :  
+	                                                                                'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#515151;font-size:15px;border:none;font-weight: bold;
+	                                                                                  	overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)'}">
+		     <f:ajax execute="@form" render="@form"/> </h:commandButton>
+		 <h:graphicImage id="line2" value="/resources/gfx/borderLine.png" style="#{webAdminController.selectedButtonSubTaskString.matches('mailControl') ? 'margin-left:60px;display:block;width:130px;height:2px;' : 'margin-left:30px;display:none;width:130px;height:2px;'}"/>
+    </h:panelGroup>
+	<h:panelGroup>	
+		<h:commandButton  action="#{webAdminController.switchToSubTask('applicationControl')}" id="labelLogin3" value="Applikation" immediate="true"
+		    style="#{webAdminController.selectedButtonSubTaskString.matches('applicationControl') ? 'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none;font-weight: bold;
+		     																			overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)' :  
+	                                                                                'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#515151;font-size:15px;border:none;font-weight: bold;
+	                                                                                  	overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)'}">
+		     <f:ajax execute="@form" render="@form"/> </h:commandButton>
+		 <h:graphicImage id="line3" value="/resources/gfx/borderLine.png" style="#{webAdminController.selectedButtonSubTaskString.matches('applicationControl') ? 'margin-left:60px;display:block;width:130px;height:2px;' : 'margin-left:30px;display:none;width:150px;height:2px;'}"/>
+    </h:panelGroup>
+    	<h:panelGroup>	
+		<h:commandButton  action="#{webAdminController.switchToSubTask('contentControl')}" id="labelLogin4" value="Content" immediate="true"
+		    style="#{webAdminController.selectedButtonSubTaskString.matches('contentControl') ? 'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#ff8040;font-size:15px;border:none;font-weight: bold;
+		     																			overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)' :  
+	                                                                                'margin-left:60px;top:0px;margin-bottom:0px;margin-top:0px;margin-right:40px;background-color:#F2F2F2;background-image: url();color:#515151;font-size:15px;border:none;font-weight: bold;
+	                                                                                  	overflow: visible;
+																						background: linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -o-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -ms-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -moz-linear-gradient(#EDEDED 0, #F2F2F2 20px);	
+																						background: -webkit-linear-gradient(#EDEDED 0, #F2F2F2 20px)'}">
+		     <f:ajax execute="@form" render="@form"/> </h:commandButton>
+		 <h:graphicImage id="line4" value="/resources/gfx/borderLine.png" style="#{webAdminController.selectedButtonSubTaskString.matches('contentControl') ? 'margin-left:60px;display:block;width:130px;height:2px;' : 'margin-left:30px;display:none;width:150px;height:2px;'}"/>
+    </h:panelGroup>
+    
+         <!-- <rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseover" query="jQuery(#{rich:element('line')}).css({'display': 'block'})" />  -->
+    <ui:fragment rendered="#{not webAdminController.selectedButtonSubTaskString.matches('sandboxControl')}"><rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseout" query="jQuery(#{rich:element('line')}).css({'display': 'none'})" /></ui:fragment> 
+     <rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseover" query="jQuery(this).css({'color': '#ff8040'})" /> 
+    <ui:fragment rendered="#{not webAdminController.selectedButtonSubTaskString.matches('sandboxControl')}"><rich:jQuery selector="#{rich:element('labelLogin')}" event="mouseout" query="jQuery(this).css({'color': '#515151'})" /> </ui:fragment>
+     
+    <!-- <rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseover" query="jQuery(#{rich:element('line2')}).css({'display': 'block'})" />  -->
+    <ui:fragment rendered="#{not webAdminController.selectedButtonSubTaskString.matches('mailControl')}"><rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseout" query="jQuery(#{rich:element('line2')}).css({'display': 'none'})" /></ui:fragment> 
+     <rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseover" query="jQuery(this).css({'color': '#ff8040'})" /> 
+    <ui:fragment rendered="#{not webAdminController.selectedButtonSubTaskString.matches('mailControl')}"><rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseout" query="jQuery(this).css({'color': '#515151'})" /> </ui:fragment>
+   
+     <!-- <rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseover" query="jQuery(#{rich:element('line2')}).css({'display': 'block'})" />  -->
+    <ui:fragment rendered="#{not webAdminController.selectedButtonSubTaskString.matches('applicationControl')}"><rich:jQuery selector="#{rich:element('labelLogin3')}" event="mouseout" query="jQuery(#{rich:element('line3')}).css({'display': 'none'})" /></ui:fragment> 
+     <rich:jQuery selector="#{rich:element('labelLogin3')}" event="mouseover" query="jQuery(this).css({'color': '#ff8040'})" /> 
+    <ui:fragment rendered="#{not webAdminController.selectedButtonSubTaskString.matches('applicationControl')}"><rich:jQuery selector="#{rich:element('labelLogin3')}" event="mouseout" query="jQuery(this).css({'color': '#515151'})" /> </ui:fragment>
+   
+     <!-- <rich:jQuery selector="#{rich:element('labelLogin2')}" event="mouseover" query="jQuery(#{rich:element('line2')}).css({'display': 'block'})" />  -->
+    <ui:fragment rendered="#{not webAdminController.selectedButtonSubTaskString.matches('contentControl')}"><rich:jQuery selector="#{rich:element('labelLogin4')}" event="mouseout" query="jQuery(#{rich:element('line4')}).css({'display': 'none'})" /></ui:fragment> 
+     <rich:jQuery selector="#{rich:element('labelLogin4')}" event="mouseover" query="jQuery(this).css({'color': '#ff8040'})" /> 
+    <ui:fragment rendered="#{not webAdminController.selectedButtonSubTaskString.matches('contentControl')}"><rich:jQuery selector="#{rich:element('labelLogin4')}" event="mouseout" query="jQuery(this).css({'color': '#515151'})" /> </ui:fragment>
+     
+</h:panelGrid>  
+
+
+
+<h:panelGroup>
+
+<ui:fragment rendered="#{webAdminController.selectedButtonSubTaskString.matches('mailControl')}">
+<ui:include src="/secure/administration/mailControlling.xhtml" />
+</ui:fragment>
+
+</h:panelGroup>
+  
+    
 
     <rich:tabPanel  id="administrationTab" switchType="ajax" activeItem="skinTab" style="padding-left:1%;width:98%;" immediate="true">
     <rich:tab  id="skinTab" immediate="true" action="#{webAdminController.changeSidebarString('skinControl')}" render="sidebar,sidebarSkin,sidebarContent" execute="@this" >
@@ -84,134 +199,7 @@
     <f:facet name="headerActive"><richext:spacer width="100" height="1"/> <h:outputText value="#{msg.mailserverTabHeader}"/></f:facet> 
     <f:facet name="headerInactive"><richext:spacer width="100" height="1"/> <h:outputText value="#{msg.mailserverTabHeader}"/></f:facet> 
     
-   	<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.manageMailservers}"></h:outputText></legend>
-   	<my:inputText label="#{msg.mailUserName}:" value="#{newMailserver.userName}" space="200" size="50"/>
-   	<my:inputTextSecure label="#{msg.mailPassword}:" value="#{newMailserver.password}" space="200" size="50"/>
-   	<my:inputText label="#{msg.mailSmtpHost}:" value="#{newMailserver.mailSmtpHost}" space="200" size="50"/>
-   	<my:inputText converterMessage="#{msg.notInteger}" label="#{msg.mailSmtpPort}:" value="#{newMailserver.mailSmtpPort}" space="200" size="50"/>
-    <h:panelGrid columns="3" border="0">
-      <h:panelGroup>
-      <richext:spacer width="200" height="1"/>
-      
-       <h:panelGrid columns="2" border="0">
-        <h:panelGroup>
-       
-       <h:outputLabel for="text" value="#{msg.application}:" styleClass="formtxt" style="text-align:left;margin-right:0;margin-left:0px"/>
-      </h:panelGroup>
-      </h:panelGrid>
-      </h:panelGroup>
-      	<h:panelGroup>
-      		<h:inputText id="text" value="#{newMailserver.application}" required="false" size="50">
-               <rich:validator event="blur" oninvalid="$(#{rich:element('text')}).addClass('invalid')"
-            	onvalid="$(#{rich:element('text')}).removeClass('invalid')"/>
-            	<f:validator binding="#{validMailserverApplicationName}" />
-            </h:inputText>
-         </h:panelGroup>
-            <h:panelGroup><rich:message for="text"  ajaxRendered="true" /> </h:panelGroup>
-            
-       </h:panelGrid>
-
-
-	<h:panelGrid columns="3" border="0">
-	   	<h:panelGroup>
-	   		<richext:spacer width="188" height="1"/>
-	    	<h:outputLabel for="mailSmtpAuthId" value="#{msg.mailSmtpAuth}: " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:0px"/>
-	    </h:panelGroup>
-	    <h:panelGroup>
-			<h:selectOneRadio id="mailSmtpAuthId" value="#{newMailserver.mailSmtpAuth}">
-	        	<f:selectItem itemLabel="#{msg.yes}" itemValue="true" />
-	            <f:selectItem itemLabel="#{msg.no}" itemValue="false" />
-	            <rich:validator event="blur" oninvalid="$(#{rich:element('mailSmtpAuthId')}).addClass('invalid')"
-	            	onvalid="$(#{rich:element('mailSmtpAuthId')}).removeClass('invalid')" />
-	        </h:selectOneRadio>
-	    </h:panelGroup>
-	    <rich:message for="mailSmtpAuthId" ajaxRendered="true" />
-	</h:panelGrid>
-	
-	<h:panelGrid columns="3" border="0">
-	   	<h:panelGroup>
-	   		<richext:spacer width="188" height="1"/>
-	    	<h:outputLabel for="mailSmtpStarttlsEnableId" value="#{msg.mailSmtpStarttlsEnable}: " styleClass="formtxt" style="text-align:right;margin-right:0;margin-left:0px"/>
-	    </h:panelGroup>
-	    <h:panelGroup>
-			<h:selectOneRadio id="mailSmtpStarttlsEnableId" value="#{newMailserver.mailSmtpStarttlsEnable}">
-	        	<f:selectItem itemLabel="#{msg.yes}" itemValue="true" />
-	            <f:selectItem itemLabel="#{msg.no}" itemValue="false" />
-	            <rich:validator event="blur" oninvalid="$(#{rich:element('mailSmtpStarttlsEnableId')}).addClass('invalid')"
-	            	onvalid="$(#{rich:element('mailSmtpStarttlsEnableId')}).removeClass('invalid')" />
-	        </h:selectOneRadio>
-	    </h:panelGroup>
-	    <rich:message for="mailSmtpStarttlsEnableId" ajaxRendered="true" />
-	</h:panelGrid>
-       <h:commandButton id="createServerButton" actionListener="#{webAdminController.createMailserver}" value="#{msg.buttonEdit}" />
- <h:messages  showDetail="true" showSummary="false" globalOnly="true"/>
-   </fieldset>
-    <richext:spacer width="200" height="20"/>
-   
-   <fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.listMailservers}"></h:outputText></legend>
-   <h:panelGroup rendered="#{empty webAdminController.allMailservers}">
-                <em>#{msg.noMailserversAvailible}</em>
-   </h:panelGroup>
-             <rich:dataTable id="mailserverTable" var="_server" value="#{webAdminController.allMailservers}" iterationStatusVar="it" rendered="#{not empty webAdminController.allMailservers}" style="width: 100%" rows="20">
-                
-                   <rich:column> 
-		             <f:facet name="header">#{msg.runningNumber}</f:facet>
-		             <div style="max-height:47px;max-width:20px;overflow:hidden">
-		              #{it.index}
-		             </div> 
-		           </rich:column> 
-                  
-                   <rich:column width="80">
-                      <f:facet name="header">#{msg.date}</f:facet>
-                      <div style="overflow:hidden;width:150px">
-                      #{_server.dob}
-             	    </div>
-                   </rich:column>
-                   <rich:column width="80">
-                      <f:facet name="header">#{msg.application}</f:facet>
-                      <div style="overflow:hidden;width:100px">
-                      #{_server.application}
-             	    </div>
-                 </rich:column>
-             	    <rich:column width="80">
-                      <f:facet name="header">#{msg.mailSmtpHost}</f:facet>
-                      <div style="overflow:hidden;width:100px">
-                      #{_server.mailSmtpHost}
-             	    </div>
-                 </rich:column>
-                 <rich:column width="80">
-                      <f:facet name="header">#{msg.mailSmtpPort}</f:facet>
-                      <div style="overflow:hidden;width:100px">
-                      #{_server.mailSmtpPort}
-             	    </div>
-                 </rich:column>
-                 <rich:column width="200">
-                      <f:facet name="header">#{msg.userName}</f:facet>
-                      <div style="overflow:hidden;width:200px">
-                      #{_server.userName}
-             	    </div>                
-                 </rich:column>
-                 <rich:column width="50">
-                      <f:facet name="header">#{msg.mailSmtpAuth}</f:facet>
-                       <h:graphicImage value="/resources/gfx/nok_red.png" width="15px" height="15px" rendered="#{!_server.mailSmtpAuth.booleanValue()}"></h:graphicImage>
-		     		   <h:graphicImage value="/resources/gfx/ok_green.png" width="15px" height="15px" rendered="#{_server.mailSmtpAuth.booleanValue()}"></h:graphicImage>
-                 </rich:column>
-                 <rich:column width="50">
-                      <f:facet name="header">#{msg.mailSmtpStarttlsEnable}</f:facet>
-                       <h:graphicImage value="/resources/gfx/nok_red.png" width="15px" height="15px" rendered="#{!_server.mailSmtpStarttlsEnable.booleanValue()}"></h:graphicImage>
-		     		   <h:graphicImage value="/resources/gfx/ok_green.png" width="15px" height="15px" rendered="#{_server.mailSmtpStarttlsEnable.booleanValue()}"></h:graphicImage>
-                 </rich:column>
-		          <rich:column> 
-						<a4j:commandLink styleClass="no-decor" execute="@this" render="mailserverTable" action="#{webAdminController.deleteMailserver()}"> 
-						<h:graphicImage value="/resources/gfx/trash.png" width="15px" height="15px"></h:graphicImage>
-						<a4j:param value="#{_server.application}" assignTo="#{webAdminController.currentMailApplication}" /> 
-						</a4j:commandLink> 
-		          </rich:column> 
-                   
-               <f:facet name="footer">                 <rich:dataScroller id="scroller" />             </f:facet> 
-                </rich:dataTable>
-                
-                 </fieldset>
+ 
    </rich:tab>
     <rich:tab header="#{msg.applicationControlTabHeader}" id="applContrTab" immediate="true"> 
    	<fieldset> <legend style="font-size:1.3em;font-family:Times New Roman;"><h:outputText value="#{msg.manageApplicationControl}"></h:outputText></legend>
