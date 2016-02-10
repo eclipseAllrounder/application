@@ -102,10 +102,14 @@ public class AuthorizationChecker implements Serializable {
          if ( (roleName!=null && groupName!=null) &&(!roleName.matches(roleNameS) || !groupName.matches(groupNameS))){
              Group group = BasicModel.getGroup(identityManager, groupName);
              Role role = BasicModel.getRole(identityManager, roleName);
-             roleNameS=roleName;
-             groupNameS=groupName;
              log.info(((User) identity.getAccount()).getLoginName() + " hasGroupRole: " + groupName + " - " + roleName);
-             return BasicModel.hasGroupRole(relationshipManager,identity.getAccount(), role, group);
+             Boolean check=false;
+             check = BasicModel.hasGroupRole(relationshipManager,identity.getAccount(), role, group);
+             if (check){
+                 roleNameS=roleName;
+                 groupNameS=groupName;
+             }
+             return check;
          }
          
          if ( (roleName!=null && groupName!=null) &&(roleName.matches(roleNameS) || groupName.matches(groupNameS))){

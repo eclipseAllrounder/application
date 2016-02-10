@@ -305,7 +305,9 @@
 										<a4j:param value="#{_user.idmUsername}"
 											assignTo="#{userManagementController.usersCustomersBean.currentUserCustomerName}" />
 										<!--<rich:componentControl target="editUserPanel" operation="show"/>-->
-
+<f:setPropertyActionListener
+											target="#{userManagementController.currentCustomerIdmUser}"
+											value="#{_user}" />
 									</a4j:commandLink>
 								</div>
 							</rich:column>
@@ -316,6 +318,12 @@
 										render="warnDeleteUser">
 										<h:graphicImage value="/resources/gfx/false.png" width="15px"
 											height="15px"></h:graphicImage>
+												<a4j:param value="#{_user.idmUsername}"
+											assignTo="#{userManagementController.usersCustomersBean.currentUserCustomerName}" />
+											
+											<f:setPropertyActionListener
+											target="#{userManagementController.currentCustomerIdmUser}"
+											value="#{_user}" />
 									</a4j:commandLink>
 								</div>
 							</rich:column>
@@ -328,6 +336,9 @@
 											width="15px" height="15px"></h:graphicImage>
 										<a4j:param value="#{_user.idmUsername}"
 											assignTo="#{userManagementController.usersCustomersBean.currentUserCustomerName}" />
+											<f:setPropertyActionListener
+											target="#{userManagementController.currentCustomerIdmUser}"
+											value="#{_user}" />
 									</a4j:commandLink>
 								</div>
 							</rich:column>
