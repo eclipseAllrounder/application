@@ -5,7 +5,13 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+import org.picketlink.idm.model.basic.User;
+
+import org.picketlink.Identity;
+import org.picketlink.credential.DefaultLoginCredentials;
+import org.picketlink.idm.model.basic.User;
 
 @SessionScoped 
 @Named
@@ -14,6 +20,7 @@ public class loggedInBean  implements Serializable {
     /**
 	 * 
 	 */
+	@Inject private Identity identity;
 	private static final long serialVersionUID = 1L;
 	private String selectedButtonString;
 	private String selectedButtonSubTaskString;
@@ -24,11 +31,22 @@ public class loggedInBean  implements Serializable {
 	private String styleButtonOnmouseoutSelected;	
 	private String styleButton;
 	private String styleButtonOnmouseout;
+	private String mainPage;
 	
+	public String getMainPage() {
+		return mainPage;
+	}
+
+	public void setMainPage(String mainPage) {
+		this.mainPage = mainPage;
+	}
+
 	@PostConstruct
     public void init() {
     	System.out.println("init");
     	showMessage=true;
+    	//if ((User) identity.getAccount()).getLoginName().matches('adminstrator') mainSubPage=
+    	mainPage="profile";
     	selectedButtonString="profileButton";
     	selectedButtonSubTaskString="personal";
     	System.out.println("init " + selectedButtonString);
