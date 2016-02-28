@@ -12,9 +12,9 @@
                 xmlns:ez="http://java.sun.com/jsf/composite/demo">
                 
 <f:metadata>
-  <f:event type="preRenderView" listener="#{webAdminController.changeSidebarString('userControl')}"/>
+  <f:event type="preRenderView" listener="#{loggedInBean.start()}"/>
 </f:metadata>
-          
+        
   <ui:define name="content">
         <h:outputStylesheet>
 
@@ -24,16 +24,11 @@
 <rich:panel style="top:0px;margin-left:0px;padding-left:0px;margin-bottom:0px;margin-top:0px;margin-right:20px;padding-right:0px;background-color:#F2F2F2;" rendered="#{identity.loggedIn}" styleClass="panelShadowBox">  
 		
 
- <h:form id="parentForMainPage">
-         
+ <h:form id="parentForMainPage">         
  <a4j:outputPanel id="sidebarUserTip" style="top:0px;margin-bottom:0px;margin-top:10px;margin-right:0px;padding-top:10px;background-color:#F2F2F2; width:100%;vertical-align:top;"
-  rendered="#{loggedInBean.mainPage.matches('profile')}">
-	<ui:include src="/secure/userLoggedIn/sidebarForUserTip.xhtml" />
+  rendered="#{menuController.mainPage.matches('profile')}">
+	<ui:include src="/secure/userLoggedIn/mainPage/profilePage.xhtml" />
 </a4j:outputPanel>
-  
-    
-   
-
 </h:form>
     
 </rich:panel>
@@ -43,14 +38,15 @@
      <ui:define name="rside">
      
 		<a4j:outputPanel id="sidebar" style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;padding:0px;background-color:#FFFFFF; width:100%;vertical-align:top;" rendered="#{identity.loggedIn}">
-		
-			 <a4j:outputPanel id="sidebarUser" style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;padding:0px;background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{webAdminController.sideBar.matches('userControl')}">
+	 <h:form id="parentForSideBar">   	
+			 <a4j:outputPanel id="sidebarUser" style="top:0px;margin-bottom:0px;margin-top:0px;margin-right:0px;padding:0px;background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{menuController.sideBarPage.matches('loggedInControl')}">
 			 	<ui:include src="/secure/userLoggedIn/sidebarForUserControl.xhtml" />
 			 </a4j:outputPanel>
 			 <richext:spacer width="10" height="10"/>
 		 <a4j:outputPanel id="sidebarUserTip" style="top:0px;margin-bottom:0px;margin-top:10px;margin-right:0px;padding-top:10px;background-color:#F2F2F2; width:100%;vertical-align:top;" rendered="#{webAdminController.sideBar.matches('userControl')}">
 			 	<ui:include src="/secure/userLoggedIn/sidebarForUserTip.xhtml" />
 			 </a4j:outputPanel>
+			 </h:form>
 	   	</a4j:outputPanel>
 
      </ui:define>

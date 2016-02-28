@@ -5,22 +5,27 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+
 import org.picketlink.idm.model.basic.User;
 
 import org.picketlink.Identity;
 import org.picketlink.credential.DefaultLoginCredentials;
 import org.picketlink.idm.model.basic.User;
 
+
 @SessionScoped 
 @Named
-public class loggedInBean  implements Serializable {
+public class LoggedInBean  implements Serializable {
 
     /**
 	 * 
 	 */
 	@Inject private Identity identity;
+	@Inject private MenuController menuController;
 	private static final long serialVersionUID = 1L;
 	private String selectedButtonString;
 	private String selectedButtonSubTaskString;
@@ -31,25 +36,48 @@ public class loggedInBean  implements Serializable {
 	private String styleButtonOnmouseoutSelected;	
 	private String styleButton;
 	private String styleButtonOnmouseout;
-	private String mainPage;
 	
-	public String getMainPage() {
-		return mainPage;
-	}
+	LoggedInBean(){}
+	
+	public void start() {
+		HttpServletRequest request =(HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		String browser=request.getHeader("user-agent");
+		String browsername = "";
+		String browserversion = "";
+		String[] otherBrowsers={"Firefox","Chrome","Chrome","Safari"};
+		if(browser != null ){
+		        if((browser.indexOf("MSIE") == -1) && (browser.indexOf("msie") == -1)){
+		            for(int i=0; i< otherBrowsers.length;  i++){
+		                System.out.println(browser.indexOf(otherBrowsers[i]));
+		                browsername=otherBrowsers[i];
+		                break;
+		            }
+		            String subsString = browser.substring( browser.indexOf(browsername));
+		            String Info[] = (subsString.split(" ")[0]).split("/");
+		            browsername = Info[0];
+		            browserversion = Info[1];
+		    }
+		    else{
+		        String tempStr = browser.substring(browser.indexOf("MSIE"),browser.length());
+		        browsername    = "IE";
+		        browserversion = tempStr.substring(4,tempStr.indexOf(";"));
+		    }
+		}
+		System.out.println("browsername: " + browsername + " browserversion: " + browserversion);
 
-	public void setMainPage(String mainPage) {
-		this.mainPage = mainPage;
 	}
-
+	
 	@PostConstruct
     public void init() {
-    	System.out.println("init");
+    	System.out.println("loggedInBean init");
     	showMessage=true;
     	//if ((User) identity.getAccount()).getLoginName().matches('adminstrator') mainSubPage=
-    	mainPage="profile";
-    	selectedButtonString="profileButton";
-    	selectedButtonSubTaskString="personal";
-    	System.out.println("init " + selectedButtonString);
+    	menuController.setMainPage("profile");
+    	menuController.setSideBarPage("loggedInControl");
+    	menuController.setSelectedButtonStringSideBarPage("profileButton");
+    	menuController.setSelectedButtonSubTaskStringMainPage("personal");
+    	
+    	
     	String fontFamily="font-family:'Open Sans', arial, serif;";
     	String fontSize="font-size:16px;";
     	String textDecoration="text-decoration:none;";

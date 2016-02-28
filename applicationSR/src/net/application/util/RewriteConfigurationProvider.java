@@ -57,7 +57,6 @@ public class RewriteConfigurationProvider extends HttpConfigurationProvider {
         return ConfigurationBuilder.begin()
         		.addRule(Join.path("/home.xhtml").to("/homeCdi2.xhtml"))
         		.addRule(Join.path("/registration1.html").to("/secure/registration/registration.xhtml"))
-        		.addRule(Join.path("/registration1.html").to("/secure/registration/registration.xhtml"))
         		.addRule(Join.path("/doActivation.html").to("/secure/registration/verificationIn.xhtml"))
         		.addRule(Join.path("/activation.html").to("/secure/registration/verification.xhtml"))
         		.addRule(Join.path("/loggedIn.html").to("/secure/userLoggedIn/loggedIn.xhtml"));
